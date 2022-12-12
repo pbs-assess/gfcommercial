@@ -9,7 +9,7 @@ tidy_commercial_counts <- function (data,
   
   # Define area factor levels --------------------------------------------------
   
-  area_levels <- c("5E", "5CD", "5AB", "3CD", "4B", "Total")
+  area_levels <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B", "Total")
   
   # Define years ---------------------------------------------------------------
   
@@ -20,18 +20,18 @@ tidy_commercial_counts <- function (data,
   # Filter by years ------------------------------------------------------------
   
   data <- data %>%
-    dplyr::filter(.data$year %in% years)
+    dplyr::filter(year %in% years)
   
   # Remove duplicate specimens -------------------------------------------------
   
   data <- data %>%
-    dplyr::distinct(.data$specimen_id, .keep_all = TRUE)
+    dplyr::distinct(specimen_id, .keep_all = TRUE)
   
   # Conditionally filter by ageing method code ---------------------------------
   
   if (!is.null(ageing_method_codes)) {
     data <- data %>%
-      dplyr::filter(.data$ageing_method %in% ageing_method_codes)
+      dplyr::filter(ageing_method %in% ageing_method_codes)
   }
   
   # Conditionally augment ------------------------------------------------------
@@ -46,67 +46,76 @@ tidy_commercial_counts <- function (data,
   # Areas
   data_areas <- data %>%
     dplyr::mutate(
-      area_chars = substr(.data$major_stat_area_name, 1, 2),
+      area_chars = substr(major_stat_area_name, 1, 2),
       area = ifelse(
-        .data$area_chars == "5E", "5E",
+        area_chars == "5E", "5E",
         ifelse(
-          .data$area_chars %in% c("5C", "5D"), "5CD",
+          area_chars %in% "5D", "5D",
           ifelse(
-            .data$area_chars %in% c("5A", "5B"), "5AB",
+            area_chars %in% "5C", "5C",
             ifelse(
-              .data$area_chars %in% c("3C", "3D"), "3CD",
+              area_chars %in% "5B", "5B",
               ifelse(
-                .data$area_chars == "4B", "4B", NA_character_
+                area_chars %in% "5A", "5A",
+                ifelse(
+                  area_chars %in% "3D", "3D",
+                  ifelse(
+                    area_chars %in% "3C", "3C",
+                    ifelse(
+                      area_chars == "4B", "4B", NA_character_
+                    )
+                  )
+                )
               )
             )
           )
         )
       )
     ) %>%
-    dplyr::select(-.data$area_chars) %>%
-    tidyr::drop_na(.data$area)
+    dplyr::select(-area_chars) %>%
+    tidyr::drop_na(area)
   # Total
   data_total <- data_areas %>%
     dplyr::mutate(area = "Total")
   # Bind rows
   data <- dplyr::bind_rows(data_areas, data_total) %>%
-    dplyr::mutate(area = factor(.data$area, levels = area_levels))
+    dplyr::mutate(area = factor(area, levels = area_levels))
   
   # Define counts --------------------------------------------------------------
   
   counts <- data %>%
     dplyr::group_by(
-      .data$species_common_name,
-      .data$area,
-      .data$year
+      species_common_name,
+      area,
+      year
     ) %>%
     dplyr::summarise(
-      age = sum(!is.na(.data$age) & .data$age > 0),
+      age = sum(!is.na(age) & age > 0),
       ageing_structure = sum(
-        !is.na(.data$age_specimen_collected) &
-          .data$age_specimen_collected == 1
+        !is.na(age_specimen_collected) &
+          age_specimen_collected == 1
       ),
-      length = sum(!is.na(.data$length) & .data$length > 0),
-      weight = sum(!is.na(.data$weight) & .data$weight > 0),
-      maturity = sum(!is.na(.data$maturity_code) & .data$maturity_code > 0)
+      length = sum(!is.na(length) & length > 0),
+      weight = sum(!is.na(weight) & weight > 0),
+      maturity = sum(!is.na(maturity_code) & maturity_code > 0)
     ) %>%
     dplyr::ungroup() %>%
     tidyr::pivot_longer(
-      cols = .data$age:.data$maturity,
+      cols = age:maturity,
       names_to = "type",
       values_to = "n"
     ) %>%
     dplyr::mutate(
       type = factor(
-        .data$type,
+        type,
         levels = c("age", "ageing_structure", "length", "weight", "maturity")
       )
     ) %>%
     dplyr::arrange(
-      .data$species_common_name,
-      .data$area,
-      .data$type,
-      .data$year
+      species_common_name,
+      area,
+      type,
+      year
     ) %>%
     tidyr::replace_na(replace = list(n = 0))
   
