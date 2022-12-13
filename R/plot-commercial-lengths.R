@@ -23,18 +23,18 @@ plot_commercial_lengths <- function (data,
   
   counts <- data %>%
     dplyr::select(
-      .data$survey_abbrev,
-      .data$year,
-      .data$total,
-      .data$area
+      survey_abbrev,
+      year,
+      total,
+      area
     ) %>%
     unique()
   
   # Scale each maximum proportion to one ---------------------------------------
   
   data <- data %>%
-    dplyr::group_by(.data$year, .data$survey_abbrev, .data$area) %>%
-    dplyr::mutate(proportion = .data$proportion / max(.data$proportion)) %>%
+    dplyr::group_by(year, survey_abbrev, area) %>%
+    dplyr::mutate(proportion = proportion / max(proportion)) %>%
     dplyr::ungroup()
   
   # Remove proportions with scarce observations --------------------------------
@@ -46,7 +46,7 @@ plot_commercial_lengths <- function (data,
   
   p1 <- ggplot2::ggplot(
     data,
-    ggplot2::aes_string("length_bin", "proportion")
+    ggplot2::aes(length_bin, proportion)
   ) +
     ggplot2::geom_col(
       width = bin_size,
@@ -65,7 +65,7 @@ plot_commercial_lengths <- function (data,
       data = counts,
       x = min(data$length_bin, na.rm = TRUE) + 0.02 * range_lengths,
       y = 0.85,
-      mapping = ggplot2::aes_string(label = "total"),
+      mapping = ggplot2::aes(label = total),
       inherit.aes = FALSE,
       colour = "grey50",
       size = 2.25,
@@ -73,7 +73,9 @@ plot_commercial_lengths <- function (data,
     ) +
     ggplot2::labs(title = "Length frequencies") +
     ggplot2::theme(
-      axis.text.y = ggplot2::element_blank(),
+      axis.text.x.bottom = ggplot2::element_text(size = 5.5),
+      axis.text.y.left = ggplot2::element_blank(),
+      strip.text.y = ggplot2::element_text(size = 8.0),
       axis.ticks.y = ggplot2::element_blank(),
       panel.grid.major.x = ggplot2::element_line(colour = "grey93"),
       panel.spacing = grid::unit(-0.1, "lines")

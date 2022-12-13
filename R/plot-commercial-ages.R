@@ -25,9 +25,9 @@ plot_commercial_ages <- function (data,
   data <- data %>%
     dplyr::mutate(
       year_jitter = ifelse(
-        .data$sex == "M",
-        .data$year - sex_gap / 2,
-        .data$year + sex_gap / 2
+        sex == "M",
+        year - sex_gap / 2,
+        year + sex_gap / 2
       )
     )
   
@@ -35,9 +35,9 @@ plot_commercial_ages <- function (data,
   
   counts <- data %>%
     dplyr::select(
-      .data$total,
-      .data$year,
-      .data$area
+      total,
+      year,
+      area
     ) %>%
     unique()
   
@@ -61,8 +61,8 @@ plot_commercial_ages <- function (data,
   # Define sex as factor -------------------------------------------------------
   
   data <- data %>%
-    dplyr::mutate(sex = factor(.data$sex, levels = c("M", "F"))) %>% # F on top
-    dplyr::arrange(.data$area, .data$year, .data$sex)
+    dplyr::mutate(sex = factor(sex, levels = c("M", "F"))) %>% # F on top
+    dplyr::arrange(area, year, sex)
   
   # Augment by missing areas ---------------------------------------------------
   
@@ -82,9 +82,9 @@ plot_commercial_ages <- function (data,
   
   p1 <- ggplot2::ggplot(
     data,
-    ggplot2::aes_string("year_jitter", "age")
+    ggplot2::aes(year_jitter, age)
   ) +
-    ggplot2::facet_grid(cols = ggplot2::vars(.data$area)) +
+    ggplot2::facet_grid(cols = ggplot2::vars(area)) +
     ggplot2::scale_x_continuous(
       breaks = seq(
         gfplot:::round_down_even(min(year_range)),
@@ -142,7 +142,7 @@ plot_commercial_ages <- function (data,
       ggplot2::geom_text(
         data = counts,
         y = age_max + 0.005 * age_range,
-        mapping = ggplot2::aes_string(x = "year", label = "total"),
+        mapping = ggplot2::aes(x = year, label = total),
         inherit.aes = FALSE,
         colour = "grey50",
         size = count_label_size,
@@ -150,11 +150,11 @@ plot_commercial_ages <- function (data,
         angle = 90
       ) +
       ggplot2::geom_point(
-        mapping = ggplot2::aes_string(
-          size = "proportion",
-          group = "sex",
-          fill = "sex",
-          colour = "sex"
+        mapping = ggplot2::aes(
+          size = proportion,
+          group = sex,
+          fill = sex,
+          colour = sex
         ),
         pch = 21
       )

@@ -15,13 +15,13 @@ plot_commercial_counts <- function (data,
   # Augment data ---------------------------------------------------------------
   
   data <- data %>%
-    dplyr::filter(.data$year %in% .env$years) %>%
+    dplyr::filter(year %in% .env$years) %>%
     dplyr::mutate(
-      n_plot = sqrt(.data$n),
-      n_text = gfplot:::round_nice(.data$n),
-      type = gfplot:::firstup(as.character(gsub("_", " ", .data$type))),
-      type = gsub("Ageing structure", "Age structures", .data$type),
-      type = paste("#", .data$type, sep = " ")
+      n_plot = sqrt(n),
+      n_text = gfplot:::round_nice(n),
+      type = gfplot:::firstup(as.character(gsub("_", " ", type))),
+      type = gsub("Ageing structure", "Age structures", type),
+      type = paste("#", type, sep = " ")
     )
   
   # Expand all combinations ----------------------------------------------------
@@ -41,16 +41,16 @@ plot_commercial_counts <- function (data,
     ) %>%
     dplyr::mutate(
       n_plot = ifelse(
-        is.na(.data$n_plot), NA,
+        is.na(n_plot), NA,
         ifelse(
-          .data$n_plot == 0, NA,
-          .data$n_plot
+          n_plot == 0, NA,
+          n_plot
         )
       )
     ) %>%
     dplyr::mutate(
       type = factor(
-        .data$type,
+        type,
         levels = rev(
           c(
             "# Length",
@@ -67,10 +67,10 @@ plot_commercial_counts <- function (data,
   
   p1 <- ggplot2::ggplot(
     data,
-    mapping = ggplot2::aes_string("year", "type", fill = "n_plot")
+    mapping = ggplot2::aes(year, type, fill = n_plot)
   ) +
     ggplot2::geom_tile(colour = "grey90") +
-    ggplot2::facet_grid(rows = ggplot2::vars(.data$area)) +
+    ggplot2::facet_grid(rows = ggplot2::vars(area)) +
     ggplot2::scale_x_continuous(
       breaks = seq(gfplot:::round_down_even(min(years)), max(years), 2)
     ) +
@@ -87,9 +87,9 @@ plot_commercial_counts <- function (data,
     ggplot2::xlab("") +
     ggplot2::ylab("") +
     ggplot2::geom_text(
-      ggplot2::aes_string(x = "year", label = "n_text"),
+      ggplot2::aes(x = year, label = n_text),
       colour = text_colour,
-      size = 2.1,
+      size = 1.8,
       alpha = 1,
       na.rm = TRUE
     ) +
@@ -98,6 +98,7 @@ plot_commercial_counts <- function (data,
     ggplot2::theme(
       axis.ticks.x = ggplot2::element_blank(),
       axis.ticks.y = ggplot2::element_blank(),
+      axis.text.y.left = ggplot2::element_text(size = 5.2),
       strip.text.y = ggplot2::element_text(angle = 0),
       legend.position = "none"
     )
