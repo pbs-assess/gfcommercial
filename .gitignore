@@ -3,51 +3,37 @@
 .Rhistory
 .RData
 .Ruserdata
-
-# R
 .Rapp.history
-.Rhistory
 
-# Mac OSX
+# macOS
 .DS_Store
 
-# Targets
+# Package targets
 _targets/
 
-# Data
-*.csv
-*.xls
-*.xlsx
-*~*
+# Package csasdown
+_book
+report/csas-style
+report/knitr-cache-docx
+report/knitr-cache-pdf
+report/knitr-cache-tex
+report/knitr-figs-docx
+report/knitr-figs-pdf
 
-# C++
-*.o
-*.so
+# R markdown and Latex
+gfcommercial.Rmd
+gfcommercial.tex
 
-# Slides
-*.ppt
-*.pptx
-
-# Figures
-*.png
-
-
-# Emacs
-*.org#
-
-# Latex
+# Latex and Miscellaneous
 *.aux
-*.fdb_latexmk
-*.fls
+*.jpg
+*.html
+*.knit.md
 *.log
-*.out
-*.toc
-ltximg/
-
-# Tex
-*.bbl
-*.odt
-*.tex
-
-# Vignettes
-inst/doc
+*.pdf
+*.png
+*.rda
+*.rds
+*.sty
+*.upa
+*.utf8.md
