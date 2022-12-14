@@ -94,21 +94,22 @@ tidy_commercial_counts <- function (data,
       ageing_structure = sum(
         !is.na(age_specimen_collected) &
           age_specimen_collected == 1
-      ),
+        ),
       length = sum(!is.na(length) & length > 0),
       weight = sum(!is.na(weight) & weight > 0),
-      maturity = sum(!is.na(maturity_code) & maturity_code > 0)
+      maturity = sum(!is.na(maturity_code) & maturity_code > 0),
+      events = sum(!is.na(fishing_event_id) & fishing_event_id > 0)
     ) %>%
     dplyr::ungroup() %>%
     tidyr::pivot_longer(
-      cols = age:maturity,
+      cols = age:events,
       names_to = "type",
       values_to = "n"
     ) %>%
     dplyr::mutate(
       type = factor(
         type,
-        levels = c("age", "ageing_structure", "length", "weight", "maturity")
+        levels = c("age", "ageing_structure", "length", "weight", "maturity", "events")
       )
     ) %>%
     dplyr::arrange(

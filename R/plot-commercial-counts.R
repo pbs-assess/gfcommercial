@@ -57,7 +57,8 @@ plot_commercial_counts <- function (data,
             "# Weight",
             "# Maturity",
             "# Age",
-            "# Age structures"
+            "# Age structures",
+            "# Events"
           )
         )
       )
@@ -89,7 +90,7 @@ plot_commercial_counts <- function (data,
     ggplot2::geom_text(
       ggplot2::aes(x = year, label = n_text),
       colour = text_colour,
-      size = 1.8,
+      size = 1.5,
       alpha = 1,
       na.rm = TRUE
     ) +
