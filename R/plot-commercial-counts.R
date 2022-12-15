@@ -58,7 +58,7 @@ plot_commercial_counts <- function (data,
             "# Maturity",
             "# Age",
             "# Age structures",
-            "# Events"
+            "# Fishing events"
           )
         )
       )
