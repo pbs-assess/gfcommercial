@@ -6,9 +6,6 @@
 \usage{
 render(...)
 }
-\arguments{
-\item{...}{Arguments to pass to csasdown::render()}
-}
 \value{
 Nothing
 }

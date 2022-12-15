@@ -19,4 +19,5 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
     csasdown,
-    magrittr
+    magrittr,
+    targets
