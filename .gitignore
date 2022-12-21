@@ -16,12 +16,13 @@ _targets/
 
 # Package csasdown
 _book
-report/csas-style
-report/knitr-cache-docx
-report/knitr-cache-pdf
-report/knitr-cache-tex
-report/knitr-figs-docx
-report/knitr-figs-pdf
+tmp*
+csas-style
+knitr-cache-docx
+knitr-cache-pdf
+knitr-cache-tex
+knitr-figs-docx
+knitr-figs-pdf
 
 # R markdown and Latex
 gfcommercial.Rmd
