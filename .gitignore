@@ -8,6 +8,9 @@
 # macOS
 .DS_Store
 
+# External data
+data-cache*
+
 # Package targets
 _targets/
 
