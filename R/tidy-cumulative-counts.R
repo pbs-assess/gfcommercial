@@ -123,6 +123,9 @@ tidy_cumulative_counts <- function (data,
   
   counts <- counts[order(counts$area, counts$year, counts$week),]
   
+  counts$area <- factor(counts$area, levels = area_levels)
+  counts <- counts[order(counts$area),]
+  
   # Cumulative sum of counts ---------------------------------------------------
   
   cumulative <- counts %>%
@@ -145,6 +148,14 @@ tidy_cumulative_counts <- function (data,
     dplyr::mutate(proportion = cumulative_counts/max(cumulative_counts))
   
   proportions[is.na(proportions)] <- 0
+  
+  proportions <- proportions %>%
+    dplyr::group_by(
+      species_common_name,
+      area,
+      year
+    ) %>%
+    dplyr::mutate(n = max(cumulative_counts))
   
   # Return counts --------------------------------------------------------------
   

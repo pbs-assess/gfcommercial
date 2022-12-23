@@ -29,7 +29,9 @@ tidy_cumulative_props <- function (catch_data,
   # Rename merged columns ------------------------------------------------------
   
   names(cumulative_props)[names(cumulative_props) == "proportion.x"] <- "catch_prop"
+  names(cumulative_props)[names(cumulative_props) == "n.x"] <- "n_catch"
   names(cumulative_props)[names(cumulative_props) == "proportion.y"] <- "samples_prop"
+  names(cumulative_props)[names(cumulative_props) == "n.y"] <- "n_samples"
   
   # Remove unnecessary columns  ------------------------------------------------
   
@@ -39,7 +41,9 @@ tidy_cumulative_props <- function (catch_data,
                   year,
                   week,
                   catch_prop,
-                  samples_prop)
+                  n_catch,
+                  samples_prop,
+                  n_samples)
   
   # Return proportions  --------------------------------------------------------
   

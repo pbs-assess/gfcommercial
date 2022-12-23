@@ -20,14 +20,15 @@ plot_cumulative_counts <- function (data,
   
   # Define counts --------------------------------------------------------------
   
-  #counts <- data %>%
-  #  dplyr::select(
-  #    survey_abbrev,
-  #    year,
-  #    total,
-  #    area
-  #  ) %>%
-  #  unique()
+  counts <- data %>%
+    dplyr::select(
+      species_common_name,
+      area,
+      year,
+      n_catch,
+      n_samples
+    ) %>%
+    unique()
   
   # Scale each maximum proportion to one ---------------------------------------
   
@@ -49,34 +50,44 @@ plot_cumulative_counts <- function (data,
   ) +
     ggplot2::geom_line(
       ggplot2::aes(y = catch_prop),
-      colour = "black"
+      colour = "black",
     ) +
     ggplot2::geom_line(
-      ggplot2::aes(y = samples_prop),
+      ggplot2::aes(y = samples_prop), # Samples second so the thinner, lighter line is on top
       colour = "grey50",
-      linetype = "dashed"
+      linewidth = 0.25
     ) +
     gfplot::theme_pbs() +
     ggplot2::coord_cartesian(expand = FALSE) +
     #ggplot2::scale_x_continuous(breaks = x_breaks) +
     ggplot2::xlab(xlab) +
     ggplot2::ylab(ylab) +
-    ggplot2::ylim(-0.04, 1.07) +
-    #ggplot2::geom_text(
-    #  data = counts,
-    #  x = min(data$length_bin, na.rm = TRUE) + 0.02 * range_lengths,
-    #  y = 0.85,
-    #  mapping = ggplot2::aes(label = total),
-    #  inherit.aes = FALSE,
-    #  colour = "grey50",
-    #  size = 2.25,
-    #  hjust = 0
-    #) +
+    ggplot2::ylim(-0.15, 1.15) +
+    ggplot2::geom_text(
+      data = counts,
+      x = 2,
+      y = 0.95,
+      mapping = ggplot2::aes(label = n_catch),
+      inherit.aes = FALSE,
+      colour = "black",
+      size = 1.5,
+      hjust = 0
+    ) +
+    ggplot2::geom_text(
+      data = counts,
+      x = 2,
+      y = 0.70,
+      mapping = ggplot2::aes(label = n_samples),
+      inherit.aes = FALSE,
+      colour = "grey50",
+      size = 1.5,
+      hjust = 0
+    ) +
     ggplot2::labs(title = "Representativeness") +
     ggplot2::theme(
       axis.text.x.bottom = ggplot2::element_text(size = 5.5),
       axis.text.y.left = ggplot2::element_blank(),
-      strip.text.y = ggplot2::element_text(size = 8.0),
+      strip.text.y = ggplot2::element_text(size = 7.5),
       axis.ticks.y = ggplot2::element_blank(),
       panel.grid.major.x = ggplot2::element_line(colour = "grey93"),
       panel.spacing = grid::unit(-0.1, "lines")
