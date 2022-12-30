@@ -75,13 +75,13 @@ plot_cumulative_counts <- function (data,
     ) +
     ggplot2::geom_text(
       data = counts,
-      x = 2,
-      y = 0.70,
+      x = 51.5,
+      y = 0.18,
       mapping = ggplot2::aes(label = n_samples),
       inherit.aes = FALSE,
       colour = "grey50",
       size = 1.5,
-      hjust = 0
+      hjust = 1
     ) +
     ggplot2::labs(title = "Representativeness") +
     ggplot2::theme(
