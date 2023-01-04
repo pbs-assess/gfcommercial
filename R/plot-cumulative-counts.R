@@ -63,6 +63,7 @@ plot_cumulative_counts <- function (data,
     ggplot2::xlab(xlab) +
     ggplot2::ylab(ylab) +
     ggplot2::ylim(-0.15, 1.15) +
+    ggplot2::xlim(1, 53) +
     ggplot2::geom_text(
       data = counts,
       x = 2,
