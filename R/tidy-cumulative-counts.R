@@ -121,10 +121,12 @@ tidy_cumulative_counts <- function (data,
   
   counts[is.na(counts)] <- 0
   
-  counts <- counts[order(counts$area, counts$year, counts$week),]
+  counts <- counts %>%
+    dplyr::arrange(area, year, week)
   
   counts$area <- factor(counts$area, levels = area_levels)
-  counts <- counts[order(counts$area),]
+  counts <- counts %>%
+    dplyr::arrange(area)
   
   # Cumulative sum of counts ---------------------------------------------------
   
