@@ -1,10 +1,12 @@
 # Load packages
 library(targets)
+library(tarchetypes)
 
 # Set targets options
 tar_option_set(
   packages = c(
-    "csasdown"
+    "csasdown",
+    "here"
   )
 )
 
@@ -19,13 +21,16 @@ suppressWarnings(tar_source())
 
 # List targets
 list(
+  # Define external data path --------------------------------------------------
+  tar_target(
+    data_cache_path,
+    here::here("data-cache")
+  ),
   # Render report --------------------------------------------------------------
-  list(
-    tar_target(
-      tech_report,
-      csasdown::render(verbose = TRUE),
-      format = "file"
-    )
+  tar_target(
+    tech_report,
+    csasdown::render(verbose = TRUE),
+    format = "file"
   ),
   list()
 )
