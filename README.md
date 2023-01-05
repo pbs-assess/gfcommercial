@@ -37,7 +37,8 @@ tar_make()
 ```
 
 ## Output
-The targets workflow exports figures to the XX folder. All other nodes are
+The targets workflow writes the tech report to the _book/ folder, and writes 
+figure layout panels to the XX folder. All other tagets nodes are
 stored as R objects and can be accessed by calling the `tar_read()` function.
 For example, 
 
