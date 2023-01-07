@@ -2,47 +2,47 @@
 tidy_commercial_counts <- function (data,
                                     years = NULL,
                                     ageing_method_codes = NULL) {
-  
+
   # Summarise silently ---------------------------------------------------------
-  
+
   options(dplyr.summarise.inform = FALSE)
-  
+
   # Define area factor levels --------------------------------------------------
-  
+
   area_levels <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B", "Total")
-  
+
   # Define years ---------------------------------------------------------------
-  
+
   if (is.null(years)) {
     years <- seq(min(data$year, na.rm = TRUE), max(data$year, na.rm = TRUE), 1L)
   }
-  
+
   # Filter by years ------------------------------------------------------------
-  
+
   data <- data %>%
     dplyr::filter(year %in% years)
-  
+
   # Remove duplicate specimens -------------------------------------------------
-  
+
   data <- data %>%
     dplyr::distinct(specimen_id, .keep_all = TRUE)
-  
+
   # Conditionally filter by ageing method code ---------------------------------
-  
+
   if (!is.null(ageing_method_codes)) {
     data <- data %>%
       dplyr::filter(ageing_method %in% ageing_method_codes)
   }
-  
+
   # Conditionally augment ------------------------------------------------------
-  
+
   if (!"age_specimen_collected" %in% colnames(data)) {
     data <- data %>%
       dplyr::mutate(age_specimen_collected = NA)
   }
-  
+
   # Split data for areas and total ---------------------------------------------
-  
+
   # Areas
   data_areas <- data %>%
     dplyr::mutate(
@@ -80,9 +80,9 @@ tidy_commercial_counts <- function (data,
   # Bind rows
   data <- dplyr::bind_rows(data_areas, data_total) %>%
     dplyr::mutate(area = factor(area, levels = area_levels))
-  
+
   # Define counts --------------------------------------------------------------
-  
+
   counts <- data %>%
     dplyr::group_by(
       species_common_name,
@@ -118,8 +118,8 @@ tidy_commercial_counts <- function (data,
       year
     ) %>%
     tidyr::replace_na(replace = list(n = 0))
-  
+
   # Return counts --------------------------------------------------------------
-  
+
   return(counts)
 }

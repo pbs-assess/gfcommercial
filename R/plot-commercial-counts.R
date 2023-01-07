@@ -1,19 +1,19 @@
-# Adapted from gfplot::plot_sample_avail and gfbiosampling
 
+# Adapted from gfplot::plot_sample_avail
 plot_commercial_counts <- function (data,
                                     years = NULL,
                                     title = "Commercial specimen counts",
                                     text_colour = "white",
                                     na_colour = "white") {
-  
+
   # Define years ---------------------------------------------------------------
-  
+
   if (is.null(years)) {
     years <- seq(min(data$year, na.rm = TRUE), max(data$year, na.rm = TRUE), 1L)
   }
-  
+
   # Augment data ---------------------------------------------------------------
-  
+
   data <- data %>%
     dplyr::filter(year %in% .env$years) %>%
     dplyr::mutate(
@@ -23,17 +23,17 @@ plot_commercial_counts <- function (data,
       type = gsub("Ageing structure", "Age structures", type),
       type = paste("#", type, sep = " ")
     )
-  
+
   # Expand all combinations ----------------------------------------------------
-  
+
   all <- tidyr::expand_grid(
     type = unique(data$type),
     area = factor(levels(data$area), levels = levels(data$area)),
     year = .env$years
   )
-  
+
   # Join data and combinations -------------------------------------------------
-  
+
   data <- data %>%
     dplyr::right_join(
       all,
@@ -63,9 +63,9 @@ plot_commercial_counts <- function (data,
         )
       )
     )
-  
+
   # Plot specimen counts -------------------------------------------------------
-  
+
   p1 <- ggplot2::ggplot(
     data,
     mapping = ggplot2::aes(year, type, fill = n_plot)
@@ -92,7 +92,8 @@ plot_commercial_counts <- function (data,
       colour = text_colour,
       size = 1.5,
       alpha = 1,
-      na.rm = TRUE
+      na.rm = TRUE,
+      vjust = 0.4
     ) +
     ggplot2::ggtitle(title) +
     gfplot::theme_pbs() +
@@ -103,8 +104,8 @@ plot_commercial_counts <- function (data,
       strip.text.y = ggplot2::element_text(angle = 0),
       legend.position = "none"
     )
-  
+
   # Return plot ----------------------------------------------------------------
-  
+
   return(p1)
 }

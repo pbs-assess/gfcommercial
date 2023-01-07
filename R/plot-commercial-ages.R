@@ -1,27 +1,26 @@
-# Adapted from gfplot and gfbiosampling
-
+# Adapted from gfplot
 plot_commercial_ages <- function (data,
                                   max_size = 5,
                                   sex_gap = 0.2,
                                   year_increment = 2,
                                   ylab = "Age (years)",
                                   year_range = NULL,
-                                  line_col = c("M" = "grey50", "F" = "grey20"),
+                                  line_col = c("M" = "#1b9e77", "F" = "#7570b3"),
                                   alpha = 0.2,
                                   grid_col = "grey95",
                                   diagonal_lines = seq(-2100, -1850, 10),
-                                  count_label_size = 2.25) {
-  
+                                  count_label_size = 1.25) {
+
   # Set maximum age ------------------------------------------------------------
-  
+
   if (nrow(data) > 0) {
     age_max <- max(data$age, na.rm = TRUE)
   } else {
     age_max <- 1
   }
-  
+
   # Jitter sexes ---------------------------------------------------------------
-  
+
   data <- data %>%
     dplyr::mutate(
       year_jitter = ifelse(
@@ -30,9 +29,9 @@ plot_commercial_ages <- function (data,
         year + sex_gap / 2
       )
     )
-  
+
   # Define counts --------------------------------------------------------------
-  
+
   counts <- data %>%
     dplyr::select(
       total,
@@ -40,32 +39,32 @@ plot_commercial_ages <- function (data,
       area
     ) %>%
     unique()
-  
+
   # Define age range -----------------------------------------------------------
-  
+
   age_range <- diff(range(data$age, na.rm = TRUE))
-  
+
   # Define year range ----------------------------------------------------------
-  
+
   if (is.null(year_range)) {
     year_range <- c(min(data$year, na.rm = TRUE), max(data$year, na.rm = TRUE))
   }
-  
+
   # Accommodate empty plot -----------------------------------------------------
-  
+
   if (sum(!is.na(data$age)) == 0) {
     data$age <- 0
     age_range <- 1
   }
-  
+
   # Define sex as factor -------------------------------------------------------
-  
+
   data <- data %>%
     dplyr::mutate(sex = factor(sex, levels = c("M", "F"))) %>% # F on top
     dplyr::arrange(area, year, sex)
-  
+
   # Augment by missing areas ---------------------------------------------------
-  
+
   # Get area levels
   area_levels <- levels(data$area)
   # Assemble placeholder rows
@@ -77,9 +76,9 @@ plot_commercial_ages <- function (data,
   # Augment data
   data <- data %>%
     dplyr::bind_rows(placeholder)
-  
+
   # Plot ages ------------------------------------------------------------------
-  
+
   p1 <- ggplot2::ggplot(
     data,
     ggplot2::aes(year_jitter, age)
@@ -116,13 +115,13 @@ plot_commercial_ages <- function (data,
     ) +
     gfplot::theme_pbs() +
     ggplot2::theme(
-      axis.text.x = ggplot2::element_text(angle = 90, hjust = 1, vjust = 0.5),
+      axis.text.x = ggplot2::element_text(size = 7, angle = 90, hjust = 1, vjust = 0.5),
       legend.position = "none",
       panel.spacing = grid::unit(-0.1, "lines")
     )
-  
+
   # Conditionally include ablines and text -------------------------------------
-  
+
   if (sum(data$age > 0, na.rm = TRUE) > 0) {
     p1 <- p1 +
       ggplot2::geom_abline(
@@ -159,8 +158,8 @@ plot_commercial_ages <- function (data,
         pch = 21
       )
   }
-  
+
   # Return plot ----------------------------------------------------------------
-  
+
   return(p1)
 }

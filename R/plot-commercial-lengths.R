@@ -1,5 +1,4 @@
-# Adapted from gfplot and gfbiosampling
-
+# Adapted from gfplot
 plot_commercial_lengths <- function (data,
                                      xlab = "Length (cm)",
                                      ylab = "Relative length frequency",
@@ -9,18 +8,18 @@ plot_commercial_lengths <- function (data,
                                      bin_size = 2,
                                      min_total = 20,
                                      show_year = "even") {
-  
+
   # Define breaks --------------------------------------------------------------
-  
+
   x_breaks <- pretty(data$length_bin, 4L)
   x_breaks <- x_breaks[seq_len(length(x_breaks) - 1L)]
-  
+
   # Define range ---------------------------------------------------------------
-  
+
   range_lengths <- diff(range(data$length_bin, na.rm = TRUE))
-  
+
   # Define counts --------------------------------------------------------------
-  
+
   counts <- data %>%
     dplyr::select(
       survey_abbrev,
@@ -29,21 +28,21 @@ plot_commercial_lengths <- function (data,
       area
     ) %>%
     unique()
-  
+
   # Scale each maximum proportion to one ---------------------------------------
-  
+
   data <- data %>%
     dplyr::group_by(year, survey_abbrev, area) %>%
     dplyr::mutate(proportion = proportion / max(proportion)) %>%
     dplyr::ungroup()
-  
+
   # Remove proportions with scarce observations --------------------------------
-  
+
   data <- data %>%
     dplyr::mutate(proportion = ifelse(total >= min_total, proportion, NA))
-  
+
   # Assemble plot --------------------------------------------------------------
-  
+
   p1 <- ggplot2::ggplot(
     data,
     ggplot2::aes(length_bin, proportion)
@@ -60,29 +59,29 @@ plot_commercial_lengths <- function (data,
     ggplot2::scale_x_continuous(breaks = x_breaks) +
     ggplot2::xlab(xlab) +
     ggplot2::ylab(ylab) +
-    ggplot2::ylim(-0.04, 1.07) +
+    ggplot2::ylim(-0.08, 1.15) +
     ggplot2::geom_text(
       data = counts,
-      x = min(data$length_bin, na.rm = TRUE) + 0.02 * range_lengths,
-      y = 0.85,
+      x = min(data$length_bin, na.rm = TRUE) + 0.01 * range_lengths,
+      y = 0.89,
       mapping = ggplot2::aes(label = total),
       inherit.aes = FALSE,
       colour = "grey50",
-      size = 2.25,
+      size = 2.0,
       hjust = 0
     ) +
     ggplot2::labs(title = "Length frequencies") +
     ggplot2::theme(
       axis.text.x.bottom = ggplot2::element_text(size = 5.5),
       axis.text.y.left = ggplot2::element_blank(),
-      strip.text.y = ggplot2::element_text(size = 8.0),
+      strip.text.y = ggplot2::element_text(size = 7.5),
       axis.ticks.y = ggplot2::element_blank(),
       panel.grid.major.x = ggplot2::element_line(colour = "grey93"),
-      panel.spacing = grid::unit(-0.1, "lines")
+      panel.spacing = grid::unit(-0.05, "lines")
     )
-  
+
   # Facet grid -----------------------------------------------------------------
-  
+
   if (show_year == "even") {
     p1 <- p1 +
       ggplot2::facet_grid(
@@ -105,8 +104,8 @@ plot_commercial_lengths <- function (data,
         drop = FALSE
       )
   }
-  
+
   # Return plot ----------------------------------------------------------------
-  
+
   return(p1)
 }

@@ -1,5 +1,5 @@
 tidy_ages_by_areas_raw <- function (data, ...) {
-  
+
   # Define area factor levels
   area_levels <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B", "Total")
   # Area 5E
@@ -161,7 +161,7 @@ tidy_ages_by_areas_raw <- function (data, ...) {
 }
 
 tidy_lengths_by_areas_raw <- function (data, ...) {
-  
+
   # Merge sexes
   data <- data %>% dplyr::mutate(data, sex = 2)
   # Define area factor levels
