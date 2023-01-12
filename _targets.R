@@ -21,10 +21,40 @@ suppressWarnings(tar_source())
 
 # List targets
 list(
-  # Define external data path --------------------------------------------------
-  tar_target(
-    data_cache_path,
-    here::here("data-cache")
+  # Species name nodes ---------------------------------------------------------
+  list(
+    tar_target(
+      species,
+      readr::read_csv(here::here("data", "species.csv")),
+      format = "file"
+    ),
+    tar_target(
+      species_common_name,
+      as.list(species$common_name)
+    ),
+    tar_targets(
+      species_file_name,
+      as.list(species$file_name)
+    ),
+  ),
+  # Define data nodes ----------------------------------------------------------
+  list(
+    # Define external data path ------------------------------------------------
+    tar_target(
+      data_cache_path,
+      here::here("data-cache")
+    ),
+    # TODO: Read species data files as nodes
+    tar_map(
+      values = species,
+      tar_target(
+        species_data,
+        readr::read_rds(paste0(data_cache_path, species_file_name, ".rds")),
+        format = "file"
+      ),
+      list()
+    ),
+    list()
   ),
   # Render report --------------------------------------------------------------
   tar_target(
