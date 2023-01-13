@@ -115,9 +115,12 @@ plot_commercial_ages <- function (data,
     ) +
     gfplot::theme_pbs() +
     ggplot2::theme(
+      plot.title = ggplot2::element_text(vjust = -4),
       axis.text.x = ggplot2::element_text(size = 7, angle = 90, hjust = 1, vjust = 0.5),
+      strip.text.x = ggplot2::element_text(vjust = -2),
       legend.position = "none",
-      panel.spacing = grid::unit(-0.1, "lines")
+      panel.spacing = grid::unit(-0.1, "lines"),
+      plot.margin = grid::unit(c(-3.5, 1, -4, 1), "mm")
     )
 
   # Conditionally include ablines and text -------------------------------------

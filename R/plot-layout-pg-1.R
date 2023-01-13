@@ -1,14 +1,14 @@
 # An R script to arrange and sitch together plots for page 1
 
-plot_layout_1 <- function(spp,
-                          years = 2003:2021,
-                          fl_path_data = here::here("data-cache"),
-                          fl_path_store = here::here("ms","figs"),
-                          fl_type = ".png",
-                          width = 190,
-                          height = 120,
-                          units = "mm",
-                          dpi = 300
+plot_layout_pg_1 <- function(spp,
+                             years = 2003:2021,
+                             fl_path_data = here::here("data-cache"),
+                             fl_path_store = here::here("ms","figs"),
+                             fl_type = ".png",
+                             width = 190,
+                             height = 120,
+                             units = "mm",
+                             dpi = 300
 ) {
 
   # Commercial counts plot -----------------------------------------------------

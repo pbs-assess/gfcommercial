@@ -84,12 +84,15 @@ plot_cumulative_counts <- function (data,
     ) +
     ggplot2::labs(title = "Representativeness") +
     ggplot2::theme(
+      plot.title = ggplot2::element_text(vjust = -4),
       axis.text.x.bottom = ggplot2::element_text(size = 5.5),
       axis.text.y.left = ggplot2::element_blank(),
-      strip.text.y = ggplot2::element_text(size = 7.0),
+      strip.text.x = ggplot2::element_text(vjust = -2),
+      strip.text.y = ggplot2::element_text(size = 5.0),
       axis.ticks.y = ggplot2::element_blank(),
       panel.grid.major.x = ggplot2::element_line(colour = "grey93"),
-      panel.spacing = grid::unit(-0.05, "lines")
+      panel.spacing = grid::unit(-0.05, "lines"),
+      plot.margin = grid::unit(c(-3.5, 1, 0, 1), "mm")
     )
 
   # Facet grid -----------------------------------------------------------------

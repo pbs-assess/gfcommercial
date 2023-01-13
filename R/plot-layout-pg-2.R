@@ -3,12 +3,12 @@
 plot_layout_pg_2 <- function(spp,
                              years = 2003:2021,
                              sample_type = "commercial",
-                             bin_size = 2, # for commercial lengths plot
+                             bin_size = 2,
                              fl_path_data = here::here("data-cache"), # change to wherever the data cache is located
                              fl_path_store = here::here("ms","figs"),
                              fl_type = ".png",
                              width = 190,
-                             height = 360,
+                             height = 275,
                              units = "mm",
                              dpi = 300
 ) {
@@ -54,7 +54,14 @@ plot_layout_pg_2 <- function(spp,
 
   # Arrange plots --------------------------------------------------------------
 
-  p <- gridExtra::grid.arrange(p1, p2, p3, nrow = 3)
+  # Plot composition done using the patchwork package
+  p <- p1 /
+    plot_spacer() /
+    p2 /
+    plot_spacer() /
+    p3 +
+    plot_layout(heights = c(5, -0.1, 4, -0.4, 5)) &
+    theme(plot.margin = grid::unit(c(-3, 0, 1, 1), "mm"))
 
   # Save plot ------------------------------------------------------------------
 

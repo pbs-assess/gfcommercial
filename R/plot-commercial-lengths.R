@@ -31,12 +31,21 @@ plot_commercial_lengths <- function (data,
                        area = rep(area_levels,
                                   each = length(seq(min(year_range), max(year_range))))
   )
+
   data <- dplyr::right_join(data,
                             labels,
                             by = c("species_common_name", "survey_abbrev", "year", "area"),
                             keep = FALSE)
 
   data[is.na(data)] <- 0
+
+  data <- data %>%
+    dplyr::arrange(area, year)
+
+  data$area <- factor(data$area, levels = area_levels)
+
+  data <- data %>%
+    dplyr::arrange(area)
 
   # Define counts --------------------------------------------------------------
 
@@ -92,12 +101,15 @@ plot_commercial_lengths <- function (data,
     ) +
     ggplot2::labs(title = "Length frequencies") +
     ggplot2::theme(
+      plot.title = ggplot2::element_text(vjust = -4),
       axis.text.x.bottom = ggplot2::element_text(size = 5.5),
       axis.text.y.left = ggplot2::element_blank(),
-      strip.text.y = ggplot2::element_text(size = 7.0),
+      strip.text.x = ggplot2::element_text(vjust = -2),
+      strip.text.y = ggplot2::element_text(size = 5.0),
       axis.ticks.y = ggplot2::element_blank(),
       panel.grid.major.x = ggplot2::element_line(colour = "grey93"),
-      panel.spacing = grid::unit(-0.05, "lines")
+      panel.spacing = grid::unit(-0.05, "lines"),
+      plot.margin = grid::unit(c(-3.5, 0, 0, 1), "mm")
     )
 
   # Facet grid -----------------------------------------------------------------
