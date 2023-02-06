@@ -21,14 +21,14 @@ plot_commercial_ages <- function (data,
 
   # Jitter sexes ---------------------------------------------------------------
 
-  data <- data %>%
-    dplyr::mutate(
-      year_jitter = ifelse(
-        sex == "M",
-        year - sex_gap / 2,
-        year + sex_gap / 2
-      )
-    )
+#  data <- data %>%
+#    dplyr::mutate(
+#      year_jitter = ifelse(
+#        sex == "M",
+#        year - sex_gap / 2,
+#        year + sex_gap / 2
+#      )
+#    )
 
   # Define counts --------------------------------------------------------------
 
@@ -81,7 +81,7 @@ plot_commercial_ages <- function (data,
 
   p1 <- ggplot2::ggplot(
     data,
-    ggplot2::aes(year_jitter, age)
+    ggplot2::aes(year, age)
   ) +
     ggplot2::facet_grid(cols = ggplot2::vars(area)) +
     ggplot2::scale_x_continuous(

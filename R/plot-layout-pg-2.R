@@ -5,7 +5,7 @@ plot_layout_pg_2 <- function(spp,
                              sample_type = "commercial",
                              bin_size = 2,
                              fl_path_data = here::here("data-cache"), # change to wherever the data cache is located
-                             fl_path_store = here::here("ms","figs"),
+                             fl_path_store = here::here("report", "figs"),
                              fl_type = ".png",
                              width = 190,
                              height = 275,
@@ -56,12 +56,12 @@ plot_layout_pg_2 <- function(spp,
 
   # Plot composition done using the patchwork package
   p <- p1 /
-    plot_spacer() /
+    patchwork::plot_spacer() /
     p2 /
-    plot_spacer() /
+    patchwork::plot_spacer() /
     p3 +
-    plot_layout(heights = c(5, -0.1, 4, -0.4, 5)) &
-    theme(plot.margin = grid::unit(c(-3, 0, 1, 1), "mm"))
+    patchwork::plot_layout(heights = c(5, -0.1, 4, -0.4, 5)) &
+    ggplot2::theme(plot.margin = grid::unit(c(-3, 0, 1, 1), "mm"))
 
   # Save plot ------------------------------------------------------------------
 

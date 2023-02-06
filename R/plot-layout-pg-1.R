@@ -3,7 +3,7 @@
 plot_layout_pg_1 <- function(spp,
                              years = 2003:2021,
                              fl_path_data = here::here("data-cache"),
-                             fl_path_store = here::here("ms","figs"),
+                             fl_path_store = here::here("report", "figs"),
                              fl_type = ".png",
                              width = 190,
                              height = 120,

@@ -70,6 +70,8 @@ plot_commercial_lengths <- function (data,
   data <- data %>%
     dplyr::mutate(proportion = ifelse(total >= min_total, proportion, NA))
 
+  data[is.na(data)] <- 0
+
   # Assemble plot --------------------------------------------------------------
 
   p1 <- ggplot2::ggplot(

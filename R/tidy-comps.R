@@ -1,7 +1,11 @@
-tidy_ages_by_areas_raw <- function (data, ...) {
+tidy_ages_by_areas_raw <- function (data, year_range = NULL, ...) {
 
   # Define area factor levels
   area_levels <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B", "Total")
+
+  # Define years
+  years <- seq(min(year_range), max(year_range))
+
   # Area 5E
   suppressWarnings(
     area_5E <- gfplot::tidy_comps(
@@ -16,7 +20,15 @@ tidy_ages_by_areas_raw <- function (data, ...) {
     area_5E <- area_5E %>%
       dplyr::mutate(area = factor("5E", levels = area_levels))
   } else {
-    area_5E <- NULL
+    area_5E <- data.frame(species_common_name = unique(data$species_common_name),
+                          survey_abbrev = "Commercial",
+                          year = rep(years, each = 2, times = length(area_levels)),
+                          sex = c("M", "F"),
+                          age = 0,
+                          proportion = 0,
+                          total = 0,
+                          area = rep(area_levels, each = length(years)*2)
+                          )
   }
   # Area 5D
   suppressWarnings(
@@ -32,7 +44,15 @@ tidy_ages_by_areas_raw <- function (data, ...) {
     area_5D <- area_5D %>%
       dplyr::mutate(area = factor("5D", levels = area_levels))
   } else {
-    area_5D <- NULL
+    area_5D <- data.frame(species_common_name = unique(data$species_common_name),
+                          survey_abbrev = "Commercial",
+                          year = rep(years, each = 2, times = length(area_levels)),
+                          sex = c("M", "F"),
+                          age = 0,
+                          proportion = 0,
+                          total = 0,
+                          area = rep(area_levels, each = length(years)*2)
+                          )
   }
   # Area 5C
   suppressWarnings(
@@ -48,7 +68,15 @@ tidy_ages_by_areas_raw <- function (data, ...) {
     area_5C <- area_5C %>%
       dplyr::mutate(area = factor("5C", levels = area_levels))
   } else {
-    area_5C <- NULL
+    area_5C <- data.frame(species_common_name = unique(data$species_common_name),
+                          survey_abbrev = "Commercial",
+                          year = rep(years, each = 2, times = length(area_levels)),
+                          sex = c("M", "F"),
+                          age = 0,
+                          proportion = 0,
+                          total = 0,
+                          area = rep(area_levels, each = length(years)*2)
+                          )
   }
   # Area 5B
   suppressWarnings(
@@ -64,7 +92,15 @@ tidy_ages_by_areas_raw <- function (data, ...) {
     area_5B <- area_5B %>%
       dplyr::mutate(area = factor("5B", levels = area_levels))
   } else {
-    area_5B <- NULL
+    area_5B <- data.frame(species_common_name = unique(data$species_common_name),
+                          survey_abbrev = "Commercial",
+                          year = rep(years, each = 2, times = length(area_levels)),
+                          sex = c("M", "F"),
+                          age = 0,
+                          proportion = 0,
+                          total = 0,
+                          area = rep(area_levels, each = length(years)*2)
+                          )
   }
   # Area 5A
   suppressWarnings(
@@ -80,7 +116,15 @@ tidy_ages_by_areas_raw <- function (data, ...) {
     area_5A <- area_5A %>%
       dplyr::mutate(area = factor("5A", levels = area_levels))
   } else {
-    area_5A <- NULL
+    area_5A <- data.frame(species_common_name = unique(data$species_common_name),
+                          survey_abbrev = "Commercial",
+                          year = rep(years, each = 2, times = length(area_levels)),
+                          sex = c("M", "F"),
+                          age = 0,
+                          proportion = 0,
+                          total = 0,
+                          area = rep(area_levels, each = length(years)*2)
+                          )
   }
   # Area 3D
   suppressWarnings(
@@ -96,7 +140,15 @@ tidy_ages_by_areas_raw <- function (data, ...) {
     area_3D <- area_3D %>%
       dplyr::mutate(area = factor("3D", levels = area_levels))
   } else {
-    area_3D <- NULL
+    area_3D <- data.frame(species_common_name = unique(data$species_common_name),
+                          survey_abbrev = "Commercial",
+                          year = rep(years, each = 2, times = length(area_levels)),
+                          sex = c("M", "F"),
+                          age = 0,
+                          proportion = 0,
+                          total = 0,
+                          area = rep(area_levels, each = length(years)*2)
+                          )
   }
   # Area 3C
   suppressWarnings(
@@ -112,7 +164,15 @@ tidy_ages_by_areas_raw <- function (data, ...) {
     area_3C <- area_3C %>%
       dplyr::mutate(area = factor("3C", levels = area_levels))
   } else {
-    area_3C <- NULL
+    area_3C <- data.frame(species_common_name = unique(data$species_common_name),
+                          survey_abbrev = "Commercial",
+                          year = rep(years, each = 2, times = length(area_levels)),
+                          sex = c("M", "F"),
+                          age = 0,
+                          proportion = 0,
+                          total = 0,
+                          area = rep(area_levels, each = length(years)*2)
+                          )
   }
   # Area 4B
   suppressWarnings(
@@ -128,7 +188,15 @@ tidy_ages_by_areas_raw <- function (data, ...) {
     area_4B <- area_4B %>%
       dplyr::mutate(area = factor("4B", levels = area_levels))
   } else {
-    area_4B <- NULL
+    area_4B <- data.frame(species_common_name = unique(data$species_common_name),
+                          survey_abbrev = "Commercial",
+                          year = rep(years, each = 2, times = length(area_levels)),
+                          sex = c("M", "F"),
+                          age = 0,
+                          proportion = 0,
+                          total = 0,
+                          area = rep(area_levels, each = length(years)*2)
+                          )
   }
   # Area total
   suppressWarnings(
@@ -144,7 +212,15 @@ tidy_ages_by_areas_raw <- function (data, ...) {
     area_total <- area_total %>%
       dplyr::mutate(area = factor("Total", levels = area_levels))
   } else {
-    area_total <- NULL
+    area_total <- data.frame(species_common_name = unique(data$species_common_name),
+                             survey_abbrev = "Commercial",
+                             year = rep(years, each = 2, times = length(area_levels)),
+                             sex = c("M", "F"),
+                             age = 0,
+                             proportion = 0,
+                             total = 0,
+                             area = rep(area_levels, each = length(years)*2)
+                             )
   }
   # Return
   dplyr::bind_rows(
@@ -160,12 +236,16 @@ tidy_ages_by_areas_raw <- function (data, ...) {
   )
 }
 
-tidy_lengths_by_areas_raw <- function (data, ...) {
+tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
 
   # Merge sexes
   data <- data %>% dplyr::mutate(data, sex = 2)
+
   # Define area factor levels
   area_levels <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B", "Total")
+
+  # Define years
+  years <- seq(min(year_range), max(year_range))
 
   # Area 5E
   suppressWarnings(
@@ -182,7 +262,14 @@ tidy_lengths_by_areas_raw <- function (data, ...) {
       dplyr::mutate(area = factor("5E", levels = area_levels)) %>%
       dplyr::select(-sex)
   } else {
-    area_5E <- NULL
+    area_5E <- data.frame(species_common_name = unique(data$species_common_name),
+                          survey_abbrev = "Commercial",
+                          year = rep(years, each = length(seq(20, 80, by = 10)), times = length(area_levels)),
+                          length_bin = rep(seq(20, 80, by = 10), times = length(years)*length(area_levels)),
+                          proportion = 0,
+                          total = 0,
+                          area = rep(area_levels, each = length(years) * length(seq(20, 80, by = 10)))
+    )
   }
   # Area 5D
   suppressWarnings(
@@ -199,7 +286,14 @@ tidy_lengths_by_areas_raw <- function (data, ...) {
       dplyr::mutate(area = factor("5D", levels = area_levels)) %>%
       dplyr::select(-sex)
   } else {
-    area_5D <- NULL
+    area_5D <- data.frame(species_common_name = unique(data$species_common_name),
+                          survey_abbrev = "Commercial",
+                          year = rep(years, each = length(seq(20, 80, by = 10)), times = length(area_levels)),
+                          length_bin = rep(seq(20, 80, by = 10), times = length(years)*length(area_levels)),
+                          proportion = 0,
+                          total = 0,
+                          area = rep(area_levels, each = length(years) * length(seq(20, 80, by = 10)))
+    )
   }
   # Area 5C
   suppressWarnings(
@@ -216,7 +310,14 @@ tidy_lengths_by_areas_raw <- function (data, ...) {
       dplyr::mutate(area = factor("5C", levels = area_levels)) %>%
       dplyr::select(-sex)
   } else {
-    area_5C <- NULL
+    area_5C <- data.frame(species_common_name = unique(data$species_common_name),
+                          survey_abbrev = "Commercial",
+                          year = rep(years, each = length(seq(20, 80, by = 10)), times = length(area_levels)),
+                          length_bin = rep(seq(20, 80, by = 10), times = length(years)*length(area_levels)),
+                          proportion = 0,
+                          total = 0,
+                          area = rep(area_levels, each = length(years) * length(seq(20, 80, by = 10)))
+    )
   }
   # Area 5B
   suppressWarnings(
@@ -233,7 +334,14 @@ tidy_lengths_by_areas_raw <- function (data, ...) {
       dplyr::mutate(area = factor("5B", levels = area_levels)) %>%
       dplyr::select(-sex)
   } else {
-    area_5B <- NULL
+    area_5B <- data.frame(species_common_name = unique(data$species_common_name),
+                          survey_abbrev = "Commercial",
+                          year = rep(years, each = length(seq(20, 80, by = 10)), times = length(area_levels)),
+                          length_bin = rep(seq(20, 80, by = 10), times = length(years)*length(area_levels)),
+                          proportion = 0,
+                          total = 0,
+                          area = rep(area_levels, each = length(years) * length(seq(20, 80, by = 10)))
+    )
   }
   # Area 5A
   suppressWarnings(
@@ -250,7 +358,14 @@ tidy_lengths_by_areas_raw <- function (data, ...) {
       dplyr::mutate(area = factor("5A", levels = area_levels)) %>%
       dplyr::select(-sex)
   } else {
-    area_5A <- NULL
+    area_5A <- data.frame(species_common_name = unique(data$species_common_name),
+                          survey_abbrev = "Commercial",
+                          year = rep(years, each = length(seq(20, 80, by = 10)), times = length(area_levels)),
+                          length_bin = rep(seq(20, 80, by = 10), times = length(years)*length(area_levels)),
+                          proportion = 0,
+                          total = 0,
+                          area = rep(area_levels, each = length(years) * length(seq(20, 80, by = 10)))
+    )
   }
   # Area 3D
   suppressWarnings(
@@ -267,7 +382,14 @@ tidy_lengths_by_areas_raw <- function (data, ...) {
       dplyr::mutate(area = factor("3D", levels = area_levels)) %>%
       dplyr::select(-sex)
   } else {
-    area_3D <- NULL
+    area_3D <- data.frame(species_common_name = unique(data$species_common_name),
+                          survey_abbrev = "Commercial",
+                          year = rep(years, each = length(seq(20, 80, by = 10)), times = length(area_levels)),
+                          length_bin = rep(seq(20, 80, by = 10), times = length(years)*length(area_levels)),
+                          proportion = 0,
+                          total = 0,
+                          area = rep(area_levels, each = length(years) * length(seq(20, 80, by = 10)))
+    )
   }
   # Area 3C
   suppressWarnings(
@@ -284,7 +406,14 @@ tidy_lengths_by_areas_raw <- function (data, ...) {
       dplyr::mutate(area = factor("3C", levels = area_levels)) %>%
       dplyr::select(-sex)
   } else {
-    area_3C <- NULL
+    area_3C <- data.frame(species_common_name = unique(data$species_common_name),
+                          survey_abbrev = "Commercial",
+                          year = rep(years, each = length(seq(20, 80, by = 10)), times = length(area_levels)),
+                          length_bin = rep(seq(20, 80, by = 10), times = length(years)*length(area_levels)),
+                          proportion = 0,
+                          total = 0,
+                          area = rep(area_levels, each = length(years) * length(seq(20, 80, by = 10)))
+    )
   }
   # Area 4B
   suppressWarnings(
@@ -301,7 +430,14 @@ tidy_lengths_by_areas_raw <- function (data, ...) {
       dplyr::mutate(area = factor("4B", levels = area_levels)) %>%
       dplyr::select(-sex)
   } else {
-    area_4B <- NULL
+    area_4B <- data.frame(species_common_name = unique(data$species_common_name),
+                          survey_abbrev = "Commercial",
+                          year = rep(years, each = length(seq(20, 80, by = 10)), times = length(area_levels)),
+                          length_bin = rep(seq(20, 80, by = 10), times = length(years)*length(area_levels)),
+                          proportion = 0,
+                          total = 0,
+                          area = rep(area_levels, each = length(years) * length(seq(20, 80, by = 10)))
+    )
   }
   # Area total
   suppressWarnings(
@@ -318,7 +454,14 @@ tidy_lengths_by_areas_raw <- function (data, ...) {
       dplyr::mutate(area = factor("Total", levels = area_levels)) %>%
       dplyr::select(-sex)
   } else {
-    area_total <- NULL
+    area_total <- data.frame(species_common_name = unique(data$species_common_name),
+                             survey_abbrev = "Commercial",
+                             year = rep(years, each = length(seq(20, 80, by = 10)), times = length(area_levels)),
+                             length_bin = rep(seq(20, 80, by = 10), times = length(years)*length(area_levels)),
+                             proportion = 0,
+                             total = 0,
+                             area = rep(area_levels, each = length(years) * length(seq(20, 80, by = 10)))
+    )
   }
   # Return
   dplyr::bind_rows(

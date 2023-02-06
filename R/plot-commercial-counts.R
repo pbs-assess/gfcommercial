@@ -15,7 +15,7 @@ plot_commercial_counts <- function (data,
   # Augment data ---------------------------------------------------------------
 
   data <- data %>%
-    dplyr::filter(year %in% .env$years) %>%
+    dplyr::filter(year %in% years) %>%
     dplyr::mutate(
       n_plot = sqrt(n),
       n_text = gfplot:::round_nice(n),
@@ -29,7 +29,7 @@ plot_commercial_counts <- function (data,
   all <- tidyr::expand_grid(
     type = unique(data$type),
     area = factor(levels(data$area), levels = levels(data$area)),
-    year = .env$years
+    year = years
   )
 
   # Join data and combinations -------------------------------------------------
@@ -64,46 +64,96 @@ plot_commercial_counts <- function (data,
       )
     )
 
-  # Plot specimen counts -------------------------------------------------------
+  data <- data %>%
+    dplyr::mutate(n = as.numeric(n),
+                  n = ifelse(is.na(n), 0, n))
 
-  p1 <- ggplot2::ggplot(
-    data,
-    mapping = ggplot2::aes(year, type, fill = n_plot)
-  ) +
-    ggplot2::geom_tile(colour = "grey90") +
-    ggplot2::facet_grid(rows = ggplot2::vars(area)) +
-    ggplot2::scale_x_continuous(
-      breaks = seq(gfplot:::round_down_even(min(years)), max(years), 2)
+  # Plot specimen counts -------------------------------------------------------
+  if (sum(data$n) == 0) {
+
+    p1 <- ggplot2::ggplot(
+      data,
+      mapping = ggplot2::aes(year, type, fill = n_plot)
     ) +
-    ggplot2::scale_y_discrete(position = "left") +
-    viridis::scale_fill_viridis(
-      option = "D",
-      end = 0.82,
-      na.value = na_colour
+      ggplot2::geom_tile(colour = "grey90") +
+      ggplot2::facet_grid(rows = ggplot2::vars(area)) +
+      ggplot2::scale_x_continuous(
+        breaks = seq(gfplot:::round_down_even(min(years)), max(years), 2)
+      ) +
+      ggplot2::scale_y_discrete(position = "left") +
+      viridis::scale_fill_viridis(
+        option = "D",
+        end = 0.82,
+        na.value = na_colour,
+        discrete = TRUE
+      ) +
+      ggplot2::coord_cartesian(
+        xlim = c(min(years), max(years)) + c(-0.5, 0.5),
+        expand = FALSE
+      ) +
+      ggplot2::xlab("") +
+      ggplot2::ylab("") +
+      ggplot2::geom_text(
+        ggplot2::aes(x = year, label = n_text),
+        colour = text_colour,
+        size = 1.5,
+        alpha = 1,
+        na.rm = TRUE,
+        vjust = 0.4
+      ) +
+      ggplot2::ggtitle(title) +
+      gfplot::theme_pbs() +
+      ggplot2::theme(
+        axis.ticks.x = ggplot2::element_blank(),
+        axis.ticks.y = ggplot2::element_blank(),
+        axis.text.y.left = ggplot2::element_text(size = 5.2),
+        strip.text.y = ggplot2::element_text(angle = 0),
+        legend.position = "none"
+      )
+
+  } else {
+
+    p1 <- ggplot2::ggplot(
+      data,
+      mapping = ggplot2::aes(year, type, fill = n_plot)
     ) +
-    ggplot2::coord_cartesian(
-      xlim = c(min(years), max(years)) + c(-0.5, 0.5),
-      expand = FALSE
-    ) +
-    ggplot2::xlab("") +
-    ggplot2::ylab("") +
-    ggplot2::geom_text(
-      ggplot2::aes(x = year, label = n_text),
-      colour = text_colour,
-      size = 1.5,
-      alpha = 1,
-      na.rm = TRUE,
-      vjust = 0.4
-    ) +
-    ggplot2::ggtitle(title) +
-    gfplot::theme_pbs() +
-    ggplot2::theme(
-      axis.ticks.x = ggplot2::element_blank(),
-      axis.ticks.y = ggplot2::element_blank(),
-      axis.text.y.left = ggplot2::element_text(size = 5.2),
-      strip.text.y = ggplot2::element_text(angle = 0),
-      legend.position = "none"
-    )
+      ggplot2::geom_tile(colour = "grey90") +
+      ggplot2::facet_grid(rows = ggplot2::vars(area)) +
+      ggplot2::scale_x_continuous(
+        breaks = seq(gfplot:::round_down_even(min(years)), max(years), 2)
+      ) +
+      ggplot2::scale_y_discrete(position = "left") +
+      viridis::scale_fill_viridis(
+        option = "D",
+        end = 0.82,
+        na.value = na_colour
+      ) +
+      ggplot2::coord_cartesian(
+        xlim = c(min(years), max(years)) + c(-0.5, 0.5),
+        expand = FALSE
+      ) +
+      ggplot2::xlab("") +
+      ggplot2::ylab("") +
+      ggplot2::geom_text(
+        ggplot2::aes(x = year, label = n_text),
+        colour = text_colour,
+        size = 1.5,
+        alpha = 1,
+        na.rm = TRUE,
+        vjust = 0.4
+      ) +
+      ggplot2::ggtitle(title) +
+      gfplot::theme_pbs() +
+      ggplot2::theme(
+        axis.ticks.x = ggplot2::element_blank(),
+        axis.ticks.y = ggplot2::element_blank(),
+        axis.text.y.left = ggplot2::element_text(size = 5.2),
+        strip.text.y = ggplot2::element_text(angle = 0),
+        legend.position = "none"
+      )
+
+  }
+
 
   # Return plot ----------------------------------------------------------------
 
