@@ -6,11 +6,35 @@ lapply(list.files("R", full.names = TRUE), source)
 build_dir <- "report/report-rmd"
 ext <- ".png"
 
+data_cache_path <- here::here("data-cache")
+dir.create(data_cache_path, showWarnings = FALSE)
+
 file <- here::here("data", "species.csv")
 spp <- get_spp_names(file)
 spp_list <- as.list(spp$spp_w_hyphens)
 
-data_cache_path <- here::here("data-cache")
+# pbs_spp <- gfdata::get_species()
+# spp$species_common_name[!spp$species_common_name %in% pbs_spp$species_common_name]
+spp$species_common_name[spp$species_common_name == "rougheye blackspotted rockfish complex"] <- "rougheye/blackspotted rockfish complex"
+
+filenames <- file.path(data_cache_path, paste0(spp$spp_w_hyphens, ".rds"))
+
+for (i in seq_along(spp$species_common_name)) {
+  .s <- spp$species_common_name[i]
+  cat(.s, "\n")
+  d <- list()
+  if (!file.exists(filenames[i])) {
+    d[["commercial_samples"]] <-
+      gfdata::get_commercial_samples(
+        species = .s,
+        unsorted_only = FALSE,
+        return_all_lengths = TRUE
+      )
+    d[["catch"]] <- gfdata::get_catch(.s)
+    saveRDS(d, file = filenames[i])
+  }
+}
+
 
 missing_spp <- NULL
 
