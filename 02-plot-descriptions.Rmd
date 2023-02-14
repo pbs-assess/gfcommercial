@@ -1,0 +1,104 @@
+\clearpage
+
+# Plot Descriptions {#sec:plot-descriptions}
+
+```{r, "load-example-figs", echo = FALSE, include = FALSE}
+
+library(dplyr)
+library(patchwork)
+lapply(list.files("R", full.names = TRUE), source)
+
+sp <- "Pacific Ocean Perch"
+sp_hyphens <- "pacific-ocean-perch"
+
+dat <- readRDS(here::here("data-cache", "pacific-ocean-perch.rds"))
+comm_samples <- dat$commercial_samples
+catch <- dat$catch
+years <- 2003:2021
+sample_type = "commercial"
+bin_size = 2
+```
+
+This section provides captions for each of the visualizations that form the species-by-species pages.
+`r sp` is used as an example species for all plots.
+
+\clearpage
+
+## Available biological samples {#sec:bio-samples}
+
+```{r, "samples", warning = FALSE, echo = FALSE, fig.asp = 0.6, fig.cap = paste0("Example specimen-availability plot for ", sp, ". Shown are the number of available fish specimens that have had their length measured, have been weighed, had their maturity assessed, had their age assessed, have ageing structures available for ageing, and the number fishing events in which the species was sampled. Data are separated whether the samples came from a sorted or unsorted specimen and by major management area. Blank panels indicate year-measurement combinations without any data. Shading of these cells reflects the relative number of specimens available with the actual number of specimens indicated in the cells to the nearest round number.")}
+
+comm_samples_sort <- subset(comm_samples,
+                            comm_samples$sampling_desc == c("DISCARDS", "KEEPERS"))
+comm_samples_unsort <- subset(comm_samples,
+                              comm_samples$sampling_desc == "UNSORTED")
+
+counts_sort <- tidy_commercial_counts(comm_samples_sort,
+                                      years = years)
+
+counts_unsort <- tidy_commercial_counts(comm_samples_unsort,
+                                        years = years)
+
+p1_sort <- plot_commercial_counts(counts_sort,
+                                  years = years,
+                                  title = "Sorted commercial specimen counts")
+
+p1_unsort <- plot_commercial_counts(counts_unsort,
+                                    years = years,
+                                    title = "Unsorted commercial specimen counts")
+
+p <- p1_sort + p1_unsort
+
+p
+
+```
+
+\clearpage
+
+## Representativeness plot
+
+```{r, "representativeness", warning = FALSE, echo = FALSE, fig.asp = 0.5, fig.cap = paste0("Example representativeness plot for ", sp, ". The black line represents the cumulative proportion of catch for that species over time with the total number of fishing events in the top left-hand corner for each panel. The coloured line represents the cumulative proportion of samples collected for that species over time with the total number of individual speciments collected in the bottom right-hand corner for each panel. With this plot we are essentially trying to illustrate if the specimen sampling occured more or less evenly across the areas and throughout the year")}
+
+cumulative_props <- tidy_cumulative_props(catch, 
+                                          comm_samples, 
+                                          years = years)
+
+plot_cumulative_counts(cumulative_props)
+
+
+```
+
+
+\clearpage
+
+## Age composition data
+
+```{r, "ages", warning = FALSE, echo = FALSE, fig.asp = 0.4, fig.cap = paste0("Example age-frequency plot for ", sp,". Female fish are shown as purple coloured circles and male fish are shown behind as green coloured circles. The total number of fish aged for a given survey and year are indicated along the top of the panels. Diagonal lines are shown at five-year intervals to facilitate tracing cohorts through time.")}
+ages <- tidy_ages_by_areas_raw(comm_samples,
+                               sample_type = sample_type,
+                               year_range = c(min(years), max(years))
+                               )
+
+plot_commercial_ages(ages,
+                     year_range = c(min(years), max(years))
+                     )
+```
+
+\clearpage
+
+## Length composition data
+
+```{r, "lengths", warning = FALSE, echo = FALSE, fig.asp = 0.5, fig.cap = paste0("Example length-frequency plot for ", sp, ". The total number of fish measured for a given survey and year are indicated in the top left corner of each panel. Histograms are only shown if there are more than 20 fish measured for a given survey-year combination. The commercial male and female fish are combined since many are unsexed.")}
+
+lengths <- tidy_lengths_by_areas_raw(comm_samples,
+                                     sample_type = sample_type,
+                                     bin_size = bin_size,
+                                     year_range = c(min(years), max(years))
+                                     )
+
+plot_commercial_lengths(lengths,
+                        year_range = c(min(years), max(years))
+                        )
+```
+
+\clearpage
