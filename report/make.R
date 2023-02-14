@@ -1,3 +1,8 @@
+# Script to make RMD of plot pages
+
+library(dplyr)
+lapply(list.files("R", full.names = TRUE), source)
+
 build_dir <- "report/report-rmd"
 ext <- ".png"
 
@@ -63,6 +68,8 @@ temp <- lapply(spp$species_common_name, function(x) {
 
 temp <- lapply(temp, function(x) paste(x, collapse = "\n"))
 temp <- paste(temp, collapse = "\n")
+temp <- c("# Plots\n", temp)
+temp <- c("\\clearpage\n", temp)
 temp <- c("<!-- This page has been automatically generated: do not edit by hand -->\n", temp)
 con <- file(file.path(build_dir, "plot-pages.Rmd"), encoding = "UTF-8")
 writeLines(temp, con = con)

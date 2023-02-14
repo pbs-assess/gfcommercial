@@ -2,6 +2,10 @@
 
 \clearpage
 
+# Plots
+
+\clearpage
+
 ## Arrowtooth Flounder {#sec:arrowtooth-flounder}
 
 \begin{figure}[b!]

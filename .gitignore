@@ -10,6 +10,7 @@
 
 # External data
 data-cache*
+data-cache/
 
 # Package targets
 _targets/
