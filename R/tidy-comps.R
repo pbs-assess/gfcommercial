@@ -22,12 +22,12 @@ tidy_ages_by_areas_raw <- function (data, year_range = NULL, ...) {
   } else {
     area_5E <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
-                          year = rep(years, each = 2, times = length(area_levels)),
+                          year = rep(years, each = 2),
                           sex = c("M", "F"),
                           age = 0,
                           proportion = 0,
                           total = 0,
-                          area = rep(area_levels, each = length(years)*2)
+                          area = "5E"
                           )
   }
   # Area 5D
@@ -46,13 +46,13 @@ tidy_ages_by_areas_raw <- function (data, year_range = NULL, ...) {
   } else {
     area_5D <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
-                          year = rep(years, each = 2, times = length(area_levels)),
+                          year = rep(years, each = 2),
                           sex = c("M", "F"),
                           age = 0,
                           proportion = 0,
                           total = 0,
-                          area = rep(area_levels, each = length(years)*2)
-                          )
+                          area = "5D"
+    )
   }
   # Area 5C
   suppressWarnings(
@@ -70,13 +70,13 @@ tidy_ages_by_areas_raw <- function (data, year_range = NULL, ...) {
   } else {
     area_5C <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
-                          year = rep(years, each = 2, times = length(area_levels)),
+                          year = rep(years, each = 2),
                           sex = c("M", "F"),
                           age = 0,
                           proportion = 0,
                           total = 0,
-                          area = rep(area_levels, each = length(years)*2)
-                          )
+                          area = "5C"
+    )
   }
   # Area 5B
   suppressWarnings(
@@ -94,13 +94,13 @@ tidy_ages_by_areas_raw <- function (data, year_range = NULL, ...) {
   } else {
     area_5B <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
-                          year = rep(years, each = 2, times = length(area_levels)),
+                          year = rep(years, each = 2),
                           sex = c("M", "F"),
                           age = 0,
                           proportion = 0,
                           total = 0,
-                          area = rep(area_levels, each = length(years)*2)
-                          )
+                          area = "5B"
+    )
   }
   # Area 5A
   suppressWarnings(
@@ -118,13 +118,13 @@ tidy_ages_by_areas_raw <- function (data, year_range = NULL, ...) {
   } else {
     area_5A <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
-                          year = rep(years, each = 2, times = length(area_levels)),
+                          year = rep(years, each = 2),
                           sex = c("M", "F"),
                           age = 0,
                           proportion = 0,
                           total = 0,
-                          area = rep(area_levels, each = length(years)*2)
-                          )
+                          area = "5A"
+    )
   }
   # Area 3D
   suppressWarnings(
@@ -142,13 +142,13 @@ tidy_ages_by_areas_raw <- function (data, year_range = NULL, ...) {
   } else {
     area_3D <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
-                          year = rep(years, each = 2, times = length(area_levels)),
+                          year = rep(years, each = 2),
                           sex = c("M", "F"),
                           age = 0,
                           proportion = 0,
                           total = 0,
-                          area = rep(area_levels, each = length(years)*2)
-                          )
+                          area = "3D"
+    )
   }
   # Area 3C
   suppressWarnings(
@@ -166,13 +166,13 @@ tidy_ages_by_areas_raw <- function (data, year_range = NULL, ...) {
   } else {
     area_3C <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
-                          year = rep(years, each = 2, times = length(area_levels)),
+                          year = rep(years, each = 2),
                           sex = c("M", "F"),
                           age = 0,
                           proportion = 0,
                           total = 0,
-                          area = rep(area_levels, each = length(years)*2)
-                          )
+                          area = "3C"
+    )
   }
   # Area 4B
   suppressWarnings(
@@ -190,13 +190,13 @@ tidy_ages_by_areas_raw <- function (data, year_range = NULL, ...) {
   } else {
     area_4B <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
-                          year = rep(years, each = 2, times = length(area_levels)),
+                          year = rep(years, each = 2),
                           sex = c("M", "F"),
                           age = 0,
                           proportion = 0,
                           total = 0,
-                          area = rep(area_levels, each = length(years)*2)
-                          )
+                          area = "4B"
+    )
   }
   # Area total
   suppressWarnings(
@@ -213,14 +213,14 @@ tidy_ages_by_areas_raw <- function (data, year_range = NULL, ...) {
       dplyr::mutate(area = factor("Total", levels = area_levels))
   } else {
     area_total <- data.frame(species_common_name = unique(data$species_common_name),
-                             survey_abbrev = "Commercial",
-                             year = rep(years, each = 2, times = length(area_levels)),
-                             sex = c("M", "F"),
-                             age = 0,
-                             proportion = 0,
-                             total = 0,
-                             area = rep(area_levels, each = length(years)*2)
-                             )
+                          survey_abbrev = "Commercial",
+                          year = rep(years, each = 2),
+                          sex = c("M", "F"),
+                          age = 0,
+                          proportion = 0,
+                          total = 0,
+                          area = "Total"
+    )
   }
   # Return
   dplyr::bind_rows(
@@ -264,11 +264,11 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
   } else {
     area_5E <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
-                          year = rep(years, each = length(seq(20, 80, by = 10)), times = length(area_levels)),
-                          length_bin = rep(seq(20, 80, by = 10), times = length(years)*length(area_levels)),
+                          year = rep(years, each = length(seq(20, 80, by = 10))),
+                          length_bin = rep(seq(20, 80, by = 10), times = length(years)),
                           proportion = 0,
                           total = 0,
-                          area = rep(area_levels, each = length(years) * length(seq(20, 80, by = 10)))
+                          area = "5E"
     )
   }
   # Area 5D
@@ -288,11 +288,11 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
   } else {
     area_5D <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
-                          year = rep(years, each = length(seq(20, 80, by = 10)), times = length(area_levels)),
-                          length_bin = rep(seq(20, 80, by = 10), times = length(years)*length(area_levels)),
+                          year = rep(years, each = length(seq(20, 80, by = 10))),
+                          length_bin = rep(seq(20, 80, by = 10), times = length(years)),
                           proportion = 0,
                           total = 0,
-                          area = rep(area_levels, each = length(years) * length(seq(20, 80, by = 10)))
+                          area = "5D"
     )
   }
   # Area 5C
@@ -312,11 +312,11 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
   } else {
     area_5C <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
-                          year = rep(years, each = length(seq(20, 80, by = 10)), times = length(area_levels)),
-                          length_bin = rep(seq(20, 80, by = 10), times = length(years)*length(area_levels)),
+                          year = rep(years, each = length(seq(20, 80, by = 10))),
+                          length_bin = rep(seq(20, 80, by = 10), times = length(years)),
                           proportion = 0,
                           total = 0,
-                          area = rep(area_levels, each = length(years) * length(seq(20, 80, by = 10)))
+                          area = "5C"
     )
   }
   # Area 5B
@@ -336,11 +336,11 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
   } else {
     area_5B <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
-                          year = rep(years, each = length(seq(20, 80, by = 10)), times = length(area_levels)),
-                          length_bin = rep(seq(20, 80, by = 10), times = length(years)*length(area_levels)),
+                          year = rep(years, each = length(seq(20, 80, by = 10))),
+                          length_bin = rep(seq(20, 80, by = 10), times = length(years)),
                           proportion = 0,
                           total = 0,
-                          area = rep(area_levels, each = length(years) * length(seq(20, 80, by = 10)))
+                          area = "5B"
     )
   }
   # Area 5A
@@ -360,11 +360,11 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
   } else {
     area_5A <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
-                          year = rep(years, each = length(seq(20, 80, by = 10)), times = length(area_levels)),
-                          length_bin = rep(seq(20, 80, by = 10), times = length(years)*length(area_levels)),
+                          year = rep(years, each = length(seq(20, 80, by = 10))),
+                          length_bin = rep(seq(20, 80, by = 10), times = length(years)),
                           proportion = 0,
                           total = 0,
-                          area = rep(area_levels, each = length(years) * length(seq(20, 80, by = 10)))
+                          area = "5A"
     )
   }
   # Area 3D
@@ -384,11 +384,11 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
   } else {
     area_3D <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
-                          year = rep(years, each = length(seq(20, 80, by = 10)), times = length(area_levels)),
-                          length_bin = rep(seq(20, 80, by = 10), times = length(years)*length(area_levels)),
+                          year = rep(years, each = length(seq(20, 80, by = 10))),
+                          length_bin = rep(seq(20, 80, by = 10), times = length(years)),
                           proportion = 0,
                           total = 0,
-                          area = rep(area_levels, each = length(years) * length(seq(20, 80, by = 10)))
+                          area = "3D"
     )
   }
   # Area 3C
@@ -408,11 +408,11 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
   } else {
     area_3C <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
-                          year = rep(years, each = length(seq(20, 80, by = 10)), times = length(area_levels)),
-                          length_bin = rep(seq(20, 80, by = 10), times = length(years)*length(area_levels)),
+                          year = rep(years, each = length(seq(20, 80, by = 10))),
+                          length_bin = rep(seq(20, 80, by = 10), times = length(years)),
                           proportion = 0,
                           total = 0,
-                          area = rep(area_levels, each = length(years) * length(seq(20, 80, by = 10)))
+                          area = "3C"
     )
   }
   # Area 4B
@@ -432,11 +432,11 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
   } else {
     area_4B <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
-                          year = rep(years, each = length(seq(20, 80, by = 10)), times = length(area_levels)),
-                          length_bin = rep(seq(20, 80, by = 10), times = length(years)*length(area_levels)),
+                          year = rep(years, each = length(seq(20, 80, by = 10))),
+                          length_bin = rep(seq(20, 80, by = 10), times = length(years)),
                           proportion = 0,
                           total = 0,
-                          area = rep(area_levels, each = length(years) * length(seq(20, 80, by = 10)))
+                          area = "4B"
     )
   }
   # Area total
@@ -455,12 +455,12 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
       dplyr::select(-sex)
   } else {
     area_total <- data.frame(species_common_name = unique(data$species_common_name),
-                             survey_abbrev = "Commercial",
-                             year = rep(years, each = length(seq(20, 80, by = 10)), times = length(area_levels)),
-                             length_bin = rep(seq(20, 80, by = 10), times = length(years)*length(area_levels)),
-                             proportion = 0,
-                             total = 0,
-                             area = rep(area_levels, each = length(years) * length(seq(20, 80, by = 10)))
+                          survey_abbrev = "Commercial",
+                          year = rep(years, each = length(seq(20, 80, by = 10))),
+                          length_bin = rep(seq(20, 80, by = 10), times = length(years)),
+                          proportion = 0,
+                          total = 0,
+                          area = "Total"
     )
   }
   # Return

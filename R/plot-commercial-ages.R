@@ -9,7 +9,7 @@ plot_commercial_ages <- function (data,
                                   alpha = 0.2,
                                   grid_col = "grey95",
                                   diagonal_lines = seq(-2100, -1850, 10),
-                                  count_label_size = 1.25) {
+                                  count_label_size = 1.3) {
 
   # Set maximum age ------------------------------------------------------------
 
@@ -66,16 +66,22 @@ plot_commercial_ages <- function (data,
   # Augment by missing areas ---------------------------------------------------
 
   # Get area levels
-  area_levels <- levels(data$area)
+  area_levels <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B", "Total")
+
+  data <- data %>%
+    dplyr::mutate(area = factor(area, levels = area_levels))
+
   # Assemble placeholder rows
   placeholder <- data[seq_along(area_levels), ] %>%
     dplyr::mutate(age = 0) %>%
     dplyr::mutate(proportion = 0) %>%
     dplyr::mutate(total = NA_real_) %>%
     dplyr::mutate(area = factor(area_levels, levels = area_levels))
+
   # Augment data
   data <- data %>%
-    dplyr::bind_rows(placeholder)
+    dplyr::bind_rows(placeholder) %>%
+    dplyr::arrange(area)
 
   # Plot ages ------------------------------------------------------------------
 
@@ -83,7 +89,7 @@ plot_commercial_ages <- function (data,
     data,
     ggplot2::aes(year, age)
   ) +
-    ggplot2::facet_grid(cols = ggplot2::vars(area)) +
+    ggplot2::facet_grid(cols = ggplot2::vars(as.factor(area))) +
     ggplot2::scale_x_continuous(
       breaks = seq(
         gfplot:::round_down_even(min(year_range)),

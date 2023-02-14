@@ -2,7 +2,7 @@
 # Adapted from gfplot::plot_sample_avail
 plot_commercial_counts <- function (data,
                                     years = NULL,
-                                    title = "Commercial specimen counts",
+                                    title = c("Sorted commercial specimen counts", "Unsorted commercial specimen counts"),
                                     text_colour = "white",
                                     na_colour = "white") {
 
@@ -137,10 +137,11 @@ plot_commercial_counts <- function (data,
       ggplot2::geom_text(
         ggplot2::aes(x = year, label = n_text),
         colour = text_colour,
-        size = 1.5,
-        alpha = 1,
+        size = 1.8,
+        alpha = 0.8,
+        fontface = "bold",
         na.rm = TRUE,
-        vjust = 0.4
+        vjust = 0.5
       ) +
       ggplot2::ggtitle(title) +
       gfplot::theme_pbs() +

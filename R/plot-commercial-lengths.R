@@ -90,11 +90,11 @@ plot_commercial_lengths <- function (data,
     ggplot2::scale_x_continuous(breaks = x_breaks) +
     ggplot2::xlab(xlab) +
     ggplot2::ylab(ylab) +
-    ggplot2::ylim(-0.08, 1.15) +
+    ggplot2::ylim(-0.06, 1.15) +
     ggplot2::geom_text(
       data = counts,
-      x = min(data$length_bin, na.rm = TRUE) + 0.01 * range_lengths,
-      y = 0.89,
+      x = min(data$length_bin, na.rm = TRUE) + 0.013 * range_lengths,
+      y = 0.82,
       mapping = ggplot2::aes(label = total),
       inherit.aes = FALSE,
       colour = "grey50",

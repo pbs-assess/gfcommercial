@@ -11,7 +11,7 @@ plot_layout_pg_2 <- function(spp,
                              height = 275,
                              units = "mm",
                              dpi = 300
-) {
+                             ) {
 
   # Read in data  --------------------------------------------------------------
 
@@ -25,7 +25,7 @@ plot_layout_pg_2 <- function(spp,
   cumulative_props <- tidy_cumulative_props(catch,
                                             comm_samples,
                                             years = years
-  )
+                                            )
 
   p1 <- plot_cumulative_counts(cumulative_props)
 
@@ -34,11 +34,11 @@ plot_layout_pg_2 <- function(spp,
   ages <- tidy_ages_by_areas_raw(comm_samples,
                                  sample_type = sample_type,
                                  year_range = c(min(years), max(years))
-  )
+                                 )
 
   p2 <- plot_commercial_ages(ages,
                              year_range = c(min(years), max(years))
-  )
+                             )
 
   # Commercial lengths plot ----------------------------------------------------
 
@@ -46,11 +46,11 @@ plot_layout_pg_2 <- function(spp,
                                        sample_type = sample_type,
                                        bin_size = bin_size,
                                        year_range = c(min(years), max(years))
-  )
+                                       )
 
   p3 <- plot_commercial_lengths(lengths,
                                 year_range = c(min(years), max(years))
-  )
+                                )
 
   # Arrange plots --------------------------------------------------------------
 
@@ -69,13 +69,12 @@ plot_layout_pg_2 <- function(spp,
   plot_name <- paste0(spp, "-pg-2")
 
   # Save ggplot
-  ggplot2::ggsave(
-    paste0(fl_path_store,"/", plot_name, fl_type),
-    plot = p,
-    width = width,
-    height = height,
-    units = units,
-    dpi = dpi
-  )
+  ggplot2::ggsave(paste0(fl_path_store,"/", plot_name, fl_type),
+                  plot = p,
+                  width = width,
+                  height = height,
+                  units = units,
+                  dpi = dpi
+                  )
 
 }

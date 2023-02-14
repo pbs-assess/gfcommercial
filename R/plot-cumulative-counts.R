@@ -19,14 +19,17 @@ plot_cumulative_counts <- function (data,
   # Define counts --------------------------------------------------------------
 
   counts <- data %>%
-    dplyr::select(
-      species_common_name,
-      area,
-      year,
-      n_catch,
-      n_samples
-    ) %>%
+    dplyr::select(species_common_name,
+                  area,
+                  year,
+                  n_catch,
+                  n_samples
+                  ) %>%
     unique()
+
+  counts <- counts %>%
+    dplyr::mutate(catch_text = gfplot:::round_nice(n_catch),
+                  samp_text = gfplot:::round_nice(n_samples))
 
   # Scale each maximum proportion to one ---------------------------------------
 
@@ -52,7 +55,7 @@ plot_cumulative_counts <- function (data,
     ) +
     ggplot2::geom_line(
       ggplot2::aes(y = samples_prop), # Samples second so the thinner, lighter line is on top
-      colour = "grey50",
+      colour = "#20A387FF",
       linewidth = 0.25
     ) +
     gfplot::theme_pbs() +
@@ -64,9 +67,9 @@ plot_cumulative_counts <- function (data,
     ggplot2::xlim(1, 53) +
     ggplot2::geom_text(
       data = counts,
-      x = 2.4,
-      y = 0.91,
-      mapping = ggplot2::aes(label = n_catch),
+      x = 2.2,
+      y = 0.88,
+      mapping = ggplot2::aes(label = catch_text),
       inherit.aes = FALSE,
       colour = "black",
       size = 1.5,
@@ -75,10 +78,10 @@ plot_cumulative_counts <- function (data,
     ggplot2::geom_text(
       data = counts,
       x = 51.6,
-      y = 0.15,
-      mapping = ggplot2::aes(label = n_samples),
+      y = 0.19,
+      mapping = ggplot2::aes(label = samp_text),
       inherit.aes = FALSE,
-      colour = "grey50",
+      colour = "#20A387FF",
       size = 1.5,
       hjust = 1
     ) +

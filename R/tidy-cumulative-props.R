@@ -8,7 +8,7 @@ tidy_cumulative_props <- function (catch_data,
 
   # Tidy commercial catch data
   catch_counts <- tidy_cumulative_counts(catch_data,
-                                         years = years, # Luke how would you write this so it is clear and not confusing about which 'years' is getting passed
+                                         years = years,
                                          variable = "catch")
 
   # Tidy commercial sample data

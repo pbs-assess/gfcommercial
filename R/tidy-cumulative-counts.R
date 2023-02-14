@@ -132,6 +132,7 @@ tidy_cumulative_counts <- function (data,
       dplyr::arrange(area, year, week)
 
     counts$area <- factor(counts$area, levels = area_levels)
+
     counts <- counts %>%
       dplyr::arrange(area)
 
