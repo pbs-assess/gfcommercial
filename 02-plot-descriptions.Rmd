@@ -57,7 +57,7 @@ p
 
 ## Representativeness plot
 
-```{r, "representativeness", warning = FALSE, echo = FALSE, fig.asp = 0.5, fig.cap = paste0("Example representativeness plot for ", sp, ". The black line represents the cumulative proportion of catch for that species over time with the total number of fishing events in the top left-hand corner for each panel. The coloured line represents the cumulative proportion of samples collected for that species over time with the total number of individual speciments collected in the bottom right-hand corner for each panel. With this plot we are essentially trying to illustrate if the specimen sampling occured more or less evenly across the areas and throughout the year")}
+```{r, "representativeness", warning = FALSE, echo = FALSE, fig.asp = 0.5, fig.cap = paste0("Example representativeness plot for ", sp, ". The thin black lines represent the cumulative proportion of catch over time with the total kilograms landed in the top left-hand corner for each panel. The thicker orange line represents the cumulative proportion of samples collected over time with the total number of individual specimens collected in the bottom right-hand corner for each panel. With this plot we are essentially trying to illustrate if the specimen sampling occured more or less evenly across the areas and throughout the year")}
 
 cumulative_props <- tidy_cumulative_props(catch, 
                                           comm_samples, 
