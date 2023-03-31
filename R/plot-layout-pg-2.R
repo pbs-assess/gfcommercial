@@ -1,7 +1,7 @@
 # An R script to arrange and sitch together plots for page 1
 
 plot_layout_pg_2 <- function(spp,
-                             years = 2003:2021,
+                             years = 1996:2021,
                              sample_type = "commercial",
                              bin_size = 2,
                              fl_path_data = here::here("data-cache"), # change to wherever the data cache is located

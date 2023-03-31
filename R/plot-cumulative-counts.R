@@ -50,12 +50,14 @@ plot_cumulative_counts <- function (data,
     ggplot2::aes(x = week)
   ) +
     ggplot2::geom_line(
-      ggplot2::aes(y = catch_prop),
-      colour = "black",
+      ggplot2::aes(y = samples_prop), # Samples second so the thinner, lighter line is on top
+      colour = "#d95f02",
+      linewidth = 0.6,
+      alpha = 0.8
     ) +
     ggplot2::geom_line(
-      ggplot2::aes(y = samples_prop), # Samples second so the thinner, lighter line is on top
-      colour = "#20A387FF",
+      ggplot2::aes(y = catch_prop),
+      colour = "black",
       linewidth = 0.25
     ) +
     gfplot::theme_pbs() +
@@ -63,38 +65,38 @@ plot_cumulative_counts <- function (data,
     #ggplot2::scale_x_continuous(breaks = x_breaks) +
     ggplot2::xlab(xlab) +
     ggplot2::ylab(ylab) +
-    ggplot2::ylim(-0.12, 1.15) +
+    ggplot2::ylim(-0.12, 1.10) +
     ggplot2::xlim(1, 53) +
     ggplot2::geom_text(
       data = counts,
       x = 2.2,
-      y = 0.88,
+      y = 0.90,
       mapping = ggplot2::aes(label = catch_text),
       inherit.aes = FALSE,
       colour = "black",
-      size = 1.5,
+      size = 3,
       hjust = 0
     ) +
     ggplot2::geom_text(
       data = counts,
-      x = 51.6,
-      y = 0.19,
+      x = 51.4,
+      y = 0.15,
       mapping = ggplot2::aes(label = samp_text),
       inherit.aes = FALSE,
-      colour = "#20A387FF",
-      size = 1.5,
+      colour = "#d95f02",
+      size = 3,
       hjust = 1
     ) +
     ggplot2::labs(title = "Representativeness") +
     ggplot2::theme(
-      plot.title = ggplot2::element_text(vjust = -4),
-      axis.text.x.bottom = ggplot2::element_text(size = 5.5),
+      plot.title = ggplot2::element_text(size = 15, vjust = -4),
+      axis.text.x.bottom = ggplot2::element_text(size = 9),
       axis.text.y.left = ggplot2::element_blank(),
-      strip.text.x = ggplot2::element_text(vjust = -2),
-      strip.text.y = ggplot2::element_text(size = 5.0),
+      strip.text.x = ggplot2::element_text(size = 12, vjust = -1),
+      strip.text.y = ggplot2::element_text(size = 10),
       axis.ticks.y = ggplot2::element_blank(),
       panel.grid.major.x = ggplot2::element_line(colour = "grey93"),
-      panel.spacing = grid::unit(-0.05, "lines"),
+      panel.spacing = grid::unit(-0.15, "lines"),
       plot.margin = grid::unit(c(-3.5, 1, 0, 1), "mm")
     )
 

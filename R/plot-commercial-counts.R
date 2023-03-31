@@ -2,7 +2,7 @@
 # Adapted from gfplot::plot_sample_avail
 plot_commercial_counts <- function (data,
                                     years = NULL,
-                                    title = c("Sorted commercial specimen counts", "Unsorted commercial specimen counts"),
+                                    sorted = c(TRUE, FALSE),
                                     text_colour = "white",
                                     na_colour = "white") {
 
@@ -10,6 +10,19 @@ plot_commercial_counts <- function (data,
 
   if (is.null(years)) {
     years <- seq(min(data$year, na.rm = TRUE), max(data$year, na.rm = TRUE), 1L)
+  }
+
+  # Subset for target years ----------------------------------------------------
+
+  data <- data %>%
+    dplyr::filter(year %in% years)
+
+  # Define title ---------------------------------------------------------------
+
+  if (sorted == TRUE) {
+    title <- "Sorted commercial specimen counts"
+  } else if (sorted == FALSE) {
+    title <- "Unsorted commercial specimen counts"
   }
 
   # Augment data ---------------------------------------------------------------
@@ -122,7 +135,6 @@ plot_commercial_counts <- function (data,
       ggplot2::scale_x_continuous(
         breaks = seq(gfplot:::round_down_even(min(years)), max(years), 2)
       ) +
-      ggplot2::scale_y_discrete(position = "left") +
       viridis::scale_fill_viridis(
         option = "D",
         end = 0.82,
@@ -144,14 +156,27 @@ plot_commercial_counts <- function (data,
         vjust = 0.5
       ) +
       ggplot2::ggtitle(title) +
-      gfplot::theme_pbs() +
-      ggplot2::theme(
+      gfplot::theme_pbs()
+
+      if (sorted == TRUE) {
+      p1 <- p1 +
+        ggplot2::scale_y_discrete(position = "left") +
+        ggplot2::theme(
+          axis.ticks.x = ggplot2::element_blank(),
+          axis.ticks.y = ggplot2::element_blank(),
+          axis.text.y.left = ggplot2::element_text(size = 5.2),
+          strip.text.y = ggplot2::element_blank(),
+          legend.position = "none"
+          )
+      } else if (sorted == FALSE) {
+      p1 <- p1 + ggplot2::theme(
         axis.ticks.x = ggplot2::element_blank(),
         axis.ticks.y = ggplot2::element_blank(),
-        axis.text.y.left = ggplot2::element_text(size = 5.2),
+        axis.text.y = ggplot2::element_blank(),
         strip.text.y = ggplot2::element_text(angle = 0),
         legend.position = "none"
-      )
+        )
+      }
 
   }
 

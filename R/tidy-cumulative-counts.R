@@ -90,7 +90,7 @@ tidy_cumulative_counts <- function (data,
           week
         ) %>%
         dplyr::summarise(
-          counts = sum(!is.na(unique(fishing_event_id))))
+          counts = sum(!is.na(landed_kg)))
     } else if (variable == "samples") {
       counts <- data %>%
         dplyr::group_by(
@@ -109,7 +109,7 @@ tidy_cumulative_counts <- function (data,
     counts <- subset(counts,
                      !is.na(week))
 
-    # Fill in missing weeks with zero --------------------------------------------
+    # Fill in missing weeks with zero ------------------------------------------
 
     labels <- data.frame(species_common_name = unique(counts$species_common_name),
                          area = rep(area_levels,

@@ -2,14 +2,15 @@
 plot_commercial_ages <- function (data,
                                   max_size = 5,
                                   sex_gap = 0.2,
-                                  year_increment = 2,
+                                  sex = c("M", "F"),
+                                  year_increment = 4,
                                   ylab = "Age (years)",
                                   year_range = NULL,
                                   line_col = c("M" = "#1b9e77", "F" = "#7570b3"),
                                   alpha = 0.2,
                                   grid_col = "grey95",
                                   diagonal_lines = seq(-2100, -1850, 10),
-                                  count_label_size = 1.3) {
+                                  count_label_size = 1) {
 
   # Set maximum age ------------------------------------------------------------
 
@@ -17,6 +18,14 @@ plot_commercial_ages <- function (data,
     age_max <- max(data$age, na.rm = TRUE)
   } else {
     age_max <- 1
+  }
+
+  # Separate sexes -------------------------------------------------------------
+
+  if (sex == "M") {
+    data <- subset(data, sex == "M")
+  } else if (sex =="F") {
+    data <- subset(data, sex == "F")
   }
 
   # Jitter sexes ---------------------------------------------------------------
@@ -32,13 +41,13 @@ plot_commercial_ages <- function (data,
 
   # Define counts --------------------------------------------------------------
 
-  counts <- data %>%
-    dplyr::select(
-      total,
-      year,
-      area
-    ) %>%
-    unique()
+#  counts <- ages_all %>%
+#    dplyr::select(
+#      total,
+#      year,
+#      area
+#    ) %>%
+#    unique()
 
   # Define age range -----------------------------------------------------------
 
@@ -50,6 +59,13 @@ plot_commercial_ages <- function (data,
     year_range <- c(min(data$year, na.rm = TRUE), max(data$year, na.rm = TRUE))
   }
 
+  # Filter for target years ----------------------------------------------------
+
+  years <- seq(min(year_range), max(year_range))
+
+  data <- data %>%
+    dplyr::filter(year %in% years)
+
   # Accommodate empty plot -----------------------------------------------------
 
   if (sum(!is.na(data$age)) == 0) {
@@ -59,9 +75,9 @@ plot_commercial_ages <- function (data,
 
   # Define sex as factor -------------------------------------------------------
 
-  data <- data %>%
-    dplyr::mutate(sex = factor(sex, levels = c("M", "F"))) %>% # F on top
-    dplyr::arrange(area, year, sex)
+#  data <- data %>%
+ #   dplyr::mutate(sex = factor(sex, levels = c("M", "F"))) %>% # F on top
+  #  dplyr::arrange(area, year, sex)
 
   # Augment by missing areas ---------------------------------------------------
 
@@ -71,22 +87,71 @@ plot_commercial_ages <- function (data,
   data <- data %>%
     dplyr::mutate(area = factor(area, levels = area_levels))
 
+
+  if (sex == "M") {
+    labels <- data.frame(
+      species_common_name = unique(data$species_common_name),
+      survey_abbrev = unique(data$survey_abbrev),
+      sex = "M",
+      area = rep(area_levels,
+                 each = length(years)*length(seq(0, age_max, by = 1))),
+      year = rep(years,
+                 each = length(seq(0, age_max, by = 1)),
+                 times = length(area_levels)),
+      age = rep(seq(0, age_max, by = 1),
+                times = length(area_levels)*length(years))
+    )
+  } else if (sex =="F") {
+    labels <- data.frame(
+      species_common_name = unique(data$species_common_name),
+      survey_abbrev = unique(data$survey_abbrev),
+      sex = "F",
+      area = rep(area_levels,
+                 each = length(years)*length(seq(0, age_max, by = 1))),
+      year = rep(years,
+                 each = length(seq(0, age_max, by = 1)),
+                 times = length(area_levels)),
+      age = rep(seq(0, age_max, by = 1),
+                times = length(area_levels)*length(years))
+    )
+  }
+
+  ages_all <- dplyr::right_join(data,
+                                labels,
+                                by = c("species_common_name", "area", "year", "survey_abbrev", "sex", "age"),
+                                keep = FALSE)
+
+  ages_all <- ages_all %>%
+    dplyr::arrange(area, year, age)
+
+  ages_all$area <- factor(ages_all$area, levels = area_levels)
+
+  ages_all <- ages_all %>%
+    dplyr::arrange(area)
+
+  ages_all <- ages_all %>%
+    dplyr::mutate(total = if_else(total == 0, NA, total))
+
+
+
+
+
   # Assemble placeholder rows
-  placeholder <- data[seq_along(area_levels), ] %>%
-    dplyr::mutate(age = 0) %>%
-    dplyr::mutate(proportion = 0) %>%
-    dplyr::mutate(total = NA_real_) %>%
-    dplyr::mutate(area = factor(area_levels, levels = area_levels))
+#  placeholder <- data[seq_along(area_levels), ] %>%
+ #   dplyr::mutate(age = 0) %>%
+  #  dplyr::mutate(proportion = 0) %>%
+   # dplyr::mutate(total = NA_real_) %>%
+    #dplyr::mutate(area = factor(area_levels, levels = area_levels))
 
   # Augment data
-  data <- data %>%
-    dplyr::bind_rows(placeholder) %>%
-    dplyr::arrange(area)
+#  data <- data %>%
+ #   dplyr::bind_rows(placeholder) %>%
+  #  dplyr::arrange(area)
 
   # Plot ages ------------------------------------------------------------------
 
   p1 <- ggplot2::ggplot(
-    data,
+    ages_all,
     ggplot2::aes(year, age)
   ) +
     ggplot2::facet_grid(cols = ggplot2::vars(as.factor(area))) +
@@ -114,24 +179,35 @@ plot_commercial_ages <- function (data,
     ) +
     ggplot2::xlab("") +
     ggplot2::ylab(ylab) +
-    ggplot2::labs(
-      title = "Age frequencies",
-      colour = "Sex",
-      fill = "Sex"
-    ) +
     gfplot::theme_pbs() +
     ggplot2::theme(
       plot.title = ggplot2::element_text(vjust = -4),
-      axis.text.x = ggplot2::element_text(size = 7, angle = 90, hjust = 1, vjust = 0.5),
-      strip.text.x = ggplot2::element_text(vjust = -2),
+      axis.text.x = ggplot2::element_text(size = 9, angle = 90, hjust = 1, vjust = 0.5),
+      strip.text.x = ggplot2::element_text(vjust = -1),
       legend.position = "none",
       panel.spacing = grid::unit(-0.1, "lines"),
       plot.margin = grid::unit(c(-3.5, 1, -4, 1), "mm")
     )
 
+  if (sex == "M") {
+    p1 <- p1 +
+      ggplot2::labs(
+      title = "Age frequencies",
+      colour = "Sex",
+      fill = "Sex"
+    )
+  } else if (sex == "F") {
+    p1 <- p1 +
+      ggplot2::labs(
+      title = " ",
+      colour = "Sex",
+      fill = "Sex"
+    )
+  }
+
   # Conditionally include ablines and text -------------------------------------
 
-  if (sum(data$age > 0, na.rm = TRUE) > 0) {
+  if (sum(ages_all$age > 0, na.rm = TRUE) > 0) {
     p1 <- p1 +
       ggplot2::geom_abline(
         intercept = diagonal_lines,
@@ -147,16 +223,16 @@ plot_commercial_ages <- function (data,
         breaks = c("M", "F")
       ) +
       ggplot2::scale_size_area(max_size = max_size) +
-      ggplot2::geom_text(
-        data = counts,
-        y = age_max + 0.005 * age_range,
-        mapping = ggplot2::aes(x = year, label = total),
-        inherit.aes = FALSE,
-        colour = "grey50",
-        size = count_label_size,
-        hjust = 1,
-        angle = 90
-      ) +
+      # ggplot2::geom_text(
+      #   data = ages_all,
+      #   y = age_max + 0.005 * age_range,
+      #   mapping = ggplot2::aes(x = year, label = total),
+      #   inherit.aes = FALSE,
+      #   colour = "grey50",
+      #   size = count_label_size,
+      #   hjust = 1,
+      #   angle = 90
+      # ) +
       ggplot2::geom_point(
         mapping = ggplot2::aes(
           size = proportion,
@@ -165,6 +241,8 @@ plot_commercial_ages <- function (data,
           colour = sex
         ),
         pch = 21
+      ) +
+      ggplot2::scale_size_continuous(range = c(0.01, 4)
       )
   }
 

@@ -1,91 +1,99 @@
 # Adapted from gfplot
-plot_commercial_lengths <- function (data,
+plot_commercial_lengths <- function (dat,
                                      xlab = "Length (cm)",
                                      ylab = "Relative length frequency",
-                                     line_col = c("grey40"),
-                                     fill_col = c("grey40"),
-                                     alpha = 0.5,
+                                     #line_col = c("grey40"),
+                                     #fill_col = c("grey40"),
+                                     #fill_col = c("M" = "grey80", "F" = "#FF000010"),
+                                     #line_col = c("M" = "grey40", "F" = "red"),
+                                     alpha = 0.24,
                                      bin_size = 2,
                                      min_total = 20,
                                      show_year = "even",
                                      year_range = NULL) {
 
+
+# Define area factor levels
+  area_levels <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B", "Total")
+
+# Define colours for female lengths
+  survey_cols <- c(RColorBrewer::brewer.pal(8L, "Set2"),
+                  "#303030")
+  survey_col_names <- area_levels
+
+  survey_cols <- stats::setNames(survey_cols, survey_col_names)
+
+  #survey_col_names <- names(survey_cols)
+  col <- stats::setNames(survey_cols, paste("F", survey_col_names))
+  col <- c(col, stats::setNames(rep("#888888", length(col)),
+                                paste("M", survey_col_names)
+  ))
+  fill_col <- paste0(substr(col, 1L, 8L), as.character(alpha * 100))
+  names(fill_col) <- c(survey_col_names, survey_col_names)
+  line_col <- col
+  names(fill_col) <- names(line_col)
+  dat$sex <- paste(dat$sex, dat$survey_abbrev)
+
+
   # Define breaks --------------------------------------------------------------
 
-  x_breaks <- pretty(data$length_bin, 4L)
+  x_breaks <- pretty(dat$length_bin, 4L)
   x_breaks <- x_breaks[seq_len(length(x_breaks) - 1L)]
 
   # Define range ---------------------------------------------------------------
 
-  range_lengths <- diff(range(data$length_bin, na.rm = TRUE))
+  range_lengths <- diff(range(dat$length_bin, na.rm = TRUE))
 
-  # Define labels --------------------------------------------------------------
+  years <- seq(year_range[1], year_range[2])
 
-  # Define area factor levels
-  area_levels <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B", "Total")
+  dat <- dat %>%
+    dplyr::filter(year %in% years)
 
-  labels <- data.frame(species_common_name = unique(data$species_common_name),
-                       survey_abbrev = unique(data$survey_abbrev),
-                       year = rep(seq(min(year_range), max(year_range)),
-                                  times = length(area_levels)),
-                       area = rep(area_levels,
-                                  each = length(seq(min(year_range), max(year_range))))
-  )
+   dat <- dat %>%
+     dplyr::arrange(area, year)
 
-  data <- dplyr::right_join(data,
-                            labels,
-                            by = c("species_common_name", "survey_abbrev", "year", "area"),
-                            keep = FALSE)
+   dat <- dat %>%
+     dplyr::mutate(area = factor(area, area_levels))
 
-  data[is.na(data)] <- 0
-
-  data <- data %>%
-    dplyr::arrange(area, year)
-
-  data$area <- factor(data$area, levels = area_levels)
-
-  data <- data %>%
-    dplyr::arrange(area)
+   dat <- dat %>%
+     dplyr::arrange(area)
 
   # Define counts --------------------------------------------------------------
 
-  counts <- data %>%
-    dplyr::select(
-      survey_abbrev,
-      year,
-      total,
-      area
-    ) %>%
+  counts <- dat %>%
+    dplyr::select(survey_abbrev, year, total, area) %>%
     unique()
 
   # Scale each maximum proportion to one ---------------------------------------
 
-  data <- data %>%
-    dplyr::group_by(year, survey_abbrev, area) %>%
-    dplyr::mutate(proportion = proportion / max(proportion)) %>%
+  dat <- dat %>%
+    dplyr::group_by(year, area) %>%
+    dplyr::mutate(new_proportion = proportion / max(proportion, na.rm = TRUE)) %>%
     dplyr::ungroup()
+
+   dat$sex <- factor(dat$sex, levels = rev(sort(unique(dat$sex)))) # to get F bars shaded on top
+   dat <- arrange(dat, year, survey_abbrev, sex)
 
   # Remove proportions with scarce observations --------------------------------
 
-  data <- data %>%
-    dplyr::mutate(proportion = ifelse(total >= min_total, proportion, NA))
-
-  data[is.na(data)] <- 0
+  #lengths_all <- lengths_all %>%
+    #dplyr::mutate(proportion = ifelse(total >= min_total, proportion, NA))
 
   # Assemble plot --------------------------------------------------------------
 
-  p1 <- ggplot2::ggplot(
-    data,
-    ggplot2::aes(length_bin, proportion)
-  ) +
+  p1 <- ggplot2::ggplot(dat, ggplot2::aes(length_bin, new_proportion)
+    ) +
     ggplot2::geom_col(
       width = bin_size,
-      color = line_col,
-      fill = scales::alpha(fill_col, alpha),
+      ggplot2::aes(colour = sex, fill = sex),
+      #color = line_col,
+      #fill = scales::alpha(fill_col, alpha),
       size = 0.3,
       position = ggplot2::position_identity()
     ) +
     gfplot::theme_pbs() +
+    ggplot2::scale_fill_manual(values = fill_col, breaks = c("M", "F")) +
+    ggplot2::scale_colour_manual(values = line_col, breaks = c("M", "F")) +
     ggplot2::coord_cartesian(expand = FALSE) +
     ggplot2::scale_x_continuous(breaks = x_breaks) +
     ggplot2::xlab(xlab) +
@@ -93,7 +101,7 @@ plot_commercial_lengths <- function (data,
     ggplot2::ylim(-0.06, 1.15) +
     ggplot2::geom_text(
       data = counts,
-      x = min(data$length_bin, na.rm = TRUE) + 0.013 * range_lengths,
+      x = min(dat$length_bin, na.rm = TRUE) + 0.013 * range_lengths,
       y = 0.82,
       mapping = ggplot2::aes(label = total),
       inherit.aes = FALSE,
@@ -106,11 +114,11 @@ plot_commercial_lengths <- function (data,
       plot.title = ggplot2::element_text(vjust = -4),
       axis.text.x.bottom = ggplot2::element_text(size = 5.5),
       axis.text.y.left = ggplot2::element_blank(),
-      strip.text.x = ggplot2::element_text(vjust = -2),
-      strip.text.y = ggplot2::element_text(size = 5.0),
+      strip.text.x = ggplot2::element_text(vjust = -1.5),
+      strip.text.y = ggplot2::element_text(size = 5.5),
       axis.ticks.y = ggplot2::element_blank(),
       panel.grid.major.x = ggplot2::element_line(colour = "grey93"),
-      panel.spacing = grid::unit(-0.05, "lines"),
+      panel.spacing = grid::unit(-0.06, "lines"),
       plot.margin = grid::unit(c(-3.5, 0, 0, 1), "mm")
     )
 

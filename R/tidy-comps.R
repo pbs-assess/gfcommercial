@@ -1,10 +1,16 @@
-tidy_ages_by_areas_raw <- function (data, year_range = NULL, ...) {
+tidy_ages_by_areas_raw <- function (data,
+                                    year_range = NULL,
+                                    ...) {
 
-  # Define area factor levels
+  # Define area factor levels --------------------------------------------------
+
   area_levels <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B", "Total")
 
-  # Define years
+  # Define years ---------------------------------------------------------------
+
   years <- seq(min(year_range), max(year_range))
+
+  # Areas ----------------------------------------------------------------------
 
   # Area 5E
   suppressWarnings(
@@ -239,7 +245,7 @@ tidy_ages_by_areas_raw <- function (data, year_range = NULL, ...) {
 tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
 
   # Merge sexes
-  data <- data %>% dplyr::mutate(data, sex = 2)
+ # data <- data %>% dplyr::mutate(data, sex = 2)
 
   # Define area factor levels
   area_levels <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B", "Total")
@@ -259,15 +265,15 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
   )
   if (tibble::is_tibble(area_5E)) {
     area_5E <- area_5E %>%
-      dplyr::mutate(area = factor("5E", levels = area_levels)) %>%
-      dplyr::select(-sex)
+      dplyr::mutate(area = factor("5E", levels = area_levels))
+      #dplyr::select(-sex)
   } else {
     area_5E <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
                           year = rep(years, each = length(seq(20, 80, by = 10))),
                           length_bin = rep(seq(20, 80, by = 10), times = length(years)),
-                          proportion = 0,
-                          total = 0,
+                          proportion = NA,
+                          total = NA,
                           area = "5E"
     )
   }
@@ -283,15 +289,15 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
   )
   if (tibble::is_tibble(area_5D)) {
     area_5D <- area_5D %>%
-      dplyr::mutate(area = factor("5D", levels = area_levels)) %>%
-      dplyr::select(-sex)
+      dplyr::mutate(area = factor("5D", levels = area_levels))
+      #dplyr::select(-sex)
   } else {
     area_5D <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
                           year = rep(years, each = length(seq(20, 80, by = 10))),
                           length_bin = rep(seq(20, 80, by = 10), times = length(years)),
-                          proportion = 0,
-                          total = 0,
+                          proportion = NA,
+                          total = NA,
                           area = "5D"
     )
   }
@@ -307,15 +313,15 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
   )
   if (tibble::is_tibble(area_5C)) {
     area_5C <- area_5C %>%
-      dplyr::mutate(area = factor("5C", levels = area_levels)) %>%
-      dplyr::select(-sex)
+      dplyr::mutate(area = factor("5C", levels = area_levels))
+      #dplyr::select(-sex)
   } else {
     area_5C <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
                           year = rep(years, each = length(seq(20, 80, by = 10))),
                           length_bin = rep(seq(20, 80, by = 10), times = length(years)),
-                          proportion = 0,
-                          total = 0,
+                          proportion = NA,
+                          total = NA,
                           area = "5C"
     )
   }
@@ -331,15 +337,15 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
   )
   if (tibble::is_tibble(area_5B)) {
     area_5B <- area_5B %>%
-      dplyr::mutate(area = factor("5B", levels = area_levels)) %>%
-      dplyr::select(-sex)
+      dplyr::mutate(area = factor("5B", levels = area_levels))
+      #dplyr::select(-sex)
   } else {
     area_5B <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
                           year = rep(years, each = length(seq(20, 80, by = 10))),
                           length_bin = rep(seq(20, 80, by = 10), times = length(years)),
-                          proportion = 0,
-                          total = 0,
+                          proportion = NA,
+                          total = NA,
                           area = "5B"
     )
   }
@@ -355,15 +361,15 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
   )
   if (tibble::is_tibble(area_5A)) {
     area_5A <- area_5A %>%
-      dplyr::mutate(area = factor("5A", levels = area_levels)) %>%
-      dplyr::select(-sex)
+      dplyr::mutate(area = factor("5A", levels = area_levels))
+      #dplyr::select(-sex)
   } else {
     area_5A <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
                           year = rep(years, each = length(seq(20, 80, by = 10))),
                           length_bin = rep(seq(20, 80, by = 10), times = length(years)),
-                          proportion = 0,
-                          total = 0,
+                          proportion = NA,
+                          total = NA,
                           area = "5A"
     )
   }
@@ -379,15 +385,15 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
   )
   if (tibble::is_tibble(area_3D)) {
     area_3D <- area_3D %>%
-      dplyr::mutate(area = factor("3D", levels = area_levels)) %>%
-      dplyr::select(-sex)
+      dplyr::mutate(area = factor("3D", levels = area_levels))
+      #dplyr::select(-sex)
   } else {
     area_3D <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
                           year = rep(years, each = length(seq(20, 80, by = 10))),
                           length_bin = rep(seq(20, 80, by = 10), times = length(years)),
-                          proportion = 0,
-                          total = 0,
+                          proportion = NA,
+                          total = NA,
                           area = "3D"
     )
   }
@@ -403,15 +409,15 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
   )
   if (tibble::is_tibble(area_3C)) {
     area_3C <- area_3C %>%
-      dplyr::mutate(area = factor("3C", levels = area_levels)) %>%
-      dplyr::select(-sex)
+      dplyr::mutate(area = factor("3C", levels = area_levels))
+      #dplyr::select(-sex)
   } else {
     area_3C <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
                           year = rep(years, each = length(seq(20, 80, by = 10))),
                           length_bin = rep(seq(20, 80, by = 10), times = length(years)),
-                          proportion = 0,
-                          total = 0,
+                          proportion = NA,
+                          total = NA,
                           area = "3C"
     )
   }
@@ -427,15 +433,15 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
   )
   if (tibble::is_tibble(area_4B)) {
     area_4B <- area_4B %>%
-      dplyr::mutate(area = factor("4B", levels = area_levels)) %>%
-      dplyr::select(-sex)
+      dplyr::mutate(area = factor("4B", levels = area_levels))
+      #dplyr::select(-sex)
   } else {
     area_4B <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
                           year = rep(years, each = length(seq(20, 80, by = 10))),
                           length_bin = rep(seq(20, 80, by = 10), times = length(years)),
-                          proportion = 0,
-                          total = 0,
+                          proportion = NA,
+                          total = NA,
                           area = "4B"
     )
   }
@@ -451,15 +457,15 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, ...) {
   )
   if (tibble::is_tibble(area_total)) {
     area_total <- area_total %>%
-      dplyr::mutate(area = factor("Total", levels = area_levels)) %>%
-      dplyr::select(-sex)
+      dplyr::mutate(area = factor("Total", levels = area_levels))
+      #dplyr::select(-sex)
   } else {
     area_total <- data.frame(species_common_name = unique(data$species_common_name),
                           survey_abbrev = "Commercial",
                           year = rep(years, each = length(seq(20, 80, by = 10))),
                           length_bin = rep(seq(20, 80, by = 10), times = length(years)),
-                          proportion = 0,
-                          total = 0,
+                          proportion = NA,
+                          total = NA,
                           area = "Total"
     )
   }
