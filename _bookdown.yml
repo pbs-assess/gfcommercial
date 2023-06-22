@@ -1,11 +1,10 @@
 book_filename: "techreport"
 chapter_name: "Chapter "
-rmd_files: [
-  "index.Rmd",
-  "01-introduction.Rmd",
-  "02-plot-descriptions.Rmd",
-  "03-plots-intro.Rmd",
-  "04-plot-pages.Rmd",
-  "05-discussion.Rmd",
-  "06-bibliography.Rmd"]
+rmd_files: ["index.Rmd",
+            "01-introduction.Rmd",
+            "02-plot-descriptions.Rmd",
+            "03-plots-intro.Rmd",
+            "04-plot-pages.Rmd",
+            "05-discussion.Rmd",
+            "06-bibliography.Rmd"]
 delete_merged_file: true
