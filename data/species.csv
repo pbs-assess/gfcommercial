@@ -1,36 +1,30 @@
-﻿species_common_name
-Arrowtooth Flounder
-Big Skate
-Bocaccio
-Canary Rockfish
-China Rockfish
-Copper Rockfish
-Dover Sole
-English Sole
-Lingcod
-Lingcod
-Longnose Skate
-Longspine Thornyhead
-North Pacific Spiny Dogfish
-Pacific Cod
-Pacific Hake
-Pacific Halibut
-Pacific Ocean Perch
-Pacific Ocean Perch
-Petrale Sole
-Quillback Rockfish
-Redbanded Rockfish
-Redstripe Rockfish
-Rougheye Blackspotted Rockfish Complex
-Sablefish
-Shortraker Rockfish
-Shortspine Thornyhead
-Silvergray Rockfish
-Southern Rock Sole
-Tiger Rockfish
-Walleye Pollock
-Widow Rockfish
-Yelloweye Rockfish
-Yelloweye Rockfish
-Yellowmouth Rockfish
-Yellowtail Rockfish
+﻿species_common_name,species_code,species_science_name,itis_tsn,taxonomic_rank,parent_taxonomic_rank,worms_id
+Arrowtooth Flounder,602,atheresthes stomias,172862,species,pleuronectidae(righteye flounders),279792
+Big Skate,56,beringraja binoculata,160848,species,rajidae(skates),1021330
+Bocaccio,435,sebastes paucispinis,166733,species,sebastes,274833
+Canary Rockfish,437,sebastes pinniger,166734,species,sebastes,274836
+Dover Sole,626,microstomus pacificus,172887,species,pleuronectidae(righteye flounders),274294
+English Sole,628,parophrys vetulus,172921,species,pleuronectidae(righteye flounders),254393
+Lingcod,467,ophiodon elongatus,167116,species,hexagrammidae(greenlings),240745
+Longnose Skate,59,raja rhina,160851,species,rajidae(skates),271581
+Longspine Thornyhead,453,sebastolobus altivelis,166784,species,sebastolobus(thornyheads),282741
+North Pacific Spiny Dogfish,44,squalus suckleyi,160617,species,squalidae(dogfish sharks),299224
+Pacific Cod,222,gadus macrocephalus,164711,species,gadidae,254538
+Pacific Hake,225,merluccius productus,164792,species,NA,272458
+Pacific Halibut,614,hippoglossus stenolepis,172932,species,NA,274290
+Pacific Ocean Perch,396,sebastes alutus,166707,species,sebastes,254573
+Petrale Sole,607,eopsetta jordani,172868,species,pleuronectidae(righteye flounders),280690
+Quillback Rockfish,424,sebastes maliger,166726,species,sebastes,274815
+Redbanded Rockfish,401,sebastes babcocki,166710,species,sebastes,274775
+Redstripe Rockfish,439,sebastes proriger,166736,species,sebastes,274838
+Rougheye Blackspotted Rockfish Complex,394,sebastes aleutianus/melanostictus complex,166706,"not a taxonomic classification, old historic codes",sebastes,unknown
+Sablefish,455,anoplopoma fimbria,167123,species,anoplopomatidae(sablefishes),159463
+Shortraker Rockfish,403,sebastes borealis,166712,species,sebastes,274777
+Shortspine Thornyhead,451,sebastolobus alascanus,166783,species,sebastolobus(thornyheads),282740
+Silvergray Rockfish,405,sebastes brevispinis,166711,species,sebastes,274778
+Southern Rock Sole,621,lepidopsetta bilineata,172917,species,pleuronectidae(righteye flounders),281305
+Walleye Pollock,228,gadus chalcogrammus,934083,species,gadidae,300735
+Widow Rockfish,417,sebastes entomelas,166719,species,sebastes,274791
+Yelloweye Rockfish,442,sebastes ruberrimus,166740,species,sebastes,274844
+Yellowmouth Rockfish,440,sebastes reedi,166737,species,sebastes,274840
+Yellowtail Rockfish,418,sebastes flavidus,166720,species,sebastes,274795
