@@ -476,6 +476,39 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, total, ...) {
                                area = "Total"
       )
     }
+
+    # Return
+
+    lengths <- dplyr::bind_rows(area_5E,
+                                area_5D,
+                                area_5C,
+                                area_5B,
+                                area_5A,
+                                area_3D,
+                                area_3C,
+                                area_4B,
+                                area_total)
+
+    labels <- data.frame(species_common_name = unique(lengths$species_common_name),
+                         survey_abbrev = "Commercial",
+                         year = rep(years, times = length(area_levels)),
+                         area = rep(area_levels, each = length(years) )
+    )
+
+    lengths <- dplyr::right_join(lengths, labels,
+                                 by = c("species_common_name", "survey_abbrev",
+                                        "year", "area"),
+                                 keep = FALSE)
+
+    lengths <- lengths %>%
+      dplyr::arrange(area, year)
+
+    lengths$area <- factor(lengths$area, levels = area_levels)
+
+    lengths <- lengths %>%
+      dplyr::arrange(area)
+
+
   }
 
   if (total == FALSE) {
@@ -698,6 +731,7 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, total, ...) {
     }
 
     # Return
+
     lengths <- dplyr::bind_rows(area_5E,
                                 area_5D,
                                 area_5C,
@@ -708,41 +742,30 @@ tidy_lengths_by_areas_raw <- function (data, year_range = NULL, total, ...) {
                                 area_4B,
                                 area_total)
 
-    blanks <- data.frame(species_common_name = unique(data$species_common_name),
+    labels <- data.frame(species_common_name = unique(lengths$species_common_name),
                          survey_abbrev = "Commercial",
-                         year = rep(years, each = length(area_levels) * 2),
+                         year = rep(years, each = 2, times = length(area_levels)),
                          sex = rep(c("M", "F") , times = length(years) * length(area_levels)),
-                         length_bin = rep(mean(lengths_sex$length_bin), each = 2, times = length(years)*length(area_levels)),
-                         proportion = NA,
-                         total = NA,
-                         area = area_levels
+                         area = rep(area_levels, each = length(years) * 2 )
     )
+
+    lengths <- dplyr::right_join(lengths, labels,
+                                 by = c("species_common_name", "survey_abbrev",
+                                        "year", "sex", "area"),
+                                 keep = FALSE)
+
+    lengths <- lengths %>%
+      dplyr::arrange(area, year, sex)
+
+    lengths$area <- factor(lengths$area, levels = area_levels)
+
+    lengths <- lengths %>%
+      dplyr::arrange(area)
+
 
 
   }
 
-
-  # Return
-lengths <- dplyr::bind_rows(area_5E,
-                            area_5D,
-                            area_5C,
-                            area_5B,
-                            area_5A,
-                            area_3D,
-                            area_3C,
-                            area_4B,
-                            area_total
-                            )
-
-blanks <- data.frame(species_common_name = unique(data$species_common_name),
-                         survey_abbrev = "Commercial",
-                         year = rep(years, each = length(seq(20, 80, by = 10)) * 2),
-                         sex = rep(c("M", "F") , times = length(years) * length(seq(20, 80, by = 10))),
-                         length_bin = rep(seq(20, 80, by = 10), each = 2, times = length(years)),
-                         proportion = NA,
-                         total = NA,
-                         area = "Total"
-)
-
+  return(lengths)
 
 }
