@@ -2,16 +2,19 @@
 # Modified from GF Synopsis
 
 
-# Tidy samples by gear type ----------------------------------------------------
+# Tidy samples function --------------------------------------------------------
+# a function to tidy samples by gear type by area or total
 
 my_tidy_samples <- function(dat,
                             years = NULL,
                             areas = NULL,
                             ... ) {
 
+  # Rename gear column
   dat <- dat %>%
     dplyr::rename(gear = gear_desc)
 
+  # Assign areas (or total)
   if (!is.null(areas)) {
     dat$area <- assign_areas(dat$major_stat_area_name, areas)
     dat <- dat[!is.na(dat$area), , drop = FALSE]
@@ -19,21 +22,29 @@ my_tidy_samples <- function(dat,
     dat$area <- "Total"
   }
 
-  # Remove duplicate specimens -----------------------------------------------
-
+  # Remove duplicate specimens
   dat <- dat %>%
     dplyr::distinct(specimen_id, .keep_all = TRUE)
 
+  # Separate discards
+  discards <- subset(dat, sampling_desc == "DISCARDS")
+  not_discards <- subset(dat, sampling_desc != "DISCARDS")
 
-  dat_sum <- filter(dat, !is.na(species_common_name), !is.na(year)) %>%
-    group_by(year, species_common_name, gear, area) %>%
-    summarise(
-      specimen_count = sum(!is.na(unique(specimen_id))),
+  discards <- discards %>%
+    dplyr::mutate(gear = "Discarded")
+
+  dat_discards <- dplyr::bind_rows(discards, not_discards)
+
+  # Summarize specimen sample data
+  dat_sum <- dplyr::filter(dat_discards, !is.na(species_common_name), !is.na(year)) %>%
+    dplyr::group_by(year, species_common_name, gear, area) %>%
+    dplyr::summarise(
+      specimen_count = sum(!is.na(unique(specimen_id)))
     ) %>%
-    ungroup() %>%
-    arrange(species_common_name, year)
+    dplyr::ungroup() %>%
+    dplyr::arrange(species_common_name, year)
 
-  samples <- mutate(dat_sum,
+  samples <- dplyr::mutate(dat_sum,
                     gear = dplyr::recode(gear,
                                          UNKNOWN = "Unknown/trawl",
                                          `BOTTOM TRAWL` = "Bottom trawl",
@@ -41,23 +52,18 @@ my_tidy_samples <- function(dat,
                                          `LONGLINE` = "Hook and line",
                                          `MIDWATER TRAWL` = "Midwater trawl",
                                          `TRAP` = "Trap",
-                                         `UNKNOWN TRAWL` = "Unknown/trawl"
+                                         `UNKNOWN TRAWL` = "Unknown/trawl",
+                                         `HANDLINE` = "Hook and line",
+                                         `JIG` = "Hook and line",
+                                         `TROLL` = "Hook and line",
+                                         `GILLNET` = "Unknown/trawl",
+                                         `RECREATIONAL ROD & REEL` = "Hook and line",
+                                         `SHRIMP TRAWL` = "Unknown/trawl"
                     )
   ) %>%
-    select(year, area, species_common_name, gear, specimen_count)
+    dplyr::select(year, area, species_common_name, gear, specimen_count)
 
-  cm <- reshape2::melt(samples,
-                       id.vars = c("year", "species_common_name", "area", "gear")
-  )
 
-  #landings <- filter(cm, variable %in% c("landed_kg"))
-  #discards <- filter(cm, variable %in% c("discarded_kg"))
-
-  #landings$gear <- as.character(landings$gear)
-  #discards$gear <- as.character(discards$gear)
-  #discards$gear <- "Discarded"
-
-  #all_catch <- bind_rows(landings, discards)
   # Make a vector of new levels based on what is actually in the data
   # Without this, pre-filtered catch data may cause an error if some
   # of the gear types are missing in the table.
@@ -88,13 +94,11 @@ my_tidy_samples <- function(dat,
 
 samples_total <- function(dat, years = NULL, ...) {
 
-  # Define area factor levels --------------------------------------------------
-
+  # Define area factor levels
   area_levels <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B", "Total")
 
 
-  # Create a 'Total' area ------------------------------------------------------
-
+  # Create a 'Total' area
   samples_areas <- my_tidy_samples(dat,
                                areas = c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B"),
                                ...)
@@ -106,19 +110,16 @@ samples_total <- function(dat, years = NULL, ...) {
   samples_all <- samples_all %>%
     dplyr::mutate(area = factor(area, levels = area_levels))
 
-  # Define years ---------------------------------------------------------------
-
+  # Define years
   if (is.null(years)) {
     years <- seq(min(samples_all$year, na.rm = TRUE), max(samples_all$year, na.rm = TRUE), 1L)
   }
 
-  # Filter by years ------------------------------------------------------------
-
+  # Filter by years
   samples_all <- samples_all %>%
     dplyr::filter(year %in% years)
 
-  # Fill in missing values with NA ---------------------------------------------
-
+  # Fill in missing values with NA
   gear <- c("Bottom trawl",
            "Midwater trawl",
            "Hook and line",
@@ -150,7 +151,7 @@ samples_total <- function(dat, years = NULL, ...) {
   samples_all <- samples_all %>%
     dplyr::arrange(area)
 
-  # Return samples data frame ----------------------------------------------------
+  # Return samples data frame
 
   return(samples_all)
 
