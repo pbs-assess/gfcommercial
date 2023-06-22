@@ -7,7 +7,7 @@ bin_size <- 2
 survey_abbrev <- "Commercial"
 fl_path_data <- here::here("data-cache")
 
-fl_path_store <- here::here("report", "figs")
+fl_path_store <- here::here("report", "figs") # The figure folder is in gitignore, so you will need to make one if you want to save the figures to PNG
 fl_type <- ".png"
 width <- 300
 height <- 450
@@ -61,7 +61,7 @@ lengths_total <- tidy_lengths_by_areas_raw(comm_samples,
 lengths_total <- lengths_total %>%
   dplyr::mutate(sex = "Total")
 
-p3 <- plot_commercial_lengths(lengths_sex, lengths_total,
+p3 <- plot_commercial_lengths(lengths_sex, lengths_total, # This function causes an annoying amount of errors about geom_path() and the group aesthetic - I can narrow it down to the geom_step() portion (lines 151-157), but I cannot for the life of me figure out how to solve it.
                               year_range = c(min(years), max(years))
 )
 
