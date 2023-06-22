@@ -109,7 +109,7 @@ plot_commercial_counts <- function (data,
       ggplot2::geom_text(
         ggplot2::aes(x = year, label = n_text),
         colour = text_colour,
-        size = 1.5,
+        size = 3.1,
         alpha = 1,
         na.rm = TRUE,
         vjust = 0.4
@@ -117,11 +117,12 @@ plot_commercial_counts <- function (data,
       ggplot2::ggtitle(title) +
       gfplot::theme_pbs() +
       ggplot2::theme(
+        plot.title = ggplot2::element_text(size = 15),
         axis.ticks.x = ggplot2::element_blank(),
         axis.ticks.y = ggplot2::element_blank(),
-        axis.text.y.left = ggplot2::element_text(size = 5.2),
-        strip.text.y = ggplot2::element_text(angle = 0),
-        legend.position = "none"
+        strip.text.y = ggplot2::element_text(angle = 0, size = 10),
+        legend.position = "none",
+        plot.margin = ggplot2::unit(c(0, 0, 0, 0), "cm")
       )
 
   } else {
@@ -149,7 +150,7 @@ plot_commercial_counts <- function (data,
       ggplot2::geom_text(
         ggplot2::aes(x = year, label = n_text),
         colour = text_colour,
-        size = 1.8,
+        size = 3.1,
         alpha = 0.8,
         fontface = "bold",
         na.rm = TRUE,
@@ -162,19 +163,25 @@ plot_commercial_counts <- function (data,
       p1 <- p1 +
         ggplot2::scale_y_discrete(position = "left") +
         ggplot2::theme(
+          plot.title = ggplot2::element_text(size = 17),
           axis.ticks.x = ggplot2::element_blank(),
           axis.ticks.y = ggplot2::element_blank(),
-          axis.text.y.left = ggplot2::element_text(size = 5.2),
+          axis.text.x = ggplot2::element_text(size = 13),
+          axis.text.y.left = ggplot2::element_text(size = 13),
           strip.text.y = ggplot2::element_blank(),
-          legend.position = "none"
+          legend.position = "none",
+          plot.margin = ggplot2::unit(c(0, 0.5, 0, 0), "cm")
           )
       } else if (sorted == FALSE) {
       p1 <- p1 + ggplot2::theme(
+        plot.title = ggplot2::element_text(size = 17),
         axis.ticks.x = ggplot2::element_blank(),
         axis.ticks.y = ggplot2::element_blank(),
         axis.text.y = ggplot2::element_blank(),
-        strip.text.y = ggplot2::element_text(angle = 0),
-        legend.position = "none"
+        axis.text.x = ggplot2::element_text(size = 13),
+        strip.text.y = ggplot2::element_text(angle = 0, size = 17),
+        legend.position = "none",
+        plot.margin = ggplot2::unit(c(0, 0.5, 0, 0), "cm")
         )
       }
 
