@@ -1,4 +1,5 @@
 # Adapted from gfplot::tidy_sample_avail
+# a function to tidy commercial count data
 tidy_commercial_counts <- function (data,
                                     years = NULL,
                                     ageing_method_codes = NULL) {
