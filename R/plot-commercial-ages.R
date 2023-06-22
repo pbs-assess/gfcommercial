@@ -153,7 +153,7 @@ plot_commercial_ages <- function (data,
   p1 <- ggplot2::ggplot(
     ages_all,
     ggplot2::aes(year, age)
-  ) +
+    ) +
     ggplot2::facet_grid(cols = ggplot2::vars(as.factor(area))) +
     ggplot2::scale_x_continuous(
       breaks = seq(
@@ -181,12 +181,12 @@ plot_commercial_ages <- function (data,
     ggplot2::ylab(ylab) +
     gfplot::theme_pbs() +
     ggplot2::theme(
-      plot.title = ggplot2::element_text(vjust = -4),
-      axis.text.x = ggplot2::element_text(size = 9, angle = 90, hjust = 1, vjust = 0.5),
-      strip.text.x = ggplot2::element_text(vjust = -1),
+      plot.title = ggplot2::element_text(size = 17, vjust = -3),
+      axis.title.y = ggplot2::element_text(size = 14),
+      axis.text.x = ggplot2::element_text(size = 11, angle = 90, hjust = 1, vjust = 0.5),
+      strip.text.x = ggplot2::element_text(size = 12, vjust = -0.8),
       legend.position = "none",
-      panel.spacing = grid::unit(-0.1, "lines"),
-      plot.margin = grid::unit(c(-3.5, 1, -4, 1), "mm")
+      panel.spacing = grid::unit(-0.1, "lines")
     )
 
   if (sex == "M") {
@@ -195,14 +195,20 @@ plot_commercial_ages <- function (data,
       title = "Age frequencies",
       colour = "Sex",
       fill = "Sex"
-    )
+    ) +
+      ggplot2::theme(
+        plot.margin = grid::unit(c(-0.5, 0.6, -0.3, 0.1), "cm")
+      )
   } else if (sex == "F") {
     p1 <- p1 +
       ggplot2::labs(
       title = " ",
       colour = "Sex",
       fill = "Sex"
-    )
+    ) +
+      ggplot2::theme(
+        plot.margin = grid::unit(c(-1, 0.6, -0.3, 0.1), "cm")
+      )
   }
 
   # Conditionally include ablines and text -------------------------------------
