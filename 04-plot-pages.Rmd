@@ -2,18 +2,24 @@
 
 \clearpage
 
-# Plots
-
-\clearpage
-
 ## Arrowtooth Flounder {#sec:arrowtooth-flounder}
 
+\emph{Atheresthes stomias} (602)\
+Order: Pleuronectiformes, Family: Pleuronectidae, 
+[FishBase](http://www.fishbase.org/summary/Atheresthes-stomias), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=279792)\
+Last Research Document: @grandin2017arrowtooth\
+Last Science Advisory Report: @dfo2015arrowtooth\
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/arrowtooth-flounder-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/arrowtooth-flounder-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/arrowtooth-flounder-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/arrowtooth-flounder-pg-3.png}
 \end{figure}
 
 
@@ -22,12 +28,22 @@
 
 ## Big Skate {#sec:big-skate}
 
+\emph{Beringraja binoculata} (56)\
+Order: Rajiformes, Family: Rajidae, 
+[FishBase](http://www.fishbase.org/summary/Beringraja-binoculata), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=1021330)\
+Last Research Document: @king2015biglongnoseskate\
+Last Science Advisory Report: @dfo2014biglongnoseskate\
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/big-skate-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/big-skate-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/big-skate-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/big-skate-pg-3.png}
 \end{figure}
 
 
@@ -36,12 +52,26 @@
 
 ## Bocaccio {#sec:bocaccio}
 
+\emph{Sebastes paucispinis} (435)\
+Order: Scorpaeniformes, Family: Scorpaenidae, 
+[FishBase](http://www.fishbase.org/summary/Sebastes-paucispinis), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274833)\
+Last Research Document: @stanley2012bocaccio\
+Last Science Advisory Report: @dfo2020bocaccio\
+Last Science Response: @dfo2022bocaccio\
+COSEWIC Status Report: @cosewic2013bocaccio\
+COSEWIC Status: Endangered, SARA Status: No Status
+
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/bocaccio-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/bocaccio-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/bocaccio-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/bocaccio-pg-3.png}
 \end{figure}
 
 
@@ -50,40 +80,25 @@
 
 ## Canary Rockfish {#sec:canary-rockfish}
 
+\emph{Sebastes pinniger} (437)\
+Order: Scorpaeniformes, Family: Scorpaenidae, 
+[FishBase](http://www.fishbase.org/summary/Sebastes-pinniger), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274836)\
+Last Research Document: @stanley2009canary\
+Last Science Advisory Report: @dfo2009canary\
+COSEWIC Status Report: @cosewic2007canary\
+COSEWIC Status: Threatened, SARA Status: No Status
+
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/canary-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/canary-rockfish-pg-2.png}
-\end{figure}
-
-
-
-\clearpage
-
-## China Rockfish {#sec:china-rockfish}
-
-\begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/china-rockfish-pg-1.png}
+\includegraphics[width=6.1in]{report/figs/canary-rockfish-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/china-rockfish-pg-2.png}
-\end{figure}
-
-
-
-\clearpage
-
-## Copper Rockfish {#sec:copper-rockfish}
-
-\begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/copper-rockfish-pg-1.png}
-\end{figure}
-\clearpage
-\begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/copper-rockfish-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/canary-rockfish-pg-3.png}
 \end{figure}
 
 
@@ -92,12 +107,21 @@
 
 ## Dover Sole {#sec:dover-sole}
 
+\emph{Microstomus pacificus} (626)\
+Order: Pleuronectiformes, Family: Pleuronectidae, 
+[FishBase](http://www.fishbase.org/summary/Microstomus-pacificus), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274294)\
+Last Science Advisory Report: @dfo1999dover\
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/dover-sole-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/dover-sole-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/dover-sole-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/dover-sole-pg-3.png}
 \end{figure}
 
 
@@ -106,12 +130,22 @@
 
 ## English Sole {#sec:english-sole}
 
+\emph{Parophrys vetulus} (628)\
+Order: Pleuronectiformes, Family: Pleuronectidae, 
+[FishBase](http://www.fishbase.org/summary/Parophrys-vetulus), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=254393)\
+Last Research Document: @starr2009english\
+Last Science Advisory Report: @dfo1999english5CD\
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/english-sole-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/english-sole-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/english-sole-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/english-sole-pg-3.png}
 \end{figure}
 
 
@@ -120,12 +154,22 @@
 
 ## Lingcod {#sec:lingcod}
 
+\emph{Ophiodon elongatus} (467)\
+Order: Scorpaeniformes, Family: Hexagrammidae, 
+[FishBase](http://www.fishbase.org/summary/Ophiodon-elongatus), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=240745)\
+Last Research Documents: @king2011lingOutside, @holt2016lingSOG\
+Last Science Advisory Reports: @dfo2011lingOutside, @dfo2015lingSOG\
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/lingcod-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/lingcod-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/lingcod-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/lingcod-pg-3.png}
 \end{figure}
 
 
@@ -134,12 +178,24 @@
 
 ## Longnose Skate {#sec:longnose-skate}
 
+\emph{Raja rhina} (59)\
+Order: Rajiformes, Family: Rajidae, 
+[FishBase](http://www.fishbase.org/summary/Raja-rhina), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=271581)\
+Last Research Document: @king2015biglongnoseskate\
+Last Science Advisory Report: @dfo2014biglongnoseskate\
+COSEWIC Status: Not at Risk, SARA Status: No Status
+
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/longnose-skate-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/longnose-skate-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/longnose-skate-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/longnose-skate-pg-3.png}
 \end{figure}
 
 
@@ -148,12 +204,25 @@
 
 ## Longspine Thornyhead {#sec:longspine-thornyhead}
 
+\emph{Sebastolobus altivelis} (453)\
+Order: Scorpaeniformes, Family: Scorpaenidae, 
+[FishBase](http://www.fishbase.org/summary/Sebastolobus-altivelis), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=282741)\
+Last Research Document: @haigh2005longspineidiots\
+Species at Risk Act Management Plan Series: @dfo2012longspineidiots\
+COSEWIC Status Report: @cosewic2007longspine\
+COSEWIC Status: Special Concern, SARA Status: Special Concern
+
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/longspine-thornyhead-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/longspine-thornyhead-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/longspine-thornyhead-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/longspine-thornyhead-pg-3.png}
 \end{figure}
 
 
@@ -162,12 +231,25 @@
 
 ## North Pacific Spiny Dogfish {#sec:north-pacific-spiny-dogfish}
 
+\emph{Squalus suckleyi} (44)\
+Order: Squaliformes, Family: Squalidae, 
+[FishBase](http://www.fishbase.org/summary/Squalus-suckleyi), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=299224)\
+Last Research Document: @galluci2011dogfish\
+Last Science Advisory Report: @dfo2010dogfish\
+COSEWIC Status Report: @cosewic2011dogfish\
+COSEWIC Status: Special Concern, SARA Status: No Status
+
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/north-pacific-spiny-dogfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/north-pacific-spiny-dogfish-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/north-pacific-spiny-dogfish-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/north-pacific-spiny-dogfish-pg-3.png}
 \end{figure}
 
 
@@ -176,12 +258,23 @@
 
 ## Pacific Cod {#sec:pacific-cod}
 
+\emph{Gadus macrocephalus} (222)\
+Order: Gadiformes, Family: Gadidae, 
+[FishBase](http://www.fishbase.org/summary/Gadus-macrocephalus), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=254538)\
+Last Research Document: @forrest2020pcod\
+Last Science Advisory Report: @dfo2019pcod3cd5abcd\
+Last Science Response: @dfo2021pcod\
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/pacific-cod-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/pacific-cod-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/pacific-cod-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/pacific-cod-pg-3.png}
 \end{figure}
 
 
@@ -190,12 +283,27 @@
 
 ## Pacific Hake {#sec:pacific-hake}
 
+\emph{Merluccius productus} (225)\
+Order: Gadiformes, Family: Merlucciidae, 
+[FishBase](http://www.fishbase.org/summary/Merluccius-productus), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=272458)\
+Last joint Canada-US stock assessment: @edwards2022hake\
+Note that Pacific Hake undergoes a directed joint
+      Canada-US coastwide
+ survey and annual assessment, which are not
+      included in this report. The most recent
+ stock assessment
+      should be consulted for details on stock status.
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/pacific-hake-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/pacific-hake-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/pacific-hake-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/pacific-hake-pg-3.png}
 \end{figure}
 
 
@@ -204,12 +312,27 @@
 
 ## Pacific Halibut {#sec:pacific-halibut}
 
+\emph{Hippoglossus stenolepis} (614)\
+Order: Pleuronectiformes, Family: Pleuronectidae, 
+[FishBase](http://www.fishbase.org/summary/Hippoglossus-stenolepis), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274290)\
+IPHC Report of Assessment and Research Activities: @iphc2017\
+Note that Pacific Halibut undergoes thorough assessment by the
+      International Pacific
+ Halibut Commission based on the annual
+      standardized setline survey. The most
+ recent stock assessment
+      should be consulted for details on stock status.
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/pacific-halibut-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/pacific-halibut-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/pacific-halibut-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/pacific-halibut-pg-3.png}
 \end{figure}
 
 
@@ -218,12 +341,22 @@
 
 ## Pacific Ocean Perch {#sec:pacific-ocean-perch}
 
+\emph{Sebastes alutus} (396)\
+Order: Scorpaeniformes, Family: Scorpaenidae, 
+[FishBase](http://www.fishbase.org/summary/Sebastes-alutus), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=254573)\
+Last Research Documents: @edwards2013pophg, @edwards2014popwcvi, @haigh2018popqcs\
+Last Science Advisory Reports: @dfo2013popwcvihg, @dfo2017popqcs\
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/pacific-ocean-perch-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/pacific-ocean-perch-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/pacific-ocean-perch-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/pacific-ocean-perch-pg-3.png}
 \end{figure}
 
 
@@ -232,12 +365,22 @@
 
 ## Petrale Sole {#sec:petrale-sole}
 
+\emph{Eopsetta jordani} (607)\
+Order: Pleuronectiformes, Family: Pleuronectidae, 
+[FishBase](http://www.fishbase.org/summary/Eopsetta-jordani), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=280690)\
+Last Research Document: @starr2009petrale\
+Last Science Advisory Report: @dfo1998petrale\
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/petrale-sole-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/petrale-sole-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/petrale-sole-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/petrale-sole-pg-3.png}
 \end{figure}
 
 
@@ -246,12 +389,25 @@
 
 ## Quillback Rockfish {#sec:quillback-rockfish}
 
+\emph{Sebastes maliger} (424)\
+Order: Scorpaeniformes, Family: Scorpaenidae, 
+[FishBase](http://www.fishbase.org/summary/Sebastes-maliger), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274815)\
+Last Research Document: @yamanaka2011quillback\
+Last Science Advisory Report: @dfo2011quillback\
+COSEWIC Status Report: @cosewic2009quillback\
+COSEWIC Status: Threatened, SARA Status: No Status
+
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/quillback-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/quillback-rockfish-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/quillback-rockfish-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/quillback-rockfish-pg-3.png}
 \end{figure}
 
 
@@ -260,12 +416,21 @@
 
 ## Redbanded Rockfish {#sec:redbanded-rockfish}
 
+\emph{Sebastes babcocki} (401)\
+Order: Scorpaeniformes, Family: Scorpaenidae, 
+[FishBase](http://www.fishbase.org/summary/Sebastes-babcocki), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274775)\
+Last Research Document: @edwards2017redbanded\
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/redbanded-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/redbanded-rockfish-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/redbanded-rockfish-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/redbanded-rockfish-pg-3.png}
 \end{figure}
 
 
@@ -274,26 +439,45 @@
 
 ## Redstripe Rockfish {#sec:redstripe-rockfish}
 
+\emph{Sebastes proriger} (439)\
+Order: Scorpaeniformes, Family: Scorpaenidae, 
+[FishBase](http://www.fishbase.org/summary/Sebastes-proriger), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274838)\
+Last Research Document: @starr2021redstripe\
+Last Science Advisory Report: @dfo2018redstripe\
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/redstripe-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/redstripe-rockfish-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/redstripe-rockfish-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/redstripe-rockfish-pg-3.png}
 \end{figure}
 
 
 
 \clearpage
 
-## Rougheye Blackspotted Rockfish Complex {#sec:rougheye-blackspotted-rockfish-complex}
+## Rougheye/Blackspotted Rockfish Complex {#sec:rougheye-blackspotted-rockfish-complex}
 
+\emph{Sebastes aleutianus/melanostictus} (394)\
+Order: Scorpaeniformes, Family: Scorpaenidae, 
+[FishBase 1](http://www.fishbase.org/summary/Sebastes-aleutianus),
+[FishBase 2](http://www.fishbase.org/summary/Sebastes-melanostictus)\
+COSEWIC Status: Special Concern, SARA Status: Special Concern\
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/rougheye-blackspotted-rockfish-complex-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/rougheye-blackspotted-rockfish-complex-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/rougheye-blackspotted-rockfish-complex-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/rougheye-blackspotted-rockfish-complex-pg-3.png}
 \end{figure}
 
 
@@ -302,12 +486,29 @@
 
 ## Sablefish {#sec:sablefish}
 
+\emph{Anoplopoma fimbria} (455)\
+Order: Scorpaeniformes, Family: Anoplopomatidae, 
+[FishBase](http://www.fishbase.org/summary/Anoplopoma-fimbria), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=159463)\
+Last Research Document: @cox2019sablefish\
+Last Science Advisory Report: @dfo2017sablefish\
+Last Science Response: @dfo2020sablefish\
+Note that Sablefish undergoes directed annual trap surveys,
+      which are used for
+ stock assessment and are not included in
+      this report. The most recent
+ stock assessment should be
+      consulted for details on stock status.
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/sablefish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/sablefish-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/sablefish-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/sablefish-pg-3.png}
 \end{figure}
 
 
@@ -316,12 +517,22 @@
 
 ## Shortraker Rockfish {#sec:shortraker-rockfish}
 
+\emph{Sebastes borealis} (403)\
+Order: Scorpaeniformes, Family: Scorpaenidae, 
+[FishBase](http://www.fishbase.org/summary/Sebastes-borealis), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274777)\
+Last Research Document: @schnute1999shortraker\
+Last Science Advisory Report: @dfo1999shortraker\
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/shortraker-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/shortraker-rockfish-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/shortraker-rockfish-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/shortraker-rockfish-pg-3.png}
 \end{figure}
 
 
@@ -330,12 +541,22 @@
 
 ## Shortspine Thornyhead {#sec:shortspine-thornyhead}
 
+\emph{Sebastolobus alascanus} (451)\
+Order: Scorpaeniformes, Family: Scorpaenidae, 
+[FishBase](http://www.fishbase.org/summary/Sebastolobus-alascanus), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=282740)\
+Last Research Document: @starr2015shortspineidiots\
+Last Science Advisory Report: @dfo2016shortspineidiots\
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/shortspine-thornyhead-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/shortspine-thornyhead-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/shortspine-thornyhead-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/shortspine-thornyhead-pg-3.png}
 \end{figure}
 
 
@@ -344,12 +565,22 @@
 
 ## Silvergray Rockfish {#sec:silvergray-rockfish}
 
+\emph{Sebastes brevispinis} (405)\
+Order: Scorpaeniformes, Family: Scorpaenidae, 
+[FishBase](http://www.fishbase.org/summary/Sebastes-brevispinis), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274778)\
+Last Research Document: @starr2016silvergray\
+Last Science Advisory Report: @dfo2014silvergray\
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/silvergray-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/silvergray-rockfish-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/silvergray-rockfish-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/silvergray-rockfish-pg-3.png}
 \end{figure}
 
 
@@ -358,26 +589,22 @@
 
 ## Southern Rock Sole {#sec:southern-rock-sole}
 
+\emph{Lepidopsetta bilineata} (621)\
+Order: Pleuronectiformes, Family: Pleuronectidae, 
+[FishBase](http://www.fishbase.org/summary/Lepidopsetta-bilineata), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=281305)\
+Last Research Document: @holt2016rocksole\
+Last Science Advisory Report: @dfo2014rocksole\
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/southern-rock-sole-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/southern-rock-sole-pg-2.png}
-\end{figure}
-
-
-
-\clearpage
-
-## Tiger Rockfish {#sec:tiger-rockfish}
-
-\begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/tiger-rockfish-pg-1.png}
+\includegraphics[width=6.1in]{report/figs/southern-rock-sole-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/tiger-rockfish-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/southern-rock-sole-pg-3.png}
 \end{figure}
 
 
@@ -386,12 +613,22 @@
 
 ## Walleye Pollock {#sec:walleye-pollock}
 
+\emph{Gadus chalcogrammus} (228)\
+Order: Gadiformes, Family: Gadidae, 
+[FishBase](http://www.fishbase.org/summary/Gadus-chalcogrammus), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=300735)\
+Last Research Document: @starr2021pollock\
+Last Science Advisory Report: @dfo2018pollock\
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/walleye-pollock-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/walleye-pollock-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/walleye-pollock-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/walleye-pollock-pg-3.png}
 \end{figure}
 
 
@@ -400,12 +637,22 @@
 
 ## Widow Rockfish {#sec:widow-rockfish}
 
+\emph{Sebastes entomelas} (417)\
+Order: Scorpaeniformes, Family: Scorpaenidae, 
+[FishBase](http://www.fishbase.org/summary/Sebastes-entomelas), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274791)\
+Last Research Document: @starr2021widow\
+Last Science Advisory Report: @dfo2019widow\
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/widow-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/widow-rockfish-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/widow-rockfish-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/widow-rockfish-pg-3.png}
 \end{figure}
 
 
@@ -414,12 +661,26 @@
 
 ## Yelloweye Rockfish {#sec:yelloweye-rockfish}
 
+\emph{Sebastes ruberrimus} (442)\
+Order: Scorpaeniformes, Family: Scorpaenidae, 
+[FishBase](http://www.fishbase.org/summary/Sebastes-ruberrimus), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274844)\
+Last Research Documents: @yamanaka2011yelloweyeinside, @cox2020YEout\
+Last Science Advisory Reports: @dfo2020yelloweyeinside, @dfo2020yelloweyeoutside\
+Species at Risk Act Management Plan Series: @dfo2020yelloweye\
+COSEWIC Status Report: @cosewic2020yelloweye\
+COSEWIC Status: Threatened, SARA Status: Special Concern
+
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/yelloweye-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/yelloweye-rockfish-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/yelloweye-rockfish-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/yelloweye-rockfish-pg-3.png}
 \end{figure}
 
 
@@ -428,12 +689,25 @@
 
 ## Yellowmouth Rockfish {#sec:yellowmouth-rockfish}
 
+\emph{Sebastes reedi} (440)\
+Order: Scorpaeniformes, Family: Scorpaenidae, 
+[FishBase](http://www.fishbase.org/summary/Sebastes-reedi), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274840)\
+Last Research Document: @edwards2012yellowmouth\
+Last Science Advisory Report: @dfo2022yellowmouth\
+COSEWIC Status Report: @cosewic2010yellowmouth\
+COSEWIC Status: Threatened, SARA Status: No Status
+
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/yellowmouth-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/yellowmouth-rockfish-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/yellowmouth-rockfish-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/yellowmouth-rockfish-pg-3.png}
 \end{figure}
 
 
@@ -442,12 +716,21 @@
 
 ## Yellowtail Rockfish {#sec:yellowtail-rockfish}
 
+\emph{Sebastes flavidus} (418)\
+Order: Scorpaeniformes, Family: Scorpaenidae, 
+[FishBase](http://www.fishbase.org/summary/Sebastes-flavidus), 
+[WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274795)\
+Last Science Advisory Report: @dfo2015yellowtail\
 \begin{figure}[b!]
 \includegraphics[width=6.4in]{report/figs/yellowtail-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/yellowtail-rockfish-pg-2.png}
+\includegraphics[width=6.1in]{report/figs/yellowtail-rockfish-pg-2.png}
+\end{figure}
+\clearpage
+\begin{figure}[b!]
+\includegraphics[width=6.1in]{report/figs/yellowtail-rockfish-pg-3.png}
 \end{figure}
 
 
