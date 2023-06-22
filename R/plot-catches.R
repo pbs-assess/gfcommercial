@@ -6,14 +6,14 @@ plot_catches <- function(dat, blank_plot = FALSE, years = NULL,
   # Define years ---------------------------------------------------------------
 
   if (is.null(years)) {
-    years <- seq(min(data$year, na.rm = TRUE), max(data$year, na.rm = TRUE), 1L)
+    years <- seq(min(dat$year, na.rm = TRUE), max(dat$year, na.rm = TRUE), 1L)
   }
 
   year_range = c(min(years), max(years))
 
   # Plot catches ---------------------------------------------------------------
 
-  g <- gfplot::plot_catch(catch, xlim = year_range, french = french, ...) +
+  g <- gfplot::plot_catch(dat, xlim = year_range, french = french, ...) +
     #ggplot2::theme(panel.spacing = ggplot2::unit(-0.1, "lines")) +
     ggplot2::theme(
       strip.background = ggplot2::element_blank(),
@@ -31,9 +31,9 @@ plot_catches <- function(dat, blank_plot = FALSE, years = NULL,
   # max_val <- max(gdat$ymax)
   max_val <- if (!blank_plot) max(gdat[[5]]$ymax) else 1
 
-  labs <- unique(select(catch, area))
+  labs <- unique(select(dat, area))
 
-  if (isTRUE(french)) .mult <- 0.91 else .mult <- 0.935 # vertical area label
+  .mult <- 0.91 # vertical area label
 
   g <- g + ggplot2::geom_text(data = labs,
                               x = year_range[1] - 0.2,
@@ -41,13 +41,20 @@ plot_catches <- function(dat, blank_plot = FALSE, years = NULL,
                               ggplot2::aes(label = area),
                               inherit.aes = FALSE,
                               colour = "grey30",
-                              size = 3,
+                              size = 3.2,
                               hjust = 0
                               )
-  g <- g + ggplot2::theme(legend.justification = c(0, 1),
+  g <- g + ggplot2::theme(plot.title = ggplot2::element_text(size = 17),
+                          legend.justification = c(0, 1),
                           legend.position = c(0, 0.2),
+                          legend.text = ggplot2::element_text(size = 9),
                           legend.background = ggplot2::element_blank(),
-                          legend.direction = "horizontal") +
+                          legend.direction = "horizontal",
+                          axis.title.y = ggplot2::element_text(size = 14),
+                          axis.text.x = ggplot2::element_text(size = 12),
+                          axis.text.y.left = ggplot2::element_text(size = 10),
+                          plot.margin = ggplot2::unit(c(0.2, 0.2, 0.5, 0.2), "cm")
+                          ) +
     ggplot2::guides(fill = ggplot2::guide_legend(nrow = 2)) +
     ggplot2::ggtitle("Commercial catch")
 
