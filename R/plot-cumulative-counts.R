@@ -51,8 +51,8 @@ plot_cumulative_counts <- function (data,
   ) +
     ggplot2::geom_line(
       ggplot2::aes(y = samples_prop), # Samples second so the thinner, lighter line is on top
-      colour = "#d95f02",
-      linewidth = 0.6,
+      colour = "#f56d05",
+      linewidth = 0.7,
       alpha = 0.8
     ) +
     ggplot2::geom_line(
@@ -70,11 +70,11 @@ plot_cumulative_counts <- function (data,
     ggplot2::geom_text(
       data = counts,
       x = 2.2,
-      y = 0.90,
+      y = 0.89,
       mapping = ggplot2::aes(label = catch_text),
       inherit.aes = FALSE,
       colour = "black",
-      size = 3,
+      size = 3.1,
       hjust = 0
     ) +
     ggplot2::geom_text(
@@ -83,21 +83,23 @@ plot_cumulative_counts <- function (data,
       y = 0.15,
       mapping = ggplot2::aes(label = samp_text),
       inherit.aes = FALSE,
-      colour = "#d95f02",
-      size = 3,
+      colour = "#f56d05",
+      size = 3.1,
       hjust = 1
     ) +
     ggplot2::labs(title = "Representativeness") +
     ggplot2::theme(
-      plot.title = ggplot2::element_text(size = 15, vjust = -4),
-      axis.text.x.bottom = ggplot2::element_text(size = 9),
+      plot.title = ggplot2::element_text(size = 17, vjust = -2),
+      axis.title.x = ggplot2::element_text(size = 14),
+      axis.title.y = ggplot2::element_text(size = 14),
+      axis.text.x.bottom = ggplot2::element_text(size = 11),
       axis.text.y.left = ggplot2::element_blank(),
-      strip.text.x = ggplot2::element_text(size = 12, vjust = -1),
-      strip.text.y = ggplot2::element_text(size = 10),
+      strip.text.x = ggplot2::element_text(size = 14, vjust = -0.7),
+      strip.text.y = ggplot2::element_text(size = 14),
       axis.ticks.y = ggplot2::element_blank(),
       panel.grid.major.x = ggplot2::element_line(colour = "grey93"),
       panel.spacing = grid::unit(-0.15, "lines"),
-      plot.margin = grid::unit(c(-3.5, 1, 0, 1), "mm")
+      plot.margin = grid::unit(c(-1.1, 1, 0, 0.27), "cm")
     )
 
   # Facet grid -----------------------------------------------------------------
