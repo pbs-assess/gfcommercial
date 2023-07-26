@@ -10,16 +10,18 @@ Order: Pleuronectiformes, Family: Pleuronectidae,
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=279792)\
 Last Research Document: @grandin2017arrowtooth\
 Last Science Advisory Report: @dfo2015arrowtooth\
+Arrowtooth flounder has no data from Area 4B and very little from 5E and 5C, but the other areas are decently covered. Sorted specimen collection ended in 2020, with a few years missing, and unsorted specimen collection ended in 2017. Age structures were collected from every fishing event, but only a quarter or less of them were analyzed. The largest commercial catch occurred in 2005, almost exclusively from bottom trawl. Across all years, the most catch came from Area 3D. The greatest number of commercial specimens were collected in 2001. Overall, the specimen data collection is relatively representative, occurring multiple times throughout the year. All age samples after 2016 and length samples after 2017 are from sorted specimens.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/arrowtooth-flounder-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/arrowtooth-flounder-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/arrowtooth-flounder-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/arrowtooth-flounder-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/arrowtooth-flounder-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/arrowtooth-flounder-pg-3.png}
 \end{figure}
 
 
@@ -34,16 +36,18 @@ Order: Rajiformes, Family: Rajidae,
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=1021330)\
 Last Research Document: @king2015biglongnoseskate\
 Last Science Advisory Report: @dfo2014biglongnoseskate\
+We have very limited data on Big skate. The majority of data comes from Areas 5D and 5B and is only length data, mostly unsexed. There was no data collected in Areas 5E, 3D, or 4B. There was no data collected after 2016. Big skate is mostly caught in bottom trawl, but sometimes in hook and line. The largest catch and specimen collection occurred in 2003, both of which have been in a steady decline since then.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/big-skate-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/big-skate-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/big-skate-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/big-skate-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/big-skate-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/big-skate-pg-3.png}
 \end{figure}
 
 
@@ -62,16 +66,18 @@ Last Science Response: @dfo2022bocaccio\
 COSEWIC Status Report: @cosewic2013bocaccio\
 COSEWIC Status: Endangered, SARA Status: No Status
 
+Bocaccio has limited data coverage, and no data from Area 4B. Unsorted data collection began in 2014 and ended in 2020, with several years missing. Most of the age structures collected, were analyzed. The largest catch of Bocaccio occurred in 2021. It is mostly caught in bottom trawl, but is also often found in midwater trawl. The largest specimen collection year was 2004, but 1999 and 2019 were also big years. The specimens collected are not very representative of the catch, most specimens came from one collection event a year. The majority of length data came from sexed individuals.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/bocaccio-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/bocaccio-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/bocaccio-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/bocaccio-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/bocaccio-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/bocaccio-pg-3.png}
 \end{figure}
 
 
@@ -89,16 +95,18 @@ Last Science Advisory Report: @dfo2009canary\
 COSEWIC Status Report: @cosewic2007canary\
 COSEWIC Status: Threatened, SARA Status: No Status
 
+Canary rockfish has good data coverage. There was a gap in sorted specimen collection from 2010-2015, but unsorted specimens were well sampled in those years. Sorted specimen collection stopped in 2020, but unsorted stopped in 2018. Almost all age structures collected, were analyzed. Canary rockfish catch has remained consistent over the years, coming mostly from bottom trawl in 3D. Specimen collection was high from 1998-2001, but was significantly lower in other years. Overall, specimen collection is not very representative of the catch.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/canary-rockfish-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/canary-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/canary-rockfish-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/canary-rockfish-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/canary-rockfish-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/canary-rockfish-pg-3.png}
 \end{figure}
 
 
@@ -112,16 +120,18 @@ Order: Pleuronectiformes, Family: Pleuronectidae,
 [FishBase](http://www.fishbase.org/summary/Microstomus-pacificus), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274294)\
 Last Science Advisory Report: @dfo1999dover\
+Dover sole sorted specimens were fairly consistent until 2019, except for a break from 2010-2015. Unsorted specimen collection was consistent until 2015. Only about half of the age structures collected, were analyzed. Dover sole was mostly found in Areas 5D and 3C, and was almost  exclusively caught by bottom trawl. Catch amounts were mostly consistent, but have been slowly decreasing since 2003. The largest specimen collection years were 1998-1999, and decreased significantly since then. Specimen collection was fairly representative until 2011, then decreased due to the lack of samples.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/dover-sole-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/dover-sole-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/dover-sole-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/dover-sole-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/dover-sole-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/dover-sole-pg-3.png}
 \end{figure}
 
 
@@ -136,16 +146,18 @@ Order: Pleuronectiformes, Family: Pleuronectidae,
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=254393)\
 Last Research Document: @starr2009english\
 Last Science Advisory Report: @dfo1999english5CD\
+English sole has good data coverage in Area 5D , but most other areas have limited and inconsistent data. No data was collected in Area 5E and Area 4B has data from one fishing event. Sorted data collection ended in 2019, with gaps from 2010-2014, and unsorted data collection ended in 2015. Age structures were analyzed half of the time for sorted specimens and only until 2006.  English sole is mostly caught in bottom trawl. Catch has been slowly decreasing since 2005. The largest specimen collection year was 1998, after which collection decreased significantly.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/english-sole-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/english-sole-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/english-sole-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/english-sole-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/english-sole-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/english-sole-pg-3.png}
 \end{figure}
 
 
@@ -160,16 +172,18 @@ Order: Scorpaeniformes, Family: Hexagrammidae,
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=240745)\
 Last Research Documents: @king2011lingOutside, @holt2016lingSOG\
 Last Science Advisory Reports: @dfo2011lingOutside, @dfo2015lingSOG\
+Lingcod have great sorted specimen data until 2010, but no data from Area 4B and very limited data from Area 5E. There is limited unsorted specimen data from 1996-2004 in Areas 5D-3C, then excellent unsorted specimen data from 2013-present in area 4B only . Age structures have been almost exclusively analyzed for sorted specimens only. Lingcod catch has been historically caught by equal parts bottom trawl and hook and line. However, since 2000 the bottom trawl catch has been slowly decreasing. Lingcod specimens were exclusively collected from bottom trawl samples until 2010, then hook and line from 2013 onward. Lingcod specimen collection was representative of the catch, especially in recent years in Area 4B. Lingcod length frequency data was mostly unsexed and often from unsorted specimens.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/lingcod-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/lingcod-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/lingcod-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/lingcod-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/lingcod-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/lingcod-pg-3.png}
 \end{figure}
 
 
@@ -186,16 +200,18 @@ Last Research Document: @king2015biglongnoseskate\
 Last Science Advisory Report: @dfo2014biglongnoseskate\
 COSEWIC Status: Not at Risk, SARA Status: No Status
 
+We have extremely limited commercial data for Longnose skate. We have no data from Areas 5E, 5C, 5A, nor 4B. The other areas only have one or two fishing events worth of data scattered between 2001 and 2011. Longnose skate commercial catch is a fairly even spread of bottom trawl and hook and line. Specimens were collected from bottom trawl only.  Longnose skate length frequency data is only from unsexed individuals.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/longnose-skate-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/longnose-skate-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/longnose-skate-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/longnose-skate-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/longnose-skate-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/longnose-skate-pg-3.png}
 \end{figure}
 
 
@@ -213,16 +229,18 @@ Species at Risk Act Management Plan Series: @dfo2012longspineidiots\
 COSEWIC Status Report: @cosewic2007longspine\
 COSEWIC Status: Special Concern, SARA Status: Special Concern
 
+Sorted specimen data for Longspine thornyhead has large gaps in it, but the unsorted specimen data is consistent. Both stopped being collected in 2018. Age structures were often collected; however, they were only analyzed in 1996 from sorted specimens. Commercial catch and specimen collection follow a similar trajectory, peaking around 2000, then suddenly decreasing. The majority of catch and specimens are from Area 3D and by bottom trawl. Overall, the specimens were representative of the catch. The 1996 age data is not plotted because the species category code is unknown (Anderson et al., 2019).
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/longspine-thornyhead-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/longspine-thornyhead-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/longspine-thornyhead-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/longspine-thornyhead-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/longspine-thornyhead-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/longspine-thornyhead-pg-3.png}
 \end{figure}
 
 
@@ -240,16 +258,18 @@ Last Science Advisory Report: @dfo2010dogfish\
 COSEWIC Status Report: @cosewic2011dogfish\
 COSEWIC Status: Special Concern, SARA Status: No Status
 
+Both sorted and unsorted data for the North Pacific spiny dogfish are relatively consistent, with just a few years missing. Sorted specimen collection ended in 2019, and unsorted specimen collection ended in 2016. The data collected was primarily only length data. North Pacific spiny dogfish are mostly caught by hook and line, but a small portion are caught on bottom and midwater trawls. On average, commercial catch of North Pacific spiny dogfish was been declining since 2004. From 1996- 2001, commercial specimens were mostly collected from midwater trawl, after which hook and line and bottom trawl became the more common gear types for collection. The length frequency data was about half unsexed and unsorted.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/north-pacific-spiny-dogfish-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/north-pacific-spiny-dogfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/north-pacific-spiny-dogfish-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/north-pacific-spiny-dogfish-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/north-pacific-spiny-dogfish-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/north-pacific-spiny-dogfish-pg-3.png}
 \end{figure}
 
 
@@ -265,16 +285,18 @@ Order: Gadiformes, Family: Gadidae,
 Last Research Document: @forrest2020pcod\
 Last Science Advisory Report: @dfo2019pcod3cd5abcd\
 Last Science Response: @dfo2021pcod\
+Pacific cod has consistent length data for both sorted and unsorted specimens across most areas, but there is limited data from Area 5E and no data from Area 4B. Weight, maturity, and age data are limited. Sorted specimens stopped being collected in 2019, and unsorted specimens stopped in 2017. Commercial catch of Pacific cod has fluctuated over the years, with peaks every 5-10 years. The majority of the catch and commercial samples came from Area 5D and by bottom trawl. Across all areas, the specimen collections were representative of the catch. Most of the length data is unsexed.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/pacific-cod-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/pacific-cod-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/pacific-cod-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/pacific-cod-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/pacific-cod-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/pacific-cod-pg-3.png}
 \end{figure}
 
 
@@ -294,16 +316,18 @@ Note that Pacific Hake undergoes a directed joint
       included in this report. The most recent
  stock assessment
       should be consulted for details on stock status.
+Pacific hake has the most extensive data coverage for both sorted and unsorted specimens. Pacific hake commercial catch has remained relatively stable through time and is caught by midwater trawl. Commercial specimen collection has decreased steadily since 1996. The majority of the catch and specimens come from Area 3C. The representativeness of the data has improved with time.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/pacific-hake-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/pacific-hake-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/pacific-hake-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/pacific-hake-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/pacific-hake-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/pacific-hake-pg-3.png}
 \end{figure}
 
 
@@ -323,16 +347,18 @@ Note that Pacific Halibut undergoes thorough assessment by the
       standardized setline survey. The most
  recent stock assessment
       should be consulted for details on stock status.
+Pacific halibut data is very consistent and abundant for sorted individuals from 1999-2020, but is only length and weight data. There is very little data for unsorted individuals. The commercial catch gear type is hook and line. Commercial specimens come exclusively from discarded individuals. With the exception of Area 4B, the commercial specimens are extremely representative of the catch.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/pacific-halibut-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/pacific-halibut-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/pacific-halibut-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/pacific-halibut-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/pacific-halibut-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/pacific-halibut-pg-3.png}
 \end{figure}
 
 
@@ -347,16 +373,18 @@ Order: Scorpaeniformes, Family: Scorpaenidae,
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=254573)\
 Last Research Documents: @edwards2013pophg, @edwards2014popwcvi, @haigh2018popqcs\
 Last Science Advisory Reports: @dfo2013popwcvihg, @dfo2017popqcs\
+Pacific ocean perch had consistent sorted data until 2018, with a break from 2012-2015. Unsorted specimens were collected until 2020. There is no data from Area 4B and limited data from Area 5D. Pacific ocean perch commercial catch has been very slowly declining since 2003. The largest amount of catch comes from Area 5B and by bottom trawl. Commercial specimen collection was significantly higher from 1998-2002 compared to other years. Areas 5E and 5B are the most representative. There was lots of age and length data.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/pacific-ocean-perch-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/pacific-ocean-perch-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/pacific-ocean-perch-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/pacific-ocean-perch-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/pacific-ocean-perch-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/pacific-ocean-perch-pg-3.png}
 \end{figure}
 
 
@@ -371,16 +399,18 @@ Order: Pleuronectiformes, Family: Pleuronectidae,
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=280690)\
 Last Research Document: @starr2009petrale\
 Last Science Advisory Report: @dfo1998petrale\
+Petrale sole sorted specimens were consistent from 1996-2009, then one fishing event in each 2016 and 2017. Unsorted specimens were consistent from 2001-2015. Commercial catch slowly increased until a peak in 2011, after which it slowly decreased. Commercial specimen collection peaked in 1999, then significantly decreased. Petrale sole is caught by bottom trawl, and is most abundant in Area 3C. Specimen collection is infrequent and not very representative of the catch.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/petrale-sole-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/petrale-sole-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/petrale-sole-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/petrale-sole-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/petrale-sole-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/petrale-sole-pg-3.png}
 \end{figure}
 
 
@@ -398,16 +428,18 @@ Last Science Advisory Report: @dfo2011quillback\
 COSEWIC Status Report: @cosewic2009quillback\
 COSEWIC Status: Threatened, SARA Status: No Status
 
+We have very limited data on Quillback rockfish. Sorted specimen collection was inconsistent and ended in 2008. Unsorted specimens were most abundant prior to 2002, but there were a few collections until 2015. We only have age data from Areas 5D and 4B. Commercial catch peaked in 1997, then decreased until 2002, and has since remained relatively stable. Commercial specimen collection was highest in 2001 and Area 4B. Quillback rockfish is almost exclusively caught by hook and line, but a tiny portion is caught by bottom trawl.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/quillback-rockfish-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/quillback-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/quillback-rockfish-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/quillback-rockfish-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/quillback-rockfish-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/quillback-rockfish-pg-3.png}
 \end{figure}
 
 
@@ -421,16 +453,18 @@ Order: Scorpaeniformes, Family: Scorpaenidae,
 [FishBase](http://www.fishbase.org/summary/Sebastes-babcocki), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274775)\
 Last Research Document: @edwards2017redbanded\
+Redbanded rockfish sorted specimen data is consistent from 1997-2009, then two fishing events of data from 2017. Unsorted specimen data is sporadic, and ended in 2013. Redbanded rockfish is caught equally by bottom trawl and hook and line; though, more specimens are collected from bottom trawl. The bulk of the catch comes from Area 5B. The largest collection of specimens occurred in 2000. The data is not representative of the catch.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/redbanded-rockfish-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/redbanded-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/redbanded-rockfish-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/redbanded-rockfish-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/redbanded-rockfish-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/redbanded-rockfish-pg-3.png}
 \end{figure}
 
 
@@ -445,16 +479,18 @@ Order: Scorpaeniformes, Family: Scorpaenidae,
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274838)\
 Last Research Document: @starr2021redstripe\
 Last Science Advisory Report: @dfo2018redstripe\
+Redstripe rockfish sorted specimens were consistently collected until 2020, with only three years missing, and unsorted specimens were consistent until 2018. Age structures were often collected, of which about a quarter were analyzed. There is no data from Areas 5D and 4B. Bottom trawl is the most common gear type for Redstripe rockfish, but midwater trawl is also common. Commercial catch has been slowly declining since 2000, while commercial specimens declined significantly after 1998. Across all areas, the data is fairly representative, but no one area exhibits good representativeness.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/redstripe-rockfish-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/redstripe-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/redstripe-rockfish-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/redstripe-rockfish-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/redstripe-rockfish-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/redstripe-rockfish-pg-3.png}
 \end{figure}
 
 
@@ -468,16 +504,18 @@ Order: Scorpaeniformes, Family: Scorpaenidae,
 [FishBase 1](http://www.fishbase.org/summary/Sebastes-aleutianus),
 [FishBase 2](http://www.fishbase.org/summary/Sebastes-melanostictus)\
 COSEWIC Status: Special Concern, SARA Status: Special Concern\
+NA
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/rougheye-blackspotted-rockfish-complex-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/rougheye-blackspotted-rockfish-complex-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/rougheye-blackspotted-rockfish-complex-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/rougheye-blackspotted-rockfish-complex-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/rougheye-blackspotted-rockfish-complex-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/rougheye-blackspotted-rockfish-complex-pg-3.png}
 \end{figure}
 
 
@@ -499,16 +537,18 @@ Note that Sablefish undergoes directed annual trap surveys,
       this report. The most recent
  stock assessment should be
       consulted for details on stock status.
+Sablefish has extensive unsorted data until 2018, except for Areas 5D, 5C, and 4B. Sablefish is caught by all gear types, but mostly by trap. Commercial specimens peaked in 1999, then significantly declined. The majority of the 1999 data came from discarded (sorted) specimens. With the exception of a few years, the data is fairly representative of the catch.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/sablefish-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/sablefish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/sablefish-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/sablefish-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/sablefish-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/sablefish-pg-3.png}
 \end{figure}
 
 
@@ -523,16 +563,18 @@ Order: Scorpaeniformes, Family: Scorpaenidae,
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274777)\
 Last Research Document: @schnute1999shortraker\
 Last Science Advisory Report: @dfo1999shortraker\
+Shortraker rockfish is one of our most poorly sampled species. We have extremely limited sorted or unsorted data. Shortraker is mostly caught by hook and line, but bottom trawl is also common. Catch has remained stable over time. The bulk of catch comes from Area 5E. The data is not representative of the catch.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/shortraker-rockfish-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/shortraker-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/shortraker-rockfish-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/shortraker-rockfish-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/shortraker-rockfish-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/shortraker-rockfish-pg-3.png}
 \end{figure}
 
 
@@ -547,16 +589,18 @@ Order: Scorpaeniformes, Family: Scorpaenidae,
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=282740)\
 Last Research Document: @starr2015shortspineidiots\
 Last Science Advisory Report: @dfo2016shortspineidiots\
+Shortspine thornyhead sorted specimens stopped being collected in 2019, with several gaps. Unsorted specimens were consistently collected from 1997-2016. Age structures were often collected, but were only analyzed one year. Those ages are not displayed in the age frequency plot because the sample source code is unknown (Anderson et al., 2019). The most common gear type used to catch Shortspine thornyhead was bottom trawl, but midwater trawl and hook and line were also used. The bulk of catch came from Areas 5E and 3D. There were large collections of specimens from 1998-2000. The specimen collection was fairly representative of the catch from 1998-2005.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/shortspine-thornyhead-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/shortspine-thornyhead-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/shortspine-thornyhead-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/shortspine-thornyhead-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/shortspine-thornyhead-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/shortspine-thornyhead-pg-3.png}
 \end{figure}
 
 
@@ -571,16 +615,18 @@ Order: Scorpaeniformes, Family: Scorpaenidae,
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274778)\
 Last Research Document: @starr2016silvergray\
 Last Science Advisory Report: @dfo2014silvergray\
+Silvergray rockfish sorted specimens were consistent until 2009, then after a few missing years, ended in 2019. Unsorted specimens were consistent until 2017. Age structures stopped being analyzed in 2011. No data from 4B. Commercial catch is mostly by bottom trawl, but some midwater trawl and hook and line. Catch has remained stable through time. Commercial specimen collection was highest in 2001, and has since decreased. Both catch and specimen collection occurred in all areas except Area 4B. The specimen collection is relatively representative until 2013.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/silvergray-rockfish-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/silvergray-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/silvergray-rockfish-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/silvergray-rockfish-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/silvergray-rockfish-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/silvergray-rockfish-pg-3.png}
 \end{figure}
 
 
@@ -595,16 +641,18 @@ Order: Pleuronectiformes, Family: Pleuronectidae,
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=281305)\
 Last Research Document: @holt2016rocksole\
 Last Science Advisory Report: @dfo2014rocksole\
+Southern rock sole sorted specimens were consistent from 1996-2009, then resumed for 2016-2018. Unsorted specimens were consistent from 1998-2014, except for one year (2008). Commercial catch and specimen collection was most common in Areas 5D, 5C, 5B, and 5A. Southern rock sole is mostly caught by bottom trawl, but a very small amount was caught by midwater trawl. Commercial catch has been slowly declining since 2003, and commercial specimen collection significantly decreased after 2000. The specimen collection was representative of the catch from 1998-2007.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/southern-rock-sole-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/southern-rock-sole-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/southern-rock-sole-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/southern-rock-sole-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/southern-rock-sole-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/southern-rock-sole-pg-3.png}
 \end{figure}
 
 
@@ -619,16 +667,18 @@ Order: Gadiformes, Family: Gadidae,
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=300735)\
 Last Research Document: @starr2021pollock\
 Last Science Advisory Report: @dfo2018pollock\
+Walleye pollock sorted specimens were collected until 2020, with several years missing. Unsorted specimen collection was consistent, but ended in 2018. Age structures were collected, of which none were analyzed. Commercial catch and specimen collection was greatest in Areas 5D and 4B. Walleye pollock is caught by midwater trawl, but is found in bottom trawl on occasion. Commercial catch has increased to present day, while commercial specimen collection has fluctuated over time. The specimen collection is often not representative of the catch.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/walleye-pollock-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/walleye-pollock-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/walleye-pollock-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/walleye-pollock-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/walleye-pollock-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/walleye-pollock-pg-3.png}
 \end{figure}
 
 
@@ -643,16 +693,18 @@ Order: Scorpaeniformes, Family: Scorpaenidae,
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274791)\
 Last Research Document: @starr2021widow\
 Last Science Advisory Report: @dfo2019widow\
+Widow rockfish sorted specimens were consistently collected until 2009, then resumed in 2011 and 2016-2020. Unsorted specimens were collected until 2017, with only 1999 missing. Almost all age structures collected, were analyzed. Widow rockfish commercial catch has remained stable through time. Midwater trawl is the most common gear type, with some bottom trawl. Commercial specimen collection peaked in 1998, then significantly declined. Catch and specimens mostly came from 5A, 3D, and 3C. The commercial specimens are only moderately representative of the catch.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/widow-rockfish-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/widow-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/widow-rockfish-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/widow-rockfish-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/widow-rockfish-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/widow-rockfish-pg-3.png}
 \end{figure}
 
 
@@ -671,16 +723,18 @@ Species at Risk Act Management Plan Series: @dfo2020yelloweye\
 COSEWIC Status Report: @cosewic2020yelloweye\
 COSEWIC Status: Threatened, SARA Status: Special Concern
 
+Yelloweye rockfish have consistent sorted specimen data until 2008. Unsorted specimen data for Yelloweye rockfish is very limited, occurring only in 1996, 1998-2000, and 2010. Every area has some data. Yelloweye rockfish is almost exclusively caught by hook and line, with a small fraction by bottom trawl. Commercial catch has been decreasing since 1998. The specimen collection is not representative of the catch, with the exception of a few years.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/yelloweye-rockfish-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/yelloweye-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/yelloweye-rockfish-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/yelloweye-rockfish-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/yelloweye-rockfish-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/yelloweye-rockfish-pg-3.png}
 \end{figure}
 
 
@@ -698,16 +752,18 @@ Last Science Advisory Report: @dfo2022yellowmouth\
 COSEWIC Status Report: @cosewic2010yellowmouth\
 COSEWIC Status: Threatened, SARA Status: No Status
 
+Yellowmouth rockfish sorted specimens are consistent until 2019, but have a break from 2010-2015, while unsorted specimens are consistent straight through until 2018. Commercial catch is mostly by bottom trawl and some midwater trawl, and has experienced only a minor decrease over time. Commercial specimens peaked in 1998, then significantly declined. The majority of catch and specimens come from Areas 5B and 5A. The specimen collection is fairly representative of the catch, until 2013.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/yellowmouth-rockfish-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/yellowmouth-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/yellowmouth-rockfish-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/yellowmouth-rockfish-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/yellowmouth-rockfish-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/yellowmouth-rockfish-pg-3.png}
 \end{figure}
 
 
@@ -721,16 +777,18 @@ Order: Scorpaeniformes, Family: Scorpaenidae,
 [FishBase](http://www.fishbase.org/summary/Sebastes-flavidus), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274795)\
 Last Science Advisory Report: @dfo2015yellowtail\
+Sorted and unsorted specimens of Yellowtail rockfish stopped being collected in 2018. Sorted specimens have a gap between 2014-2015, while unsorted specimens are consistent. Many age structures have been collected and about half of them have been analyzed. Yellowtail rockfish are mostly caught by midwater trawl, but also by bottom trawl. Commercial catch has remained stable through time. Commercial specimens peaked in 1999, then quickly decreased. Across all areas, the specimen collection is very representative of the catch.
+\clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.4in]{report/figs/yellowtail-rockfish-pg-1.png}
+\centering\includegraphics[width=6.6in]{report/figs/yellowtail-rockfish-pg-1.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/yellowtail-rockfish-pg-2.png}
+\centering\includegraphics[width=6.1in]{report/figs/yellowtail-rockfish-pg-2.png}
 \end{figure}
 \clearpage
 \begin{figure}[b!]
-\includegraphics[width=6.1in]{report/figs/yellowtail-rockfish-pg-3.png}
+\centering\includegraphics[width=6.1in]{report/figs/yellowtail-rockfish-pg-3.png}
 \end{figure}
 
 
