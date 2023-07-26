@@ -2,12 +2,24 @@
 
 # Context {#sec:context}
 
-Replace with context or introduction for commercial biosampling project
+Data collected from commercial fishing vessels are an important component of fisheries stock assessments. These data are collected by independent, third-party at-sea observers or by camera monitoring systems aboard the commercial vessels. The at-sea observer program was launched in 1996, and required all commercial fishing vessels to fund and bring a third party observer aboard to record catch and collect specimen data. During the COVID-19 pandemic, all (?) at-sea observer programs were paused, and have not been re-introduced (???), having a profound effect on the volume of data received from commercial fishing vessels. [CITE] 
+
+The groundfish commercial bio-sampling report was developed to provide a snapshot of data collection and availability from 1996-2021 for some BC groundfish species of commercial and conservation interest. This report illustrates what data has been collected and is available for use. It also indicates what data has been collected, but not used. For example, age structures might be collected but not analyzed, and data from sorted specimens is often collected, but not used in stock assessments. Here, a sorted specimen is a fish that has been high graded as a keeper or a discard before it is sampled for data collection. This report can guide decisions on future monitoring programs, data collection, and where resources should be focused. 
+
+We selected species with commercial catch quota to be included in this report. However, species with little to no data were not included because the lack of data is already illustrated in the groundfish data synopsis (DFO, 2022).
+
 
 
 # Background {#sec:background}
 
-Replace with background or combine with introduction.
+The groundfish commercial bio-sampling report is modelled after the groundfish data synopsis (DFO, 2022). Generation is automated-pulling data from databases, generating visualizations, and stitching the document together-and the plot pages follow a similar layout.  
+
+The goals of the report have been to (1) display available data acquired from commercial fishing vessels, (2) compare available data to how much data is actually used, and (3) perform a basic qualitative analysis of the temporal trends of the data. 
+
+The main figures of the synopsis report are presented in three-page, species-by-species subsections that visually synthesize the available commercial data for each species. The report covers 29 groundfish species that are commercially relevant and have a commercial quota.  
+
+Each set of pages for a single species is laid out in the same format. The page layout begins with the species common name, the species scientific name, the DFO species code, which usually corresponds to the page number referencing the species in Hart et al. (1988), the species Order and Family, links to the species FishBase and WoRMS pages, citations for the last Research Document, Last Science Advisory Report, and COSEWIC Status Report (if available), and the species COSEWIC and SARA status (if listed). All of the figures display the data separated by Pacific Marine Commission (PMFC) areas and year (Figure \@ref(fig:management-map)). The figures are laid out such that the first page has a plot containing all the numbers, the sorted and unsorted commercial specimen counts. The second page has figures pertaining to the amount of catch and the number of specimens collected and how representative the collected specimens are across areas and time. Page three contains age and length frequency data. Detailed figure captions are included in Section \@ref(sec:plot-descriptions).
+
 
 
 ```{r management-map, echo = FALSE, fig.align='center', fig.cap="Map of Pacific Marine Fisheries Commission (PMFC) areas 5AB (Queen Charlotte Sound), 5CD (Hecate Strait), 5E (West Coast Haida Gwaii), 3CD (West Coast Vancouver Island), and 4B (Strait of Georgia). These are close, but not identical, to similarly named Groundfish Management Unit areas. Areas 3AB and 4A are outside of Canadian waters.", out.width="5.2in", fig.pos="tb"}

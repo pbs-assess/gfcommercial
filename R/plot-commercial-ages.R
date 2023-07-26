@@ -1,12 +1,14 @@
 # Adapted from gfplot
 plot_commercial_ages <- function (data,
+                                  data_sorted,
                                   max_size = 5,
                                   sex_gap = 0.2,
                                   sex = c("M", "F"),
                                   year_increment = 4,
                                   ylab = "Age (years)",
                                   year_range = NULL,
-                                  line_col = c("M" = "#1b9e77", "F" = "#7570b3"),
+                                  line_col = c("M" = "#33A02C", "F" = "#B23AEE", "sorted" = "grey60"),
+                                  fill_col = c("M" = "#33A02C50", "F" = "#B23AEE50", "sorted" = "#FFFFFF10"),
                                   alpha = 0.2,
                                   grid_col = "grey95",
                                   diagonal_lines = seq(-2100, -1850, 10),
@@ -14,7 +16,7 @@ plot_commercial_ages <- function (data,
 
   # Set maximum age ------------------------------------------------------------
 
-  if (nrow(data) > 0) {
+  if (sum(data$age, na.rm = TRUE) > 0) {
     age_max <- max(data$age, na.rm = TRUE)
   } else {
     age_max <- 1
@@ -28,16 +30,48 @@ plot_commercial_ages <- function (data,
     data <- subset(data, sex == "F")
   }
 
+  if (sex == "M") {
+    data_sorted <- subset(data_sorted, sex == "M")
+    data_sorted <- data_sorted %>%
+      dplyr::mutate(sex = "sorted")
+  } else if (sex =="F") {
+    data_sorted <- subset(data_sorted, sex == "F")
+    data_sorted <- data_sorted %>%
+      dplyr::mutate(sex = "sorted")
+  }
+
+  data <- dplyr::bind_rows(data, data_sorted)
+
+  sex_levels <- c("F", "M", "sorted")
+
+  data$sex <- factor(data$sex, levels = sex_levels)
+
+
   # Jitter sexes ---------------------------------------------------------------
 
-#  data <- data %>%
-#    dplyr::mutate(
-#      year_jitter = ifelse(
-#        sex == "M",
-#        year - sex_gap / 2,
-#        year + sex_gap / 2
-#      )
-#    )
+  if (sex == "M") {
+    data <- data %>%
+      dplyr::mutate(
+        year_jitter = ifelse(
+          sex == "M",
+          year + sex_gap / 2,
+          year - sex_gap / 2
+        )
+      )
+  } else if (sex == "F") {
+    data <- data %>%
+      dplyr::mutate(
+        year_jitter = ifelse(
+          sex == "F",
+          year + sex_gap / 2,
+          year - sex_gap / 2
+        )
+      )
+  }
+
+  data <- data %>%
+    dplyr::arrange(area, year_jitter, sex)
+
 
   # Define counts --------------------------------------------------------------
 
@@ -48,10 +82,6 @@ plot_commercial_ages <- function (data,
 #      area
 #    ) %>%
 #    unique()
-
-  # Define age range -----------------------------------------------------------
-
-  age_range <- diff(range(data$age, na.rm = TRUE))
 
   # Define year range ----------------------------------------------------------
 
@@ -66,11 +96,13 @@ plot_commercial_ages <- function (data,
   data <- data %>%
     dplyr::filter(year %in% years)
 
-  # Accommodate empty plot -----------------------------------------------------
+  # Define age range and accommodate empty plot --------------------------------
 
   if (sum(!is.na(data$age)) == 0) {
     data$age <- 0
     age_range <- 1
+  } else {
+    age_range <- diff(range(data$age, na.rm = TRUE))
   }
 
   # Define sex as factor -------------------------------------------------------
@@ -82,77 +114,82 @@ plot_commercial_ages <- function (data,
   # Augment by missing areas ---------------------------------------------------
 
   # Get area levels
-  area_levels <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B", "Total")
+  # area_levels <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B", "Total")
+  #
+  # data <- data %>%
+  #   dplyr::mutate(area = factor(area, levels = area_levels))
+  #
+  #
+  # if (sex == "M") {
+  #   labels <- data.frame(
+  #     species_common_name = unique(data$species_common_name),
+  #     survey_abbrev = unique(data$survey_abbrev),
+  #     sex = "M",
+  #     area = rep(area_levels,
+  #                each = length(years)*length(seq(0, age_max, by = 1))),
+  #     year = rep(years,
+  #                each = length(seq(0, age_max, by = 1)),
+  #                times = length(area_levels)),
+  #     age = rep(seq(0, age_max, by = 1),
+  #               times = length(area_levels)*length(years))
+  #   )
+  # } else if (sex =="F") {
+  #   labels <- data.frame(
+  #     species_common_name = unique(data$species_common_name),
+  #     survey_abbrev = unique(data$survey_abbrev),
+  #     sex = "F",
+  #     area = rep(area_levels,
+  #                each = length(years)*length(seq(0, age_max, by = 1))),
+  #     year = rep(years,
+  #                each = length(seq(0, age_max, by = 1)),
+  #                times = length(area_levels)),
+  #     age = rep(seq(0, age_max, by = 1),
+  #               times = length(area_levels)*length(years))
+  #   )
+  # }
+  #
+  # ages_all <- dplyr::right_join(data,
+  #                               labels,
+  #                               by = c("species_common_name", "area", "year", "survey_abbrev", "sex", "age"),
+  #                               keep = FALSE)
+  #
+  # ages_all <- ages_all %>%
+  #   dplyr::arrange(area, year, age)
+  #
+  # ages_all$area <- factor(ages_all$area, levels = area_levels)
+  #
+  # ages_all <- ages_all %>%
+  #   dplyr::arrange(area)
+  #
+  # ages_all <- ages_all %>%
+  #   dplyr::mutate(total = if_else(total == 0, NA, total))
+  #
 
-  data <- data %>%
-    dplyr::mutate(area = factor(area, levels = area_levels))
+  if (unique(data$species_common_name == "arrowtooth flounder")) {
+
+    data <- data %>%
+      dplyr::mutate(age = dplyr::coalesce(age, 0)) %>%
+      dplyr::filter(age < 30, na.rm = TRUE)
+
+    age_max <- max(data$age, na.rm = TRUE)
+
+    data["age"][data["age"] == 0] <- NA
+
+    age_range <- diff(range(data$age, na.rm = TRUE))
 
 
-  if (sex == "M") {
-    labels <- data.frame(
-      species_common_name = unique(data$species_common_name),
-      survey_abbrev = unique(data$survey_abbrev),
-      sex = "M",
-      area = rep(area_levels,
-                 each = length(years)*length(seq(0, age_max, by = 1))),
-      year = rep(years,
-                 each = length(seq(0, age_max, by = 1)),
-                 times = length(area_levels)),
-      age = rep(seq(0, age_max, by = 1),
-                times = length(area_levels)*length(years))
-    )
-  } else if (sex =="F") {
-    labels <- data.frame(
-      species_common_name = unique(data$species_common_name),
-      survey_abbrev = unique(data$survey_abbrev),
-      sex = "F",
-      area = rep(area_levels,
-                 each = length(years)*length(seq(0, age_max, by = 1))),
-      year = rep(years,
-                 each = length(seq(0, age_max, by = 1)),
-                 times = length(area_levels)),
-      age = rep(seq(0, age_max, by = 1),
-                times = length(area_levels)*length(years))
-    )
   }
 
-  ages_all <- dplyr::right_join(data,
-                                labels,
-                                by = c("species_common_name", "area", "year", "survey_abbrev", "sex", "age"),
-                                keep = FALSE)
+  ages_all <- data
 
-  ages_all <- ages_all %>%
-    dplyr::arrange(area, year, age)
+#  fill_col <- rep("#FFFFFF10", length(line_col))
 
-  ages_all$area <- factor(ages_all$area, levels = area_levels)
-
-  ages_all <- ages_all %>%
-    dplyr::arrange(area)
-
-  ages_all <- ages_all %>%
-    dplyr::mutate(total = if_else(total == 0, NA, total))
-
-
-
-
-
-  # Assemble placeholder rows
-#  placeholder <- data[seq_along(area_levels), ] %>%
- #   dplyr::mutate(age = 0) %>%
-  #  dplyr::mutate(proportion = 0) %>%
-   # dplyr::mutate(total = NA_real_) %>%
-    #dplyr::mutate(area = factor(area_levels, levels = area_levels))
-
-  # Augment data
-#  data <- data %>%
- #   dplyr::bind_rows(placeholder) %>%
-  #  dplyr::arrange(area)
 
   # Plot ages ------------------------------------------------------------------
 
   p1 <- ggplot2::ggplot(
     ages_all,
-    ggplot2::aes(year, age)
+    ggplot2::aes(year_jitter, age)
     ) +
     ggplot2::facet_grid(cols = ggplot2::vars(as.factor(area))) +
     ggplot2::scale_x_continuous(
@@ -192,7 +229,7 @@ plot_commercial_ages <- function (data,
   if (sex == "M") {
     p1 <- p1 +
       ggplot2::labs(
-      title = "Age frequencies",
+      title = "Age frequencies - Male",
       colour = "Sex",
       fill = "Sex"
     ) +
@@ -202,12 +239,12 @@ plot_commercial_ages <- function (data,
   } else if (sex == "F") {
     p1 <- p1 +
       ggplot2::labs(
-      title = " ",
+      title = "Age frequencies - Female",
       colour = "Sex",
       fill = "Sex"
     ) +
       ggplot2::theme(
-        plot.margin = grid::unit(c(-1, 0.6, -0.3, 0.1), "cm")
+        plot.margin = grid::unit(c(-0.35, 0.6, -0.3, 0.1), "cm")
       )
   }
 
@@ -220,25 +257,13 @@ plot_commercial_ages <- function (data,
         slope = 1,
         colour = grid_col
       ) +
-      ggplot2::scale_fill_manual(
-        values = scales::alpha(line_col, alpha),
-        breaks = c("M", "F")
+      ggplot2::scale_fill_manual(values = fill_col,
+                                 breaks = c("M", "F", "sorted")
       ) +
-      ggplot2::scale_colour_manual(
-        values = line_col,
-        breaks = c("M", "F")
+      ggplot2::scale_colour_manual(values = line_col,
+                                   breaks = c("M", "F", "sorted")
       ) +
       ggplot2::scale_size_area(max_size = max_size) +
-      # ggplot2::geom_text(
-      #   data = ages_all,
-      #   y = age_max + 0.005 * age_range,
-      #   mapping = ggplot2::aes(x = year, label = total),
-      #   inherit.aes = FALSE,
-      #   colour = "grey50",
-      #   size = count_label_size,
-      #   hjust = 1,
-      #   angle = 90
-      # ) +
       ggplot2::geom_point(
         mapping = ggplot2::aes(
           size = proportion,
@@ -246,7 +271,8 @@ plot_commercial_ages <- function (data,
           fill = sex,
           colour = sex
         ),
-        pch = 21
+        pch = 1,
+        na.rm = TRUE
       ) +
       ggplot2::scale_size_continuous(range = c(0.01, 4)
       )
