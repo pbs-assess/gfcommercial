@@ -2,7 +2,7 @@
 # Adapted from gfplot::plot_sample_avail
 plot_commercial_counts <- function (data,
                                     years = NULL,
-                                    sorted = c(TRUE, FALSE),
+                                    sorted = TRUE,
                                     text_colour = "white",
                                     na_colour = "white") {
 
@@ -19,9 +19,9 @@ plot_commercial_counts <- function (data,
 
   # Define title ---------------------------------------------------------------
 
-  if (sorted == TRUE) {
+  if (sorted) {
     title <- "Sorted commercial specimen counts"
-  } else if (sorted == FALSE) {
+  } else if (!sorted) {
     title <- "Unsorted commercial specimen counts"
   }
 

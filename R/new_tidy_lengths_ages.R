@@ -42,14 +42,16 @@ if (total == TRUE) {
                                               years = years,
                                               areas = c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B"),
                                               area_grep_pattern = area_grep_pattern,
-                                              remove_unsexed = FALSE
+                                              remove_unsexed = FALSE,
+                                              ...
   )
 
   length_totals_total <- tidy_lengths_comm_raw(dat,
                                                years = years,
                                                areas = NULL,
                                                area_grep_pattern = area_grep_pattern,
-                                               remove_unsexed = FALSE
+                                               remove_unsexed = FALSE,
+                                               ...
   )
 
   lengths_total <- dplyr::bind_rows(length_totals_area, length_totals_total)

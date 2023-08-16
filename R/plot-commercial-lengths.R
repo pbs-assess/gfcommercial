@@ -1,14 +1,15 @@
 # Adapted from gfplot
 plot_commercial_lengths <- function (dat,
                                      totals,
+                                     sorted,
                                      xlab = "Length (cm)",
                                      ylab = "Relative length frequency",
                                      #line_col = c("grey40"),
                                      #fill_col = c("grey40"),
                                      # fill_col = c("M" = "#1b9e7750", "F" = "#7570b350"),
                                      # line_col = c("M" = "#1b9e77", "F" = "#7570b3"),
-                                     fill_col = c("M" = "grey80", "F" = "#f56d0550"),
-                                     line_col = c("M" = "grey40", "F" = "#f56d05"),
+                                     fill_col = c("M" = "grey80", "F" = "#d95f0250"),
+                                     line_col = c("M" = "grey40", "F" = "#d95f02"),
                                      alpha = 0.24,
                                      bin_size = 2,
                                      min_total = 20,
@@ -22,12 +23,14 @@ plot_commercial_lengths <- function (dat,
 
   # Define breaks --------------------------------------------------------------
 
-  x_breaks <- pretty(dat$length_bin, 4L)
+  x_breaks <- pretty(c(min(min(dat$length_bin, na.rm = TRUE), min(totals$length_bin, na.rm = TRUE)),
+                       max(max(dat$length_bin, na.rm = TRUE), max(totals$length_bin, na.rm = TRUE))), 4L)
   x_breaks <- x_breaks[seq_len(length(x_breaks) - 1L)]
 
   # Define range ---------------------------------------------------------------
 
-  range_lengths <- diff(range(dat$length_bin, na.rm = TRUE))
+  range_lengths <- diff(c(min(min(dat$length_bin, na.rm = TRUE), min(totals$length_bin, na.rm = TRUE)),
+                          max(max(dat$length_bin, na.rm = TRUE), max(totals$length_bin, na.rm = TRUE))))
 
   years <- seq(year_range[1], year_range[2])
 
@@ -63,6 +66,10 @@ plot_commercial_lengths <- function (dat,
     dplyr::select(survey_abbrev, year, total, area) %>%
     unique()
 
+  counts_sorted <- sorted %>%
+    dplyr::select(survey_abbrev, year, total, area) %>%
+    unique()
+
   # Scale each maximum proportion to one ---------------------------------------
 
   dat <- dat %>%
@@ -95,10 +102,10 @@ plot_commercial_lengths <- function (dat,
     ) %>%
     dplyr::ungroup()
 
-  totals$sex <- as.factor(totals$sex)
+  totals$sex <- factor(totals$sex, levels = sex_levels)
 
   totals <- totals %>%
-    dplyr::arrange(area)
+    dplyr::arrange(area, year, sex)
 
   # Remove proportions with scarce observations --------------------------------
 
@@ -118,20 +125,30 @@ plot_commercial_lengths <- function (dat,
     gfplot::theme_pbs() +
     ggplot2::scale_fill_manual(values = fill_col, breaks = c("M", "F")) +
     ggplot2::scale_colour_manual(values = line_col, breaks = c("M", "F")) +
-    ggplot2::coord_cartesian(expand = FALSE) +
-    ggplot2::scale_x_continuous(breaks = x_breaks) +
+    #ggplot2::coord_cartesian(expand = FALSE) +
+    ggplot2::scale_x_continuous(breaks = x_breaks, expand = c(0.01, 0.01)) +
     ggplot2::xlab(xlab) +
     ggplot2::ylab(ylab) +
-    ggplot2::ylim(-0.06, 1.15) +
+    ggplot2::ylim(0, 1.05) +
     ggplot2::geom_text(
       data = counts,
-      x = min(dat$length_bin, na.rm = TRUE) + 0.013 * range_lengths,
+      x = min(min(dat$length_bin, na.rm = TRUE), min(totals$length_bin, na.rm = TRUE)) + 0.013 * range_lengths,
       y = 0.82,
       mapping = ggplot2::aes(label = total),
       inherit.aes = FALSE,
       colour = "grey50",
       size = 3.0,
       hjust = 0
+    ) +
+    ggplot2::geom_text(
+      data = counts_sorted,
+      x = max(max(dat$length_bin, na.rm = TRUE), max(totals$length_bin, na.rm = TRUE)) - 0.013 * range_lengths,
+      y = 0.82,
+      mapping = ggplot2::aes(label = total),
+      inherit.aes = FALSE,
+      colour = "royalblue",
+      size = 3.0,
+      hjust = 1
     ) +
     ggplot2::labs(title = "Length frequencies") +
     ggplot2::theme(
@@ -155,6 +172,24 @@ p1 <- p1 +
                      linewidth = 0.2,
                      direction = "mid"
                      )
+
+# for (i in 1:nrow(counts_sorted)) {
+#
+#   if (!is.na(counts_sorted$total[i])) {
+#     p1 <- p1 +
+#       ggplot2::geom_text(
+#         data = counts_sorted,
+#         x = min(min(dat$length_bin, na.rm = TRUE), min(totals$length_bin, na.rm = TRUE)) + 0.013 * range_lengths,
+#         y = 0.20,
+#         mapping = ggplot2::aes(label = counts_sorted$total[i]),
+#         inherit.aes = FALSE,
+#         colour = "grey50",
+#         size = 3.0,
+#         hjust = 0
+#       )
+#     }
+#   }
+
 
   # Facet grid -----------------------------------------------------------------
 

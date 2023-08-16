@@ -8,7 +8,7 @@ plot_commercial_ages <- function (data,
                                   ylab = "Age (years)",
                                   year_range = NULL,
                                   line_col = c("M" = "#33A02C", "F" = "#B23AEE", "sorted" = "grey60"),
-                                  fill_col = c("M" = "#33A02C50", "F" = "#B23AEE50", "sorted" = "#FFFFFF10"),
+                                  fill_col = c("M" = "#33A02C30", "F" = "#B23AEE30", "sorted" = "#FFFFFF10"),
                                   alpha = 0.2,
                                   grid_col = "grey95",
                                   diagonal_lines = seq(-2100, -1850, 10),
@@ -271,7 +271,7 @@ plot_commercial_ages <- function (data,
           fill = sex,
           colour = sex
         ),
-        pch = 1,
+        pch = 21,
         na.rm = TRUE
       ) +
       ggplot2::scale_size_continuous(range = c(0.01, 4)

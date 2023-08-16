@@ -24,6 +24,7 @@ tidy_lengths_comm_raw <- function(dat,
                                   area_grep_pattern = "*",
                                   ageing_method_codes = NULL,
                                   usability_codes = c(0, 1, 2, 6),
+                                  sorted,
                                   bin_size = 2,
                                   age_length = "length",
                                   sample_type = "commercial",
@@ -33,6 +34,10 @@ tidy_lengths_comm_raw <- function(dat,
 
   # -------------------------------------------
   # Filter down data (basics):
+  spp <- unique(dat$species_common_name)
+
+  avg_length <- round_down_even(mean(dat$length))
+
   if (remove_unsexed) {
     dat <- dat %>%
       dplyr::filter(sex %in% c(1, 2)
@@ -62,12 +67,71 @@ tidy_lengths_comm_raw <- function(dat,
       dplyr::filter(usability_code %in% usability_codes)
   }
 
+  # Filter down sampling description (sorted vs unsorted, unknown excluded):
+  if (sorted) {
+    dat <- dat %>%
+      dplyr::filter(sampling_desc == "KEEPERS" | sampling_desc == "DISCARDS")
+  } else if (!sorted) {
+    dat <- dat %>%
+      dplyr::filter(sampling_desc == "UNSORTED")
+  }
+
   # -------------------------------------------
   # Filter down data (commercial):
   if (sample_type == "commercial") {
     if (nrow(dat) == 0) {
-      warning("No data available.", call. = FALSE)
-      return(NA)
+      if (!is.null(areas)) {
+        if (remove_unsexed) {
+          blank_areas <- data.frame(species_common_name = spp,
+                                    survey_abbrev = "Commercial",
+                                    area = rep(areas, each = length(years)*2),
+                                    year = rep(years, each = 2, times = length(areas)),
+                                    sex = rep(c("M", "F"), times = length(years)*length(areas)),
+                                    length_bin = avg_length,
+                                    proportion = NA,
+                                    total = NA
+          )
+        } else {
+          blank_areas <- data.frame(species_common_name = spp,
+                                    survey_abbrev = "Commercial",
+                                    area = rep(areas, each = length(years)),
+                                    year = rep(years, times = length(areas)),
+                                    sex = rep(2, times = length(years)*length(areas)),
+                                    length_bin = avg_length,
+                                    proportion = NA,
+                                    total = NA
+          )
+        }
+
+        return(blank_areas)
+
+        # If no data, create a blank data frame
+      } else {
+        if (remove_unsexed) {
+          blank_total <- data.frame(species_common_name = spp,
+                                    survey_abbrev = "Commercial",
+                                    area = rep("Total", each = length(years)*2),
+                                    year = rep(years, each = 2),
+                                    sex = rep(c("M", "F"), times = length(years)),
+                                    length_bin = avg_length,
+                                    proportion = NA,
+                                    total = NA
+          )
+        } else {
+          blank_total <- data.frame(species_common_name = spp,
+                                    survey_abbrev = "Commercial",
+                                    area = rep("Total", times = length(years)),
+                                    year = years,
+                                    sex = rep(2, times = length(years)),
+                                    length_bin = avg_length,
+                                    proportion = NA,
+                                    total = NA
+          )
+        }
+
+        return(blank_total)
+
+      }
     }
 
     dat$survey_abbrev <- "Commercial"
@@ -96,8 +160,58 @@ tidy_lengths_comm_raw <- function(dat,
       dplyr::filter(!is.na(length))
 
     if (nrow(dat) == 0) {
-      warning("No data available.", call. = FALSE)
-      return(NA)
+      if (!is.null(areas)) {
+        if (remove_unsexed) {
+          blank_areas <- data.frame(species_common_name = spp,
+                                    survey_abbrev = "Commercial",
+                                    area = rep(areas, each = length(years)*2),
+                                    year = rep(years, each = 2, times = length(areas)),
+                                    sex = rep(c("M", "F"), times = length(years)*length(areas)),
+                                    length_bin = avg_length,
+                                    proportion = NA,
+                                    total = NA
+          )
+        } else {
+          blank_areas <- data.frame(species_common_name = spp,
+                                    survey_abbrev = "Commercial",
+                                    area = rep(areas, each = length(years)),
+                                    year = rep(years, times = length(areas)),
+                                    sex = rep(2, times = length(years)*length(areas)),
+                                    length_bin = avg_length,
+                                    proportion = NA,
+                                    total = NA
+          )
+        }
+
+        return(blank_areas)
+
+        # If no data, create a blank data frame
+      } else {
+        if (remove_unsexed) {
+          blank_total <- data.frame(species_common_name = spp,
+                                    survey_abbrev = "Commercial",
+                                    area = rep("Total", each = length(years)*2),
+                                    year = rep(years, each = 2),
+                                    sex = rep(c("M", "F"), times = length(years)),
+                                    length_bin = avg_length,
+                                    proportion = NA,
+                                    total = NA
+          )
+        } else {
+          blank_total <- data.frame(species_common_name = spp,
+                                    survey_abbrev = "Commercial",
+                                    area = rep("Total", times = length(years)),
+                                    year = years,
+                                    sex = rep(2, times = length(years)),
+                                    length_bin = avg_length,
+                                    proportion = NA,
+                                    total = NA
+          )
+        }
+
+        return(blank_total)
+
+      }
     }
   }
 
@@ -240,6 +354,7 @@ tidy_ages_comm_raw <- function(dat,
                                years = NULL,
                                areas = NULL,
                                area_grep_pattern = "*",
+                               sorted,
                                usability_codes = c(0, 1, 2, 6),
                                age_length = "age",
                                sample_type = "commercial",
@@ -277,6 +392,15 @@ tidy_ages_comm_raw <- function(dat,
       dplyr::filter(usability_code %in% usability_codes)
   }
 
+  # Filter down sampling description (sorted vs unsorted, unknown excluded):
+  if (sorted) {
+    dat <- dat %>%
+      dplyr::filter(sampling_desc == "KEEPERS" | sampling_desc == "DISCARDS")
+  } else if (!sorted) {
+    dat <- dat %>%
+      dplyr::filter(sampling_desc == "UNSORTED")
+  }
+
   # -------------------------------------------
   # Filter down data (commercial):
   if (sample_type == "commercial") {
@@ -301,7 +425,7 @@ tidy_ages_comm_raw <- function(dat,
                             year = rep(years, each = 2),
                             sex = rep(c("M", "F"), times = length(years)),
                             age = NA,
-                            propotion = NA,
+                            proportion = NA,
                             total = NA
         )
         return(blank_total)
@@ -357,7 +481,7 @@ tidy_ages_comm_raw <- function(dat,
                                   year = rep(years, each = 2),
                                   sex = rep(c("M", "F"), times = length(years)),
                                   age = NA,
-                                  propotion = NA,
+                                  proportion = NA,
                                   total = NA
         )
         return(blank_total)

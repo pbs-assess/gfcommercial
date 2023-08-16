@@ -21,8 +21,6 @@ plot_catches <- function(dat, blank_plot = FALSE, years = NULL,
     ) +
     ggplot2::scale_x_continuous(breaks = seq(0, year_range[2], 5))
 
-  if (blank_plot)
-    suppressMessages(g <- g + ylim(0, 1))
 
   gdat <- ggplot2::ggplot_build(g)$data
   # data_element <- which(unlist(lapply(lapply(gdat, names),
@@ -58,11 +56,11 @@ plot_catches <- function(dat, blank_plot = FALSE, years = NULL,
     ggplot2::guides(fill = ggplot2::guide_legend(nrow = 2)) +
     ggplot2::ggtitle("Commercial catch")
 
-  if (french) {
-    g <- g + ggplot2::theme(legend.spacing.x = ggplot2::unit(0.5, "mm"))
-    g <- g +
-      ggplot2::scale_y_continuous(labels = function(x) format(x, big.mark = " ", scientific = FALSE)) # e.g. 1 000
-  }
+  # if (french) {
+  #   g <- g + ggplot2::theme(legend.spacing.x = ggplot2::unit(0.5, "mm"))
+  #   g <- g +
+  #     ggplot2::scale_y_continuous(labels = function(x) format(x, big.mark = " ", scientific = FALSE)) # e.g. 1 000
+  # }
 
   g
 
