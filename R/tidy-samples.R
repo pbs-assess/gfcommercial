@@ -26,6 +26,26 @@ my_tidy_samples <- function(dat,
   dat <- dat %>%
     dplyr::distinct(specimen_id, .keep_all = TRUE)
 
+  # Recode gear names
+  dat <- dat %>%
+    dplyr::mutate(dat,
+                  gear = dplyr::recode(gear,
+                                       UNKNOWN = "Unknown/trawl",
+                                       `BOTTOM TRAWL` = "Bottom trawl",
+                                       `HOOK AND LINE` = "Hook and line",
+                                       `LONGLINE` = "Hook and line",
+                                       `MIDWATER TRAWL` = "Midwater trawl",
+                                       `TRAP` = "Trap",
+                                       `UNKNOWN TRAWL` = "Unknown/trawl",
+                                       `HANDLINE` = "Hook and line",
+                                       `JIG` = "Hook and line",
+                                       `TROLL` = "Hook and line",
+                                       `GILLNET` = "Unknown/trawl",
+                                       `RECREATIONAL ROD & REEL` = "Hook and line",
+                                       `SHRIMP TRAWL` = "Unknown/trawl"
+                                       )
+                  )
+
   # Separate discards
   discards <- subset(dat, sampling_desc == "DISCARDS")
   not_discards <- subset(dat, sampling_desc != "DISCARDS")
@@ -36,31 +56,13 @@ my_tidy_samples <- function(dat,
   dat_discards <- dplyr::bind_rows(discards, not_discards)
 
   # Summarize specimen sample data
-  dat_sum <- dplyr::filter(dat_discards, !is.na(species_common_name), !is.na(year)) %>%
+  samples <- dplyr::filter(dat_discards, !is.na(species_common_name), !is.na(year)) %>%
     dplyr::group_by(year, species_common_name, gear, area) %>%
     dplyr::summarise(
       specimen_count = sum(!is.na(unique(specimen_id)))
     ) %>%
     dplyr::ungroup() %>%
-    dplyr::arrange(species_common_name, year)
-
-  samples <- dplyr::mutate(dat_sum,
-                    gear = dplyr::recode(gear,
-                                         UNKNOWN = "Unknown/trawl",
-                                         `BOTTOM TRAWL` = "Bottom trawl",
-                                         `HOOK AND LINE` = "Hook and line",
-                                         `LONGLINE` = "Hook and line",
-                                         `MIDWATER TRAWL` = "Midwater trawl",
-                                         `TRAP` = "Trap",
-                                         `UNKNOWN TRAWL` = "Unknown/trawl",
-                                         `HANDLINE` = "Hook and line",
-                                         `JIG` = "Hook and line",
-                                         `TROLL` = "Hook and line",
-                                         `GILLNET` = "Unknown/trawl",
-                                         `RECREATIONAL ROD & REEL` = "Hook and line",
-                                         `SHRIMP TRAWL` = "Unknown/trawl"
-                    )
-  ) %>%
+    dplyr::arrange(species_common_name, year) %>%
     dplyr::select(year, area, species_common_name, gear, specimen_count)
 
 

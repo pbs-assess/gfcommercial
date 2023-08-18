@@ -1,7 +1,7 @@
 # An R script to arrange and sitch together plots for page 1
 
 plot_layout_pg_3 <- function(spp,
-                             years = 1996:2021,
+                             years = 1996:2022,
                              bin_size = 2,
                              fl_path_data = here::here("data-cache"),
                              fl_path_store = here::here("report", "figs"),
@@ -20,16 +20,24 @@ plot_layout_pg_3 <- function(spp,
 
   # Age frequency plot ---------------------------------------------------------
 
-  ages <- tidy_ages(comm_samples,
-                    years = years
+  ages_unsorted <- tidy_ages(comm_samples,
+                             years = years,
+                             sorted = FALSE
   )
 
-  p1 <- plot_commercial_ages(ages,
+  ages_sorted <- tidy_ages(comm_samples,
+                           years = years,
+                           sorted = TRUE
+  )
+
+  p1 <- plot_commercial_ages(ages_unsorted,
+                             ages_sorted,
                              sex = "M",
                              year_range = c(min(years), max(years))
   )
 
-  p2 <- plot_commercial_ages(ages,
+  p2 <- plot_commercial_ages(ages_unsorted,
+                             ages_sorted,
                              sex = "F",
                              year_range = c(min(years), max(years))
   )
@@ -40,21 +48,30 @@ plot_layout_pg_3 <- function(spp,
   lengths_sex <- tidy_lengths(comm_samples,
                               bin_size = bin_size,
                               years = years,
-                              total = FALSE
+                              total = FALSE,
+                              sorted = FALSE
   )
 
   lengths_total <- tidy_lengths(comm_samples,
                                 bin_size = bin_size,
                                 years = years,
-                                total = TRUE
+                                total = TRUE,
+                                sorted = FALSE
   )
 
   lengths_total <- lengths_total %>%
     dplyr::mutate(sex = "Total")
 
+  lengths_sorted <- tidy_lengths(comm_samples,
+                                 bin_size = bin_size,
+                                 years = years,
+                                 total = TRUE,
+                                 sorted = TRUE
+  )
+
   #lengths <- dplyr::bind_rows(lengths_sex, lengths_total)
 
-  p3 <- plot_commercial_lengths(lengths_sex, lengths_total,
+  p3 <- plot_commercial_lengths(lengths_sex, lengths_total, lengths_sorted,
                                year_range = c(min(years), max(years))
   )
 
@@ -62,7 +79,8 @@ plot_layout_pg_3 <- function(spp,
   # Arrange plots --------------------------------------------------------------
 
   p <- cowplot::plot_grid(p1, p2, p3,
-                         ncol = 1, nrow = 3, rel_heights = c(1, 1, 1.75))
+                         ncol = 1, nrow = 3, rel_heights = c(1, 1, 1.75),
+                         na.rm = TRUE)
 
   # Save plot ------------------------------------------------------------------
 

@@ -1,7 +1,7 @@
 # An R script to arrange and sitch together plots for page 1
 
 plot_layout_pg_1 <- function(spp,
-                             years = 1996:2021,
+                             years = 1996:2022,
                              fl_path_data = here::here("data-cache"),
                              fl_path_store = here::here("report", "figs"),
                              fl_type = ".png",
@@ -25,7 +25,7 @@ plot_layout_pg_1 <- function(spp,
   comm_samples_sort <- subset(comm_samples,
                               comm_samples$sampling_desc == "DISCARDS" | comm_samples$sampling_desc == "KEEPERS")
   comm_samples_unsort <- subset(comm_samples,
-                                comm_samples$sampling_desc == "UNSORTED"| comm_samples$sampling_desc == "UNKNOWN")
+                                comm_samples$sampling_desc == "UNSORTED")
 
   counts_sort <- tidy_commercial_counts(comm_samples_sort,
                                         years = years)
