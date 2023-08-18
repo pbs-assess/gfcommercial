@@ -17,6 +17,27 @@ file <- here::here("data", "species.csv")
 spp <- get_spp_names(file)
 spp_list <- as.list(spp$spp_w_hyphens)
 
+spp$species_common_name[spp$species_common_name == "rougheye blackspotted rockfish complex"] <- "rougheye/blackspotted rockfish complex"
+
+filenames <- file.path(data_cache_path, paste0(spp$spp_w_hyphens, ".rds"))
+
+# Update data cache
+for (i in seq_along(spp$species_common_name)) {
+  .s <- spp$species_common_name[i]
+  cat(.s, "\n")
+  d <- list()
+  if (!file.exists(filenames[i])) {
+    d[["commercial_samples"]] <-
+      gfdata::get_commercial_samples(
+        species = .s,
+        unsorted_only = FALSE,
+        return_all_lengths = TRUE
+      )
+    d[["catch"]] <- gfdata::get_catch(.s)
+    saveRDS(d, file = filenames[i])
+  }
+}
+
 # Gather and arrange some metadata
 if (!file.exists(here::here("report", "itis.rds"))) {
   cls <- taxize::classification(spp$itis_tsn[!is.na(spp$itis_tsn)], db = 'itis')
@@ -40,15 +61,15 @@ cos <- rename(cos, species_common_name = `COSEWIC common name`,
               sara_status = `Schedule status`)
 # duplicate of inside YE:
 cos <- dplyr::filter(cos, !grepl("Pacific Ocean outside waters population", `COSEWIC population`))
-cos <- select(cos, species_common_name, species_science_name, cosewic_status, sara_status)
-cos <- mutate(cos, species_science_name = ifelse(grepl("type I", species_science_name), "Sebastes aleutianus/melanostictus", species_science_name))
+cos <- dplyr::select(cos, species_common_name, species_science_name, cosewic_status, sara_status)
+cos <- dplyr::mutate(cos, species_science_name = ifelse(grepl("type I", species_science_name), "Sebastes aleutianus/melanostictus", species_science_name))
 cos$species_common_name <- tolower(cos$species_common_name)
 cos$species_science_name <- tolower(cos$species_science_name)
-spp <- left_join(spp, cos, by = c("species_common_name", "species_science_name"))
+spp <- dplyr::left_join(spp, cos, by = c("species_common_name", "species_science_name"))
 
 # Parse metadata that will be used at the top of each species page:
 refs <- readr::read_csv(here::here("report/spp-refs.csv"), show_col_types = FALSE)
-spp <- left_join(spp, refs, by = "species_common_name")
+spp <- dplyr::left_join(spp, refs, by = "species_common_name")
 
 spp$species_science_name <- gfplot:::firstup(spp$species_science_name)
 spp$species_science_name <- gsub(" complex", "", spp$species_science_name)
@@ -60,6 +81,10 @@ spp$other_ref_cite <- ifelse(is.na(spp$other_ref), "", paste0(spp$type_other_ref
 spp$other_ref_cite <- gsub(", ", ", @", spp$other_ref_cite)
 spp$species_common_name[spp$species_common_name == "rougheye blackspotted rockfish complex"] <- "rougheye/blackspotted rockfish complex"
 #filenames <- file.path(data_cache_path, paste0(spp$spp_w_hyphens, ".rds"))
+
+summaries <- readr:: read_csv(here::here("report/spp_summaries.csv"), show_col_types = FALSE)
+
+spp <- dplyr::left_join(spp, summaries, by = "species_common_name")
 
 
 # Check for and make missing species plot pages --------------------------------
@@ -106,6 +131,7 @@ temp <- lapply(spp$species_common_name, function(x) {
   cosewic_status <- spp$cosewic_status[spp$species_common_name == x]
   cosewic_report <- spp$cosewic_status_reports[spp$species_common_name == x]
   worms_id <- spp$worms_id[spp$species_common_name == x]
+  summary_pgraph <- spp$summary[spp$species_common_name == x]
 
   resdoc_text <- if (grepl(",", resdoc)) {
     paste0("Last Research Document", "s: ")
@@ -150,23 +176,30 @@ temp <- lapply(spp$species_common_name, function(x) {
     out[[i]] <- paste0(
       "[WoRMS]",
       "(http://www.marinespecies.org/aphia.php?p=taxdetails&id=",
-      worms_id, ")\\")
-  } else if (worms_id == "unknown") {
-    out[[i]] <- paste0(out[[i]], "\\")
+      worms_id, ")")
   }
+  # else if (worms_id == "unknown") {
+  #   out[[i]] <- paste0(out[[i]], "\\")
+  # }
   if (resdoc != "") {
     i <- i + 1
-    out[[i]] <- paste0(resdoc_text, resdoc, "\\")
+    out[[i]] <- paste0("\\")
+    i <- i + 1
+    out[[i]] <- paste0(resdoc_text, resdoc)
   }
   if (sar != "") {
     i <- i + 1
-    out[[i]] <- paste0(sar_text, sar, "\\")
+    out[[i]] <- paste0("\\")
+    i <- i + 1
+    out[[i]] <- paste0(sar_text, sar)
   }
   i <- i + 1
 
   if (!is.na(other_ref)) {
     if (other_ref != "") {
-      out[[i]] <- paste0(other_ref, "\\")
+      out[[i]] <- paste0("\\")
+      i <- i + 1
+      out[[i]] <- paste0(other_ref)
       if (!is.na(cosewic_status) && cosewic_status != "") {
       }
       i <- i + 1
@@ -174,48 +207,61 @@ temp <- lapply(spp$species_common_name, function(x) {
   }
   if (!is.na(cosewic_report)) {
     if (cosewic_report != "") {
-      out[[i]] <- paste0("COSEWIC Status Report", ": @", cosewic_report, "\\")
+      out[[i]] <- paste0("\\")
+      i <- i + 1
+      out[[i]] <- paste0("COSEWIC Status Report", ": @", cosewic_report)
       i <- i + 1
     }
   }
   if (!is.na(cosewic_status)) {
     if (cosewic_status != "") {
+      out[[i]] <- paste0("\\")
+      i <- i + 1
       out[[i]] <- paste0("COSEWIC Status", ": ", cosewic_status)
       if (!is.na(sara_status)) {
         if (sara_status != "") {
           out[[i]] <- paste0(out[[i]], ", ", "SARA Status", ": ", sara_status)
         }
       }
-      out[[i]] <- paste0(out[[i]], "\n")
       i <- i + 1
     }
   }
   if (species_code == "394") {
-    out[[i]] <- paste0("COSEWIC Status", ": ", "Special Concern", ", ", "SARA Status", ": ", "Special Concern", "\\")
+    out[[i]] <- paste0("\\")
+    i <- i + 1
+    out[[i]] <- paste0("COSEWIC Status", ": ", "Special Concern", ", ", "SARA Status", ": ", "Special Concern")
     i <- i + 1
   }
+  # out[[i]] <- "\n"
+  # i <- i + 1
   if (species_code == "225") {
-      out[[i]] <- "Note that Pacific Hake undergoes a directed joint
-      Canada-US coastwide\n survey and annual assessment, which are not
-      included in this report. The most recent\n stock assessment
+      out[[i]] <- "\nNote that Pacific Hake undergoes a directed joint
+      Canada-US coastwide survey and annual assessment, which are not
+      included in this report. The most recent stock assessment
       should be consulted for details on stock status."
-    i <- i + 1
+      # out[[i]] <- paste0(out[[i]], "\n")
+      i <- i + 1
   }
   if (species_code == "614") {
-      out[[i]] <- "Note that Pacific Halibut undergoes thorough assessment by the
-      International Pacific\n Halibut Commission based on the annual
-      standardized setline survey. The most\n recent stock assessment
+      out[[i]] <- "\nNote that Pacific Halibut undergoes thorough assessment by the
+      International Pacific Halibut Commission based on the annual
+      standardized setline survey. The most recent stock assessment
       should be consulted for details on stock status."
+    # out[[i]] <- paste0(out[[i]], "\n")
     i <- i + 1
   }
   if (species_code == "455") {
-      out[[i]] <- "Note that Sablefish undergoes directed annual trap surveys,
-      which are used for\n stock assessment and are not included in
-      this report. The most recent\n stock assessment should be
+      out[[i]] <- "\nNote that Sablefish undergoes directed annual trap surveys,
+      which are used for stock assessment and are not included in
+      this report. The most recent stock assessment should be
       consulted for details on stock status."
+    # out[[i]] <- paste0(out[[i]], "\n")
     i <- i + 1
   }
-
+  out[[i]] <- paste0("\n", summary_pgraph)
+  i <- i + 1
+  # out[[i]] <- "\\clearpage"
+  # i <- i + 1
   out[[i]] <- "\\begin{figure}[b!]"
   i <- i + 1
   out[[i]] <- paste0("\\centering\\includegraphics[width=6.6in]{report/figs/",
