@@ -1,13 +1,13 @@
 ---
 title: |
-  "Title Here (*Latin Species Name*)"
+  "Commercial biosampling technical report Draft 3"
 french_title: Titre ici (*Nom latin de l'espèce*)
 year: 2022
 report_number: nnn
 author: |
-  First. M. Last^1^ and
+  Leah. C. Walker^1^ and
   Alex B. Smith^2^
-author_list: "Last, F.M. and Smith, A.B."
+author_list: "Walker, L.C. and Smith, A.B."
 region: Pacific Region
 french_region: Région du Pacifique
 isbn: ""
@@ -25,7 +25,7 @@ french_address: |
   ^2^Loin, très loin\
      Une autre galaxie
 phone: "(555) 555-5555"
-author_footnote: "Email: First.Author@dfo-mpo.gc.ca | telephone: (250) 756-5555"
+author_footnote: "Email: Leah.Walker@dfo-mpo.gc.ca | telephone: (250) 756-5555"
 abstract: |
   Here is the abstract text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 french_abstract: |
@@ -38,7 +38,7 @@ output:
    # will remain between compilations. If true, your changes will be lost when you compile
    copy_sty: true
    # line_nums is a toggle to show line numbers on the left side of the page. 
-   line_nums: true
+   line_nums: false
    # line_nums_mod represents showing every Nth line if line_nums is true
    line_nums_mod: 1
    # lot_lof is a toggle to show/not show the lists of tables and figures at the
@@ -72,6 +72,10 @@ bibliography: bib/refs.bib
 header-includes:
  - \usepackage{float}
 ---
+
+```{r, include=FALSE}
+options(tinytex.verbose = TRUE)
+```
 
 ```{r setup, echo=FALSE, cache=FALSE, message=FALSE, results='hide', warning=FALSE}
 library(knitr)
