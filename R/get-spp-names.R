@@ -1,7 +1,3 @@
-#' Get spp. names
-#' Adapted from gfsynopsis
-#'
-#' @export
 get_spp_names <- function(file = NULL) {
 
   spp <- utils::read.csv(file, strip.white = TRUE, stringsAsFactors = FALSE,
