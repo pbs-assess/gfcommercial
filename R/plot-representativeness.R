@@ -1,20 +1,13 @@
 # Adapted from gfplot
-plot_cumulative_counts <- function (data,
-                                    xlab = "Week of the year",
-                                    ylab = "Cumulative Proportion",
-                                    line_col = c("grey40"),
-                                    fill_col = c("grey40"),
-                                    min_total = 20,
-                                    show_year = "even") {
+plot_representativeness <- function (data,
+                                     xlab = "Week of the year",
+                                     ylab = "Cumulative Proportion",
+                                     line_col = c("grey40"),
+                                     fill_col = c("grey40"),
+                                     min_total = 20,
+                                     show_year = "even") {
 
-  # Define breaks --------------------------------------------------------------
-
-  #x_breaks <- pretty(data$length_bin, 4L)
-  #x_breaks <- x_breaks[seq_len(length(x_breaks) - 1L)]
-
-  # Define range ---------------------------------------------------------------
-
-  #range_lengths <- diff(range(data$length_bin, na.rm = TRUE))
+  # Define counts --------------------------------------------------------------
 
   # Define counts --------------------------------------------------------------
 
@@ -23,25 +16,14 @@ plot_cumulative_counts <- function (data,
                   area,
                   year,
                   n_catch,
-                  n_samples
-                  ) %>%
+                  n_samples) %>%
     unique()
 
+  # Scale units
+
   counts <- counts %>%
-    dplyr::mutate(catch_text = gfplot:::round_nice(n_catch),
-                  samp_text = gfplot:::round_nice(n_samples))
-
-  # Scale each maximum proportion to one ---------------------------------------
-
-  #data <- data %>%
-  #  dplyr::group_by(year, survey_abbrev, area) %>%
-  #  dplyr::mutate(proportion = proportion / max(proportion)) %>%
-  #  dplyr::ungroup()
-
-  # Remove proportions with scarce observations --------------------------------
-
-  #data <- data %>%
-  #  dplyr::mutate(proportion = ifelse(total >= min_total, proportion, NA))
+    dplyr::mutate(catch_text = catch_rounding(n_catch),
+                  samp_text = round_nice(n_samples))
 
   # Assemble plot --------------------------------------------------------------
 
@@ -99,7 +81,7 @@ plot_cumulative_counts <- function (data,
       axis.ticks.y = ggplot2::element_blank(),
       panel.grid.major.x = ggplot2::element_line(colour = "grey93"),
       panel.spacing = grid::unit(-0.15, "lines"),
-      plot.margin = grid::unit(c(-1.1, 1, 0, 0.27), "cm")
+      plot.margin = grid::unit(c(0, 0, 0, 0.27), "cm")
     )
 
   # Facet grid -----------------------------------------------------------------
