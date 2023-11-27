@@ -51,7 +51,7 @@ plot_catches <- function(dat, blank_plot = FALSE, years = NULL,
                           axis.title.y = ggplot2::element_text(size = 14),
                           axis.text.x = ggplot2::element_text(size = 12),
                           axis.text.y.left = ggplot2::element_text(size = 10),
-                          plot.margin = ggplot2::unit(c(0.2, 0.2, 0.5, 0.2), "cm")
+                          plot.margin = ggplot2::unit(c(0.2, 0.2, -0.2, 0.2), "cm")
                           ) +
     ggplot2::guides(fill = ggplot2::guide_legend(nrow = 2)) +
     ggplot2::ggtitle("Commercial catch")

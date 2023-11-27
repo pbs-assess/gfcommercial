@@ -154,7 +154,7 @@ plot_samples <- function(dat,
                           axis.title.y = ggplot2::element_text(size = 14),
                           axis.text.x = ggplot2::element_text(size = 12),
                           axis.text.y.right = ggplot2::element_text(size = 10),
-                          plot.margin = ggplot2::unit(c(0.2, 0.2, 0.5, 0.2), "cm"),
+                          plot.margin = ggplot2::unit(c(0.2, 0.2, -0.2, 0.2), "cm"),
                           axis.text.y.left = ggplot2::element_blank()
                           ) +
     ggplot2::guides(fill = ggplot2::guide_legend(nrow = 2)) +

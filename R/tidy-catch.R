@@ -4,15 +4,20 @@
 # a function to tidy the catch data by gear type and by area or total
 
 my_tidy_catch <- function(dat,
-                          areas = NULL,
+                          by_areas = TRUE,
                           ...) {
 
+  areas <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B")
+
   # Assign areas (or total)
-  if (!is.null(areas)) {
+  if (by_areas) {
     dat$area <- assign_areas(dat$major_stat_area_name, areas)
     dat <- dat[!is.na(dat$area), , drop = FALSE]
   } else {
-    dat$area <- "Total"
+    dat$area <- assign_areas(dat$major_stat_area_name, areas)
+    dat <- dat[!is.na(dat$area), , drop = FALSE]
+    dat <- dat %>%
+      dplyr::mutate(area = "Total")
   }
 
   # Summarize catch data
@@ -93,10 +98,10 @@ catch_total <- function(dat, years = NULL, ...) {
 
   # Tidy catch data by areas and for total and combine the data frames
   catch_areas <- my_tidy_catch(dat,
-                               areas = c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B"),
+                               by_areas = TRUE,
                                ...)
   catch_total <- my_tidy_catch(dat,
-                               areas = NULL,
+                               by_areas = FALSE,
                                ...)
   catch <- dplyr::bind_rows(catch_total, catch_areas)
 

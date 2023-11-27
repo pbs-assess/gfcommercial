@@ -38,3 +38,49 @@ assign_areas <- function(major_stat_area_description,
   }
   out
 }
+
+# Round to any denomination - from gfplot
+round_any <- function(x, accuracy) {
+  round(x / accuracy) * accuracy
+}
+
+# Round nice - from gfplot
+round_nice <- function(x, thousands_k = TRUE) {
+  out <- round_any(x, 100)
+  out[out == 0] <- x[out == 0]
+  if (thousands_k) {
+    out <- as.numeric(out)
+    out <- ifelse(out >= 1000, numform::f_thous(out, relative = 0L), out)
+    # out <- gsub("\\.0K", "K", out)
+  }
+  out[x == 0] <- ""
+  out
+}
+
+# Round catch values to nearest kg, t, or kt
+catch_rounding <- function(value,
+                           units = NULL,
+                           ...) {
+
+  if (is.null(units)) {
+    units <- c(`kt` = 1000000,`t` = 1000, `kg` = 1)
+  }
+
+  scale_val <- units[[1]]
+
+  for (i in seq_along(units)) {
+    if (value < (1000 * units[[i]])) {
+      scale <- units[[i]]
+      SIunit <- names(units)[units == units[[i]]]
+    }
+  }
+  if (SIunit == "kt") {
+    scale_val <- round_any(value / scale, 0.1)
+  } else {
+    scale_val <- round_any(value / scale, 1)
+  }
+  text <- paste0(scale_val, SIunit)
+  text[value == 0] <- ""
+  text
+}
+

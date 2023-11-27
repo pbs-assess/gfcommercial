@@ -29,49 +29,24 @@ tidy_cumulative_counts <- function (data,
 
   if (nrow(data) > 0) {
 
-    # Calculate week of year -----------------------------------------------------
+    # Calculate week of year ---------------------------------------------------
 
     if (variable == "catch") {
       data <- data %>%
-        dplyr::mutate(week = lubridate::week(fe_start_date))
+        dplyr::mutate(week = lubridate::week(best_date))
     } else if (variable == "samples") {
       data <- data %>%
         dplyr::mutate(week = lubridate::week(trip_start_date))
     }
 
-    # Split data for areas and total ---------------------------------------------
+    # Split data for areas and total -------------------------------------------
 
     # Areas
+    areas <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B")
     data_areas <- data %>%
-      dplyr::mutate(
-        area_chars = substr(major_stat_area_name, 1, 2),
-        area = ifelse(
-          area_chars == "5E", "5E",
-          ifelse(
-            area_chars %in% "5D", "5D",
-            ifelse(
-              area_chars %in% "5C", "5C",
-              ifelse(
-                area_chars %in% "5B", "5B",
-                ifelse(
-                  area_chars %in% "5A", "5A",
-                  ifelse(
-                    area_chars %in% "3D", "3D",
-                    ifelse(
-                      area_chars %in% "3C", "3C",
-                      ifelse(
-                        area_chars == "4B", "4B", NA_character_
-                      )
-                    )
-                  )
-                )
-              )
-            )
-          )
-        )
-      ) %>%
-      dplyr::select(-area_chars) %>%
-      tidyr::drop_na(area)
+      dplyr:: mutate(area = assign_areas(major_stat_area_name, areas))
+    data_areas <- data_areas[!is.na(data_areas$area), , drop = FALSE]
+
     # Total
     data_total <- data_areas %>%
       dplyr::mutate(area = "Total")
@@ -82,7 +57,13 @@ tidy_cumulative_counts <- function (data,
     # Define counts --------------------------------------------------------------
 
     if (variable == "catch") {
-      counts <- data %>%
+      temp <- data %>%
+        dplyr::rowwise() %>%
+        dplyr::mutate(total_kg = sum(c(landed_kg, discarded_kg))) %>%
+        dplyr::ungroup()
+
+
+      counts <- temp %>%
         dplyr::group_by(
           species_common_name,
           area,
@@ -90,8 +71,13 @@ tidy_cumulative_counts <- function (data,
           week
         ) %>%
         dplyr::summarise(
-          counts = sum(!is.na(landed_kg)))
+          counts = sum(total_kg)) %>%
+        dplyr::ungroup()
+
     } else if (variable == "samples") {
+      data <- data %>%
+        dplyr::filter(trip_sub_type_desc != "RECREATIONAL")
+
       counts <- data %>%
         dplyr::group_by(
           species_common_name,
@@ -100,14 +86,14 @@ tidy_cumulative_counts <- function (data,
           week
         ) %>%
         dplyr::summarise(
-          counts = sum(!is.na(unique(specimen_id)))
+          counts = n()
         )
     }
 
     # Remove data points where week is NA
 
-    counts <- subset(counts,
-                     !is.na(week))
+    # counts <- subset(counts,
+    #                  !is.na(week))
 
     # Fill in missing weeks with zero ------------------------------------------
 
@@ -174,7 +160,8 @@ tidy_cumulative_counts <- function (data,
       area,
       year
     ) %>%
-    dplyr::mutate(proportion = cumulative_counts/max(cumulative_counts))
+    dplyr::mutate(proportion = cumulative_counts/max(cumulative_counts)) %>%
+    dplyr::mutate(n = max(cumulative_counts))
 
   proportions[is.na(proportions)] <- 0
 
