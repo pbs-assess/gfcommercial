@@ -2,7 +2,7 @@
 
 # Results {#sec:synopsis-plots}
 
-This section contains the main species-by-species data visualizations. Each
+This section contains the species-by-species data visualizations. Each
 species is shown on four pages with the same layout used throughout. See
 the previous 'Plot descriptions' section for detailed figure captions. In addition
 to the figures, we also provide the scientific name, taxonomic details, DFO
