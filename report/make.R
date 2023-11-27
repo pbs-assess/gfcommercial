@@ -21,7 +21,7 @@ spp$species_common_name[spp$species_common_name == "rougheye blackspotted rockfi
 
 filenames <- file.path(data_cache_path, paste0(spp$spp_w_hyphens, ".rds"))
 
-# Update data cache
+# Update data cache ------------------------------------------------------------
 for (i in seq_along(spp$species_common_name)) {
   .s <- spp$species_common_name[i]
   cat(.s, "\n")
@@ -38,7 +38,29 @@ for (i in seq_along(spp$species_common_name)) {
   }
 }
 
-# Gather and arrange some metadata
+# Calculate proportion of data from at-sea or dockside -------------------------
+
+# ls_data_source <- lapply(spp$spp_w_hyphens, data_source)
+#
+# column_names <- c("species", "dockside", "atsea")
+# sources <- data.frame(matrix(nrow = 0, ncol = length(column_names)))
+# colnames(sources) <- column_names
+#
+# for (i in seq_along(spp$spp_w_hyphens)) {
+#   sources[i,] <- data.frame(
+#     species = ls_data_source[[i]]$species,
+#     dockside = ls_data_source[[i]]$dockside,
+#     atsea = ls_data_source[[i]]$atsea
+#   )
+# }
+#
+# write.csv(sources, paste0(here::here("data"), "/", "data_sources", ".csv"), row.names = FALSE)
+
+data_sources <- read.csv(paste0(here::here("data"), "/", "data_sources", ".csv"), row.names = NULL)
+
+
+# Gather and arrange some metadata ---------------------------------------------
+
 if (!file.exists(here::here("report", "itis.rds"))) {
   cls <- taxize::classification(spp$itis_tsn[!is.na(spp$itis_tsn)], db = 'itis')
   saveRDS(cls, file = here::here("report", "itis.rds"))
@@ -86,16 +108,19 @@ summaries <- readr:: read_csv(here::here("report/spp_summaries.csv"), show_col_t
 
 spp <- dplyr::left_join(spp, summaries, by = "species_common_name")
 
+spp <- spp %>%
+  dplyr::arrange(species_code)
 
 # Check for and make missing species plot pages --------------------------------
 missing_spp <- NULL
 
 # Check figs folder if any species missing
 for (i in 1:length(spp_list)) {
-  fig_check <- paste0(here::here("report", "figs"), "/", spp_list[i])
+  fig_check <- paste0(here::here("report", "report-rmd", "figs"), "/", spp_list[i])
   fig_check1 <- paste0(fig_check, "-pg-1", ext)
   fig_check2 <- paste0(fig_check, "-pg-2", ext)
   fig_check3 <- paste0(fig_check, "-pg-3", ext)
+  fig_check4 <- paste0(fig_check, "-pg-4", ext)
 
   missing <- !file.exists(fig_check1) | !file.exists(fig_check2) | !file.exists(fig_check3)
 
@@ -112,6 +137,7 @@ for (i in 1:length(missing_spp)) {
   plot_layout_pg_1(missing_spp[i])
   plot_layout_pg_2(missing_spp[i])
   plot_layout_pg_3(missing_spp[i])
+  plot_layout_pg_4(missing_spp[i])
 }
 )
 # Generate plot-pages.RMD ------------------------------------------------------
@@ -260,11 +286,9 @@ temp <- lapply(spp$species_common_name, function(x) {
   }
   out[[i]] <- paste0("\n", summary_pgraph)
   i <- i + 1
-  # out[[i]] <- "\\clearpage"
-  # i <- i + 1
   out[[i]] <- "\\begin{figure}[b!]"
   i <- i + 1
-  out[[i]] <- paste0("\\centering\\includegraphics[width=6.6in]{report/figs/",
+  out[[i]] <- paste0("\\centering\\includegraphics[width=6.8in]{figs/",
                      spp_hyphen, "-pg-1", ext, "}")
   i <- i + 1
   out[[i]] <- "\\end{figure}"
@@ -273,7 +297,7 @@ temp <- lapply(spp$species_common_name, function(x) {
   i <- i + 1
   out[[i]] <- "\\begin{figure}[b!]"
   i <- i + 1
-  out[[i]] <- paste0("\\centering\\includegraphics[width=6.1in]{report/figs/",
+  out[[i]] <- paste0("\\centering\\includegraphics[width=6.8in]{figs/",
                      spp_hyphen, "-pg-2", ext, "}")
   i <- i + 1
   out[[i]] <- "\\end{figure}"
@@ -282,8 +306,17 @@ temp <- lapply(spp$species_common_name, function(x) {
   i <- i + 1
   out[[i]] <- "\\begin{figure}[b!]"
   i <- i + 1
-  out[[i]] <- paste0("\\centering\\includegraphics[width=6.1in]{report/figs/",
+  out[[i]] <- paste0("\\centering\\includegraphics[width=6.8in]{figs/",
                      spp_hyphen, "-pg-3", ext, "}")
+  i <- i + 1
+  out[[i]] <- "\\end{figure}"
+  i <- i + 1
+  out[[i]] <- "\\clearpage"
+  i <- i + 1
+  out[[i]] <- "\\begin{figure}[b!]"
+  i <- i + 1
+  out[[i]] <- paste0("\\centering\\includegraphics[width=6.1in]{figs/",
+                     spp_hyphen, "-pg-4", ext, "}")
   i <- i + 1
   out[[i]] <- "\\end{figure}\n"
   i <- i + 1
@@ -294,7 +327,7 @@ temp <- lapply(spp$species_common_name, function(x) {
 temp <- lapply(temp, function(x) paste(x, collapse = "\n"))
 temp <- paste(temp, collapse = "\n")
 temp <- c("<!-- This page has been automatically generated: do not edit by hand -->\n", temp)
-con <- file(file.path(build_dir, "04-plot-pages.Rmd"), encoding = "UTF-8")
+con <- file(file.path(build_dir, "05-plot-pages.Rmd"), encoding = "UTF-8")
 writeLines(temp, con = con)
 
 
