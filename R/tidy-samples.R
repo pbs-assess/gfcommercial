@@ -41,7 +41,6 @@ my_tidy_samples <- function(dat,
                                        `JIG` = "Hook and line",
                                        `TROLL` = "Hook and line",
                                        `GILLNET` = "Unknown/trawl",
-                                       `RECREATIONAL ROD & REEL` = "Hook and line",
                                        `SHRIMP TRAWL` = "Unknown/trawl"
                                        )
                   )

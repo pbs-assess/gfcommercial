@@ -92,6 +92,10 @@ tidy_commercial_counts <- function (data,
     data <- dplyr::bind_rows(data_areas, data_total) %>%
       dplyr::mutate(area = factor(area, levels = area_levels))
 
+    # Filter out recreational sourced data
+    data <- data %>%
+      dplyr::filter(trip_sub_type_desc != "RECREATIONAL")
+
     # Define counts ------------------------------------------------------------
 
     counts <- data %>%
