@@ -1,0 +1,71 @@
+\clearpage
+
+# Plot Descriptions {#sec:plot-descriptions}
+
+```{r, "load-example-figs", echo = FALSE, include = FALSE}
+
+library(dplyr)
+#library(patchwork)
+#lapply(list.files("R", full.names = TRUE), source)
+
+sp <- "Pacific Ocean Perch"
+sp_hyphens <- "pacific-ocean-perch"
+
+fl_path_exs <- here::here("report", "example-figs")
+fl_type = ".png"
+
+```
+
+This section provides captions for each of the visualizations that form the species-by-species pages.
+`r sp` is used as an example species for all plots.
+
+
+## Commercial catch plot
+
+```{r, "catch", warning = FALSE, echo = FALSE, fig.pos='htb', fig.align='center', out.width="6.5in", fig.cap = paste0("Example commercial fishery catch plots for ", sp, ". The commercial catch plot is calculated as the summed weight of landings aggregated by year, and the commercial specimens plot is calculated as the sum of individual specimens sampled by year. Catch from various gear types is indicated by colour. Discards include reported discard weights from all fisheries (gear types) combined; however, bottom trawl discards are considered less reliable prior to 100\\% observer coverage in 1996 and trap, hook and line, midwater trawl, and Strait of Georgia bottom trawl discards are less reliable prior to fisheries integration in 2006 and are therefore not included. Years before 2006 are shaded grey to indicate that catches are considered less reliable than modern data: an electronic monitoring program was implemented for non-trawl sectors in 2006.")}
+
+knitr::include_graphics(paste0(fl_path_exs,"/",sp_hyphens, "-ex-1", fl_type))
+
+```
+
+\clearpage
+
+## Available biological samples {#sec:bio-samples}
+
+```{r, "samples", warning = FALSE, echo = FALSE, fig.pos='htb', fig.align='center', out.width="6.5in", fig.cap = paste0("Example specimen-availability plot for ", sp, ". This plot displays the number of individual fish specimens that we have the following data available: length, weight, maturity, age, age structures, and the number of fishing events. Here, 'age structures' means that an age structure has been collected, but the age as not necessarily been assessed and 'age' means that the age has been assessed from the ageing structure. Data are separated whether the samples came from a sorted or unsorted specimen, by year, and by major management area. 'Sorted' specimens had data collected after they have already been sorted into 'keepers' or 'discards' by the commercial fishing boat. Blank panels indicate year-measurement combinations without any data. Shading of these cells reflects the relative number of specimens available with the actual number of specimens indicated in the cells to the nearest round number.")}
+
+knitr::include_graphics(paste0(fl_path_exs,"/",sp_hyphens, "-ex-2", fl_type))
+
+```
+
+\clearpage
+
+## Representativeness plot
+
+```{r, "representativeness", warning = FALSE, echo = FALSE, fig.pos='htb', fig.align='center', out.width="6.5in", fig.cap = paste0("Example representativeness plot for ", sp, ". The purpose of this plot is to illustrate whether specimen sampling occured evenly across the management areas and throughout the year and are representative of the commercial fishing effort (i.e., are the data collected representative of the whole population). The thicker orange line represents the cumulative proportion of samples collected over time with the total number of individual specimens collected in the bottom right-hand corner for each panel. The thin black line represents the cumulative proportion of catch over time with the total kilograms landed in the top left-hand corner for each panel.")}
+
+knitr::include_graphics(paste0(fl_path_exs,"/",sp_hyphens, "-ex-3", fl_type))
+
+```
+
+\clearpage
+
+## Age composition data
+
+```{r, "ages", warning = FALSE, echo = FALSE, fig.pos='htb', fig.align='center', out.width="6.5in", fig.cap = paste0("Example age-frequency plot for ", sp,". Male fish are shown in the top plot as green coloured circles and female fish are shown in the bottom plot as purple coloured circles. The grey circles represent age data from sorted specimens in both the male and female plots. The size of the bubble represents the relative abundance of individuals of that age. Diagonal lines are shown at five-year intervals to facilitate tracing cohorts through time.")}
+
+knitr::include_graphics(paste0(fl_path_exs,"/",sp_hyphens, "-ex-4", fl_type))
+
+```
+
+\clearpage
+
+## Length composition data
+
+```{r, "lengths", warning = FALSE, echo = FALSE, fig.pos='htb', fig.align='center', out.width="6.5in", fig.cap = paste0("Example length-frequency histogram for ", sp, ". The total number of unsorted specimens measured for a given area and year are indicated in the top left corner of each panel. The number of sorted specimens (not plotted) are indicated in the top right corner of each panel, in blue. The orange bars are female fish and the grey bars are male fish. The black line is the outline of an aggregate histogram of male, female, and unsexed individuals.")}
+
+knitr::include_graphics(paste0(fl_path_exs,"/",sp_hyphens, "-ex-5", fl_type))
+  
+```
+
+\clearpage

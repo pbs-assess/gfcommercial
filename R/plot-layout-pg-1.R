@@ -3,10 +3,10 @@
 plot_layout_pg_1 <- function(spp,
                              years = 1996:2022,
                              fl_path_data = here::here("data-cache"),
-                             fl_path_store = here::here("report", "figs"),
+                             fl_path_store = here::here("report", "report-rmd", "figs"),
                              fl_type = ".png",
-                             width = 420,
-                             height = 320,
+                             width = 300,
+                             height = 200,
                              units = "mm",
                              dpi = 600,
                              debug = FALSE
@@ -16,36 +16,27 @@ plot_layout_pg_1 <- function(spp,
 
   data <- readr::read_rds(paste0(fl_path_data, "/", spp, ".rds"))
 
+  # Commercial catch plot ------------------------------------------------------
+
+  comm_catch <- data$catch
+
+  catch <- catch_total(comm_catch,
+                       years = years)
+
+  p1 <- plot_catches(catch, years = years)
+
+  # Commercial samples by gear type --------------------------------------------
 
   comm_samples <- data$commercial_samples
 
+  samples <- samples_total(comm_samples,
+                           years = years)
 
-  # Commercial counts plot -----------------------------------------------------
+  p2 <- plot_samples(samples, years = years)
 
-  comm_samples_sort <- subset(comm_samples,
-                              comm_samples$sampling_desc == "DISCARDS" | comm_samples$sampling_desc == "KEEPERS")
-  comm_samples_unsort <- subset(comm_samples,
-                                comm_samples$sampling_desc == "UNSORTED")
-
-  counts_sort <- tidy_commercial_counts(comm_samples_sort,
-                                        years = years)
-
-  counts_unsort <- tidy_commercial_counts(comm_samples_unsort,
-                                          years = years)
-
-  p3_sort <- plot_commercial_counts(counts_sort,
-                                    years = years,
-                                    sorted = TRUE)
-
-  p3_unsort <- plot_commercial_counts(counts_unsort,
-                                      years = years,
-                                      sorted = FALSE)
-
-
-  # Arranging plots  -----------------------------------------------------------
-
-  p_counts <- cowplot::plot_grid(p3_sort, p3_unsort,
-                                 ncol = 2, nrow = 1, align = "h", axis = "tb")
+  # Make plot ------------------------------------------------------------------
+  p <- cowplot::plot_grid(p1, p2,
+                          ncol = 2, nrow = 1, align = "h", axis = "tb")
 
   # Save plot ------------------------------------------------------------------
 
@@ -55,7 +46,7 @@ plot_layout_pg_1 <- function(spp,
   # Save ggplot
   ggplot2::ggsave(
     paste0(fl_path_store,"/", plot_name, fl_type),
-    plot = p_counts,
+    plot = p,
     width = width,
     height = height,
     units = units,

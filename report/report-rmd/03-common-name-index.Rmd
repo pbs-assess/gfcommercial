@@ -1,0 +1,46 @@
+\clearpage
+
+# Species Index by Common Name {#sec:common-name-index}
+
+```{r, echo = FALSE, include = FALSE}
+
+library(gfsynopsis)
+
+get_spp_names <- function(file = NULL) {
+
+  spp <- utils::read.csv(file, strip.white = TRUE, stringsAsFactors = FALSE,
+                         comment.char = "#")
+  #spp <- dplyr::filter(spp, !is.na(species_code))
+  #spp$species_code <- sprintf(paste0("%0", 3L, "d"), spp$species_code)
+  spp$species_common_name <- tolower(gsub(" $", "", spp$species_common_name))
+
+  # Not in databases at all:
+  spp <- spp[!duplicated(spp), , drop = FALSE]
+  spp$spp_w_hyphens <- gsub("/", "-", gsub(" ", "-", spp$species_common_name))
+  stopifnot(sum(duplicated(spp$species_common_name)) == 0)
+  tibble::as_tibble(spp)
+}
+
+
+```
+
+```{r index-alpha-common, results='asis', cache=FALSE}
+file <- here::here("data", "species.csv")
+.spp <- get_spp_names(file)
+spp_table <- .spp %>%
+  mutate(species_common_name = gfsynopsis:::first_cap(species_common_name)) %>%
+  mutate(section = paste0("\\pageref{sec:", spp_w_hyphens, "}")) %>%
+  mutate(species_science_name = paste0("*", gfplot:::firstup(species_science_name), "*")) %>%
+  mutate(species_science_name = gsub("Sebastes aleutianus\\/melanostictus complex",
+    "S. aleutianus/melanostictus complex", species_science_name)) %>% 
+  mutate(species_common_name = gsub("C-o Sole", "C-O Sole", species_common_name)) %>%
+  mutate(species_common_name = gsub("Rougheye\\/blackspotted Rockfish Complex", 
+    "Rougheye/Blackspotted Rockfish", species_common_name))
+
+spp_table %>% arrange(species_common_name) %>%
+  select(species_common_name, species_science_name, section) %>%
+  csasdown::csas_table(align = c("l", "l", "l"),
+   col.names = c("Common name", "Scientific name", "Page"))
+```
+
+\clearpage
