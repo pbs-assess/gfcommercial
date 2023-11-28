@@ -9,7 +9,7 @@ plot_layout_pg_4 <- function(spp,
                              width = 300,
                              height = 450,
                              units = "mm",
-                             dpi = 600
+                             dpi = 200
 ) {
 
   # Read in data  --------------------------------------------------------------

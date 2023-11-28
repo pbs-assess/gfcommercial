@@ -8,7 +8,7 @@ plot_layout_pg_2 <- function(spp,
                              width = 420,
                              height = 320,
                              units = "mm",
-                             dpi = 600,
+                             dpi = 200,
                              debug = FALSE
 ) {
 
