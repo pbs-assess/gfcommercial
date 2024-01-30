@@ -1,9 +1,9 @@
 book_filename: "techreport"
 chapter_name: "Chapter "
 rmd_files: ["index.Rmd",
-            "01-introduction.Rmd",
-            "02-plot-descriptions.Rmd",
-            "03-common-name-index.Rmd",
+            "01-common-name-index.Rmd",
+            "02-introduction.Rmd",
+            "03-plot-descriptions.Rmd",
             "04-plots-intro.Rmd",
             "05-plot-pages.Rmd",
             "06-discussion.Rmd",
