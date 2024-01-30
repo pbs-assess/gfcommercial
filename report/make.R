@@ -246,7 +246,9 @@ temp <- lapply(spp$species_common_name, function(x) {
       out[[i]] <- paste0("COSEWIC Status", ": ", cosewic_status)
       if (!is.na(sara_status)) {
         if (sara_status != "") {
-          out[[i]] <- paste0(out[[i]], ", ", "SARA Status", ": ", sara_status)
+          if (sara_status != "No Status") {
+            out[[i]] <- paste0(out[[i]], ", ", "SARA Status", ": ", sara_status)
+          }
         }
       }
       i <- i + 1
@@ -258,13 +260,12 @@ temp <- lapply(spp$species_common_name, function(x) {
     out[[i]] <- paste0("COSEWIC Status", ": ", "Special Concern", ", ", "SARA Status", ": ", "Special Concern")
     i <- i + 1
   }
-  # out[[i]] <- "\n"
-  # i <- i + 1
+  out[[i]] <- "\n"
+  i <- i + 1
   if (species_code == "225") {
       out[[i]] <- "\nNote that Pacific Hake undergoes a directed joint
-      Canada-US coastwide survey and annual assessment, which are not
-      included in this report. The most recent stock assessment
-      should be consulted for details on stock status."
+      Canada-US coastwide survey and annual assessment. The most recent stock
+      assessment should be consulted for details on stock status."
       # out[[i]] <- paste0(out[[i]], "\n")
       i <- i + 1
   }
@@ -278,8 +279,7 @@ temp <- lapply(spp$species_common_name, function(x) {
   }
   if (species_code == "455") {
       out[[i]] <- "\nNote that Sablefish undergoes directed annual trap surveys,
-      which are used for stock assessment and are not included in
-      this report. The most recent stock assessment should be
+      which are used for stock assessment. The most recent stock assessment should be
       consulted for details on stock status."
     # out[[i]] <- paste0(out[[i]], "\n")
     i <- i + 1
