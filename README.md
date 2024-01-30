@@ -22,19 +22,19 @@ remotes::install_github("pbs-assess/csasdown")
 
 
 ## Use
-All the `.Rmd` files used to create the tech report are found in the report/ 
-report-rmd/ folder.
+All the `.Rmd` files used to create the tech report are found in the 
+report/report-rmd/ folder.
 
 The `make.R` script (found in the report/ folder) contains all the code to create 
 the species specific pages. This script pulls data from the databases, creates 
-the figures (and writes them to the report/ report-rmd/ figs/ folder), 
+the figures (and writes them to the report/report-rmd/figs/ folder), 
 and generates the `05-plot-pages.Rmd` file. 
 
 To render the report, open `index.Rmd` in RStudio and then click the knit button.
 
 
 ## Output
-The `csasdown` package writes the tech report to the report/ report-rmd/ _book/ 
+The `csasdown` package writes the tech report to the report/report-rmd/_book/ 
 folder.
 
 
