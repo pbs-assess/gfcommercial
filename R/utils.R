@@ -84,3 +84,23 @@ catch_rounding <- function(value,
   text
 }
 
+
+# Adopted from gfplot
+bin_lengths <- function(dat, value, bin_size) {
+  value <- enquo(value)
+  bin_range <- dat %>%
+    select(!!value) %>%
+    pull() %>%
+    range()
+  bin_range[1] <- round_down_even(bin_range[1])
+  bin_range[2] <- ceiling(bin_range[2])
+  bins <- seq(min(bin_range), max(bin_range), by = bin_size)
+  mutate(dat, !!quo_name(value) :=
+           bins[findInterval(!!value, bins)] + bin_size / 2)
+}
+
+# Adopted from gfplot
+round_down_even <- function(x, base = 2) {
+  base * floor(x / base)
+}
+
