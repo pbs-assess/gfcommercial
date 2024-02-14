@@ -20,7 +20,7 @@ plot_samples <- function(dat,
 
   year_range = c(min(years), max(years))
 
-  unreliable <- c(1996, 2006)
+  unreliable <- c(1995, 2005.5)
 
   # Plot samples ---------------------------------------------------------------
 
