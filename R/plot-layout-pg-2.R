@@ -19,6 +19,12 @@ plot_layout_pg_2 <- function(spp,
 
   comm_samples <- data$commercial_samples
 
+  if (spp == "sablefish") {
+    sablefish <- sablefish_heads()
+
+    comm_samples <- dplyr::bind_rows(comm_samples, sablefish)
+  }
+
 
   # Commercial counts plot -----------------------------------------------------
 

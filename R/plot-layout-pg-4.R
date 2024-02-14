@@ -18,6 +18,12 @@ plot_layout_pg_4 <- function(spp,
 
   comm_samples <- data$commercial_samples
 
+  if (spp == "sablefish") {
+    sablefish <- sablefish_heads()
+
+    comm_samples <- dplyr::bind_rows(comm_samples, sablefish)
+  }
+
   # Age frequency plot ---------------------------------------------------------
 
   ages_unsorted <- tidy_ages(comm_samples,
@@ -95,5 +101,4 @@ plot_layout_pg_4 <- function(spp,
                   units = units,
                   dpi = dpi
   )
-
 }
