@@ -13,7 +13,7 @@ plot_catches <- function(dat, blank_plot = FALSE, years = NULL,
 
   # Plot catches ---------------------------------------------------------------
 
-  g <- gfplot::plot_catch(dat, xlim = year_range, french = french, ...) +
+  g <- gfplot::plot_catch(dat, xlim = year_range, french = french, unreliable = c(1995, 2005.5), ...) +
     #ggplot2::theme(panel.spacing = ggplot2::unit(-0.1, "lines")) +
     ggplot2::theme(
       strip.background = ggplot2::element_blank(),
