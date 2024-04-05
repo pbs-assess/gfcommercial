@@ -6,7 +6,7 @@ plot_layout_pg_1 <- function(spp,
                              fl_path_store = here::here("report", "report-rmd", "figs"),
                              fl_type = ".png",
                              width = 300,
-                             height = 200,
+                             height = 225,
                              units = "mm",
                              dpi = 200,
                              debug = FALSE

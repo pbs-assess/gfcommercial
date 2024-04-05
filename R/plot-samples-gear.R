@@ -22,6 +22,21 @@ plot_samples <- function(dat,
 
   unreliable <- c(1995, 2005.5)
 
+  # Scale ----------------------------------------------------------------------
+
+  ylab <- "Count"
+  units <- c(` (x 1000)` = 1000,` ` = 1)
+
+  scale_val <- units[[1]]
+  ylab_gg <- paste0(ylab, " (", names(units)[1], ")")
+
+  for (i in seq_along(units)) {
+    if (max(dat$value, na.rm = TRUE) < (1000 * units[[i]])) {
+      scale_val <- units[[i]]
+      ylab_gg <- paste0(ylab, names(units)[i])
+    }
+  }
+
   # Plot samples ---------------------------------------------------------------
 
   gears <- c("Bottom trawl",
@@ -33,7 +48,6 @@ plot_samples <- function(dat,
              )
 
   pal <- c(RColorBrewer::brewer.pal(n = length(gears) - 2, "Paired"), "grey60", "grey30")[c(2, 1, 4, 3, 5, 6)]
-
   names(pal) <- gears
 
   dat$gear <- factor(dat$gear, levels = gears)
@@ -55,12 +69,10 @@ plot_samples <- function(dat,
   g <- ggplot2::ggplot(data = dat)
 
   g <- g +
-    ggplot2::geom_vline(xintercept = seq(yrs[1], yrs[2]), col = "grey98") +
-    ggplot2::geom_vline(xintercept = seq(mround(yrs[1], 5), yrs[2], 5), col = "grey95")
-
-  scale_val <- 1
-
-  ylab_gg <- "Count"
+    ggplot2::geom_vline(xintercept = seq(yrs[1]+0.5, yrs[2]+0.5),
+                        col = "grey98") +
+    ggplot2::geom_vline(xintercept = seq(mround(yrs[1], 5)+0.5, yrs[2]+0.5, 5),
+                        col = "grey95")
 
   stacked_data <- group_by(dat, area, year) %>%
     summarise(samples = sum(value / scale_val, na.rm = FALSE))
@@ -70,7 +82,8 @@ plot_samples <- function(dat,
       g <- g + ggplot2::geom_rect(
         data = data.frame(x = NA), # fake
         xmin = year_range[1] - 1,
-        xmax = unreliable[[i]], ymin = 0,
+        xmax = unreliable[[i]],
+        ymin = 0,
         ymax = max(stacked_data$samples, na.rm = TRUE) * 1.07,
         fill = "#00000010", inherit.aes = FALSE
       )
@@ -79,7 +92,8 @@ plot_samples <- function(dat,
 
   if (!blank_plot) {
     g <- g + ggplot2::geom_col(data = dat,
-                               ggplot2::aes(year, value/scale_val,
+                               ggplot2::aes(year,
+                                            value/scale_val,
                                             colour = gear,
                                             fill = gear)
                                )
@@ -147,14 +161,16 @@ plot_samples <- function(dat,
 
   g <- g + ggplot2::theme(plot.title = ggplot2::element_text(size = 17),
                           legend.justification = c(0, 1),
-                          legend.position = c(0, 0.2),
+                          legend.position = c(0, 0.19),
                           legend.text = ggplot2::element_text(size = 9),
                           legend.background = ggplot2::element_blank(),
                           legend.direction = "horizontal",
-                          axis.title.y = ggplot2::element_text(size = 14),
                           axis.text.x = ggplot2::element_text(size = 12),
                           axis.text.y.right = ggplot2::element_text(size = 10),
-                          plot.margin = ggplot2::unit(c(0.2, 0.2, -0.2, 0.2), "cm"),
+                          axis.title.y.right = ggplot2::element_text(size = 14,
+                                                                     margin = ggplot2::margin(l = 8)),
+                          panel.spacing = ggplot2::unit(0.6, "lines"),
+                          plot.margin = ggplot2::unit(c(0.1, 0.1, -0.5, 0.2), "cm"),
                           axis.text.y.left = ggplot2::element_blank()
                           ) +
     ggplot2::guides(fill = ggplot2::guide_legend(nrow = 2)) +
