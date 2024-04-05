@@ -5,8 +5,8 @@ plot_layout_pg_2 <- function(spp,
                              fl_path_data = here::here("data-cache"),
                              fl_path_store = here::here("report", "report-rmd", "figs"),
                              fl_type = ".png",
-                             width = 420,
-                             height = 320,
+                             width = 430,
+                             height = 335,
                              units = "mm",
                              dpi = 200,
                              debug = FALSE
@@ -50,13 +50,13 @@ plot_layout_pg_2 <- function(spp,
 
   # Arranging plots  -----------------------------------------------------------
 
-  p_counts <- cowplot::plot_grid(p3_sort, p3_unsort,
+  p_counts <- cowplot::plot_grid(p3_unsort, p3_sort,
                                  ncol = 2, nrow = 1, align = "h", axis = "tb")
 
   # Save plot ------------------------------------------------------------------
 
   # Plot name
-  plot_name <- paste0(spp, "-pg-2")
+  plot_name <- paste0(spp, "-pg-2.3")
 
   # Save ggplot
   ggplot2::ggsave(

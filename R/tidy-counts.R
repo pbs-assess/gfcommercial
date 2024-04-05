@@ -18,7 +18,7 @@ tidy_commercial_counts <- function (data,
 
   # Define count type ----------------------------------------------------------
 
-  type <- c("age", "ageing_structure", "length", "weight", "maturity", "fishing_events")
+  type <- c("age", "ageing_structure", "length", "weight", "maturity", "spatial", "fishing_events")
 
   # Define years ---------------------------------------------------------------
 
@@ -96,6 +96,30 @@ tidy_commercial_counts <- function (data,
     data <- data %>%
       dplyr::filter(trip_sub_type_desc != "RECREATIONAL")
 
+    # Join with fishing event data to get spatially explicit data
+
+    FE_dat <- read.csv(paste0(here::here("data"), "/", "fishing_event.csv"))
+
+    FE_dat <- FE_dat %>%
+      dplyr::select(TRIP_ID, FISHING_EVENT_ID, MAJOR_STAT_AREA_CODE, MINOR_STAT_AREA_CODE, DFO_STAT_AREA_CODE, DFO_STAT_SUBAREA_CODE, # Select relevant columns
+                    FE_START_LATTITUDE_DEGREE, FE_START_LATTITUDE_MINUTE, FE_START_LONGITUDE_DEGREE, FE_START_LONGITUDE_MINUTE,
+                    FE_END_LATTITUDE_DEGREE, FE_END_LATTITUDE_MINUTE, FE_END_LONGITUDE_DEGREE, FE_END_LONGITUDE_MINUTE) %>%
+      dplyr::mutate(FE_START_LATTITUDE_MINUTE = as.numeric(FE_START_LATTITUDE_MINUTE), # Turn character variables into numeric
+                    FE_START_LONGITUDE_DEGREE = as.numeric(FE_START_LONGITUDE_DEGREE),
+                    FE_START_LONGITUDE_MINUTE = as.numeric(FE_START_LONGITUDE_MINUTE),
+                    FE_END_LATTITUDE_DEGREE = as.numeric(FE_END_LATTITUDE_DEGREE),
+                    FE_END_LATTITUDE_MINUTE = as.numeric(FE_END_LATTITUDE_MINUTE),
+                    FE_END_LONGITUDE_DEGREE = as.numeric(FE_END_LONGITUDE_DEGREE),
+                    FE_END_LONGITUDE_MINUTE = as.numeric(FE_END_LONGITUDE_MINUTE)) %>%
+      unique()
+
+    # All spatially explicit specimens must have degreens and minutes for latitude or longitude, start or finish
+    # Confirmed April 5, 2024
+
+
+    data <- dplyr::left_join(data, FE_dat, by = join_by(trip_id == TRIP_ID, fishing_event_id == FISHING_EVENT_ID), keep = TRUE)
+
+
     # Define counts ------------------------------------------------------------
 
     counts <- data %>%
@@ -112,6 +136,7 @@ tidy_commercial_counts <- function (data,
         length = sum(!is.na(length) & length > 0),
         weight = sum(!is.na(weight) & weight > 0),
         maturity = sum(!is.na(maturity_code) & maturity_code > 0),
+        spatial = sum(!is.na(FE_START_LATTITUDE_DEGREE)),
         fishing_events = sum(!is.na(unique(fishing_event_id)))
       ) %>%
       dplyr::ungroup() %>%
@@ -123,7 +148,7 @@ tidy_commercial_counts <- function (data,
       dplyr::mutate(
         type = factor(
           type,
-          levels = c("age", "ageing_structure", "length", "weight", "maturity", "fishing_events")
+          levels = c("age", "ageing_structure", "length", "weight", "maturity", "spatial", "fishing_events")
         )
       ) %>%
       dplyr::arrange(

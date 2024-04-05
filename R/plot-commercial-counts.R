@@ -71,6 +71,7 @@ plot_commercial_counts <- function (data,
             "# Maturity",
             "# Age",
             "# Age structures",
+            "# Spatial",
             "# Fishing events"
           )
         )
@@ -81,12 +82,17 @@ plot_commercial_counts <- function (data,
     dplyr::mutate(n = as.numeric(n),
                   n = ifelse(is.na(n), 0, n))
 
+  data <- data %>%
+    dplyr::group_by(area, type) %>%
+    dplyr::mutate(type_scl = (n - min(n))/(max(n)-min(n))) %>%
+    dplyr::mutate(type_scl = ifelse(is.na(type_scl), NA,ifelse(type_scl == 0, NA,type_scl)))
+
   # Plot specimen counts -------------------------------------------------------
   if (sum(data$n) == 0) {
 
     p1 <- ggplot2::ggplot(
       data,
-      mapping = ggplot2::aes(year, type, fill = n_plot)
+      mapping = ggplot2::aes(year, type, fill = type_scl)
     ) +
       ggplot2::geom_tile(colour = "grey90") +
       ggplot2::facet_grid(rows = ggplot2::vars(area)) +
@@ -109,7 +115,7 @@ plot_commercial_counts <- function (data,
       ggplot2::geom_text(
         ggplot2::aes(x = year, label = n_text),
         colour = text_colour,
-        size = 3.1,
+        size = 3.2,
         alpha = 1,
         na.rm = TRUE,
         vjust = 0.4
@@ -122,6 +128,7 @@ plot_commercial_counts <- function (data,
         axis.ticks.y = ggplot2::element_blank(),
         strip.text.y = ggplot2::element_text(angle = 0, size = 10),
         legend.position = "none",
+        panel.spacing = ggplot2::unit(0.7, "lines"),
         plot.margin = ggplot2::unit(c(0, 0, 0, 0), "cm")
       )
 
@@ -129,7 +136,7 @@ plot_commercial_counts <- function (data,
 
     p1 <- ggplot2::ggplot(
       data,
-      mapping = ggplot2::aes(year, type, fill = n_plot)
+      mapping = ggplot2::aes(year, type, fill = type_scl)
     ) +
       ggplot2::geom_tile(colour = "grey90") +
       ggplot2::facet_grid(rows = ggplot2::vars(area)) +
@@ -150,7 +157,7 @@ plot_commercial_counts <- function (data,
       ggplot2::geom_text(
         ggplot2::aes(x = year, label = n_text),
         colour = text_colour,
-        size = 3.1,
+        size = 3.2,
         alpha = 0.8,
         fontface = "bold",
         na.rm = TRUE,
@@ -166,23 +173,25 @@ plot_commercial_counts <- function (data,
           plot.title = ggplot2::element_text(size = 17),
           axis.ticks.x = ggplot2::element_blank(),
           axis.ticks.y = ggplot2::element_blank(),
+          axis.text.y = ggplot2::element_blank(),
           axis.text.x = ggplot2::element_text(size = 13),
-          axis.text.y.left = ggplot2::element_text(size = 13),
-          strip.text.y = ggplot2::element_blank(),
+          strip.text.y = ggplot2::element_text(angle = 0, size = 17),
           legend.position = "none",
-          plot.margin = ggplot2::unit(c(0, 0.5, 0, 0), "cm")
-          )
+          panel.spacing = ggplot2::unit(0.7, "lines"),
+          plot.margin = ggplot2::unit(c(0, -0.1, -0.5, 0), "cm")
+        )
       } else if (sorted == FALSE) {
       p1 <- p1 + ggplot2::theme(
         plot.title = ggplot2::element_text(size = 17),
         axis.ticks.x = ggplot2::element_blank(),
         axis.ticks.y = ggplot2::element_blank(),
-        axis.text.y = ggplot2::element_blank(),
         axis.text.x = ggplot2::element_text(size = 13),
-        strip.text.y = ggplot2::element_text(angle = 0, size = 17),
+        axis.text.y.left = ggplot2::element_text(size = 13),
+        strip.text.y = ggplot2::element_blank(),
         legend.position = "none",
-        plot.margin = ggplot2::unit(c(0, 0.5, 0, 0), "cm")
-        )
+        panel.spacing = ggplot2::unit(0.7, "lines"),
+        plot.margin = ggplot2::unit(c(0, 0.25, -0.5, -0.3), "cm")
+      )
       }
 
   }
