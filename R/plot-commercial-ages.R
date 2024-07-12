@@ -18,6 +18,8 @@ plot_commercial_ages <- function (data,
 
   if (sum(data$age, na.rm = TRUE) > 0) {
     age_max <- max(data$age, na.rm = TRUE)
+  } else if (sum(data_sorted$age, na.rm = TRUE) > 0) {
+    age_max <- max(data_sorted$age, na.rm = TRUE)
   } else {
     age_max <- 1
   }
@@ -73,16 +75,6 @@ plot_commercial_ages <- function (data,
     dplyr::arrange(area, year_jitter, sex)
 
 
-  # Define counts --------------------------------------------------------------
-
-#  counts <- ages_all %>%
-#    dplyr::select(
-#      total,
-#      year,
-#      area
-#    ) %>%
-#    unique()
-
   # Define year range ----------------------------------------------------------
 
   if (is.null(year_range)) {
@@ -105,65 +97,7 @@ plot_commercial_ages <- function (data,
     age_range <- diff(range(data$age, na.rm = TRUE))
   }
 
-  # Define sex as factor -------------------------------------------------------
-
-#  data <- data %>%
- #   dplyr::mutate(sex = factor(sex, levels = c("M", "F"))) %>% # F on top
-  #  dplyr::arrange(area, year, sex)
-
-  # Augment by missing areas ---------------------------------------------------
-
-  # Get area levels
-  # area_levels <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B", "Total")
-  #
-  # data <- data %>%
-  #   dplyr::mutate(area = factor(area, levels = area_levels))
-  #
-  #
-  # if (sex == "M") {
-  #   labels <- data.frame(
-  #     species_common_name = unique(data$species_common_name),
-  #     survey_abbrev = unique(data$survey_abbrev),
-  #     sex = "M",
-  #     area = rep(area_levels,
-  #                each = length(years)*length(seq(0, age_max, by = 1))),
-  #     year = rep(years,
-  #                each = length(seq(0, age_max, by = 1)),
-  #                times = length(area_levels)),
-  #     age = rep(seq(0, age_max, by = 1),
-  #               times = length(area_levels)*length(years))
-  #   )
-  # } else if (sex =="F") {
-  #   labels <- data.frame(
-  #     species_common_name = unique(data$species_common_name),
-  #     survey_abbrev = unique(data$survey_abbrev),
-  #     sex = "F",
-  #     area = rep(area_levels,
-  #                each = length(years)*length(seq(0, age_max, by = 1))),
-  #     year = rep(years,
-  #                each = length(seq(0, age_max, by = 1)),
-  #                times = length(area_levels)),
-  #     age = rep(seq(0, age_max, by = 1),
-  #               times = length(area_levels)*length(years))
-  #   )
-  # }
-  #
-  # ages_all <- dplyr::right_join(data,
-  #                               labels,
-  #                               by = c("species_common_name", "area", "year", "survey_abbrev", "sex", "age"),
-  #                               keep = FALSE)
-  #
-  # ages_all <- ages_all %>%
-  #   dplyr::arrange(area, year, age)
-  #
-  # ages_all$area <- factor(ages_all$area, levels = area_levels)
-  #
-  # ages_all <- ages_all %>%
-  #   dplyr::arrange(area)
-  #
-  # ages_all <- ages_all %>%
-  #   dplyr::mutate(total = if_else(total == 0, NA, total))
-  #
+  # Remove outlier data for ARF
 
   if (unique(data$species_common_name == "arrowtooth flounder")) {
 
@@ -181,8 +115,6 @@ plot_commercial_ages <- function (data,
   }
 
   ages_all <- data
-
-#  fill_col <- rep("#FFFFFF10", length(line_col))
 
 
   # Plot ages ------------------------------------------------------------------

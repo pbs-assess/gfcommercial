@@ -1,23 +1,4 @@
 # Adopted from gfplot
-bin_lengths <- function(dat, value, bin_size) {
-  value <- enquo(value)
-  bin_range <- dat %>%
-    select(!!value) %>%
-    pull() %>%
-    range()
-  bin_range[1] <- round_down_even(bin_range[1])
-  bin_range[2] <- ceiling(bin_range[2])
-  bins <- seq(min(bin_range), max(bin_range), by = bin_size)
-  mutate(dat, !!quo_name(value) :=
-           bins[findInterval(!!value, bins)] + bin_size / 2)
-}
-
-# Adopted from gfplot
-round_down_even <- function(x, base = 2) {
-  base * floor(x / base)
-}
-
-# Adopted from gfplot
 tidy_lengths_comm_raw <- function(dat,
                                   years = NULL,
                                   areas = NULL,
@@ -38,6 +19,7 @@ tidy_lengths_comm_raw <- function(dat,
 
   avg_length <- round_down_even(mean(dat$length))
 
+  # Remove or merge unsex ------------------------------------------------------
   if (remove_unsexed) {
     dat <- dat %>%
       dplyr::filter(sex %in% c(1, 2)
@@ -52,6 +34,7 @@ tidy_lengths_comm_raw <- function(dat,
       dplyr::mutate(sex = 2)
   }
 
+  # Filter years ---------------------------------------------------------------
   dat <- dat %>%
     dplyr::filter(!is.na(year))
 
@@ -60,12 +43,35 @@ tidy_lengths_comm_raw <- function(dat,
   dat <- dat %>%
     dplyr::filter(year >= min(years), year <= max(years))
 
+  # Only plot dominant length type ---------------------------------------------
+  if (length(unique(dat$length_type)) > 1) {
+
+    l_type_counts <- dplyr::count(dat, length_type)
+
+    l_type <- l_type_counts |>
+      dplyr::slice_max(n) |>
+      dplyr::pull(length_type)
+
+    dat <- dat |>
+      dplyr::filter(length_type == l_type)
+
+  } else {
+
+    l_type <- unique(dat$length_type)
+
+  }
+
   # -------------------------------------------
   # Filter down usability codes:
   if (!is.null(usability_codes)) {
     dat <- dat %>%
       dplyr::filter(usability_code %in% usability_codes)
   }
+
+  # Filter out recreational samples
+  dat <- dat |>
+    dplyr::filter(trip_sub_type_desc != "RECREATIONAL") |>
+    dplyr::filter(gear_desc != "RECREATIONAL ROD & REEL")
 
   # Filter down sampling description (sorted vs unsorted, unknown excluded):
   if (sorted) {
@@ -136,12 +142,6 @@ tidy_lengths_comm_raw <- function(dat,
 
     dat$survey_abbrev <- "Commercial"
 
-    pbs_areas <- gfplot::pbs_areas[grep(
-      area_grep_pattern,
-      gfplot::pbs_areas$major_stat_area_description
-    ), , drop = FALSE]
-
-    dat <- dplyr::semi_join(dat, pbs_areas, by = "major_stat_area_code")
   }
 
   # Assign areas (or total)
@@ -222,7 +222,7 @@ tidy_lengths_comm_raw <- function(dat,
   # Retain only necessary columns:
   if (frequency_type == "raw") {
     dat <- dat %>%
-      dplyr::select(species_common_name, survey_abbrev, year, sex, area, length)
+      dplyr::select(species_common_name, survey_abbrev, year, sex, area, length, length_type)
   }
 
   # -------------------------------------------
@@ -234,7 +234,7 @@ tidy_lengths_comm_raw <- function(dat,
     freq <- dat %>%
       dplyr::do(bin_lengths(dat, value = length, bin_size = bin_size)) %>%
       dplyr::rename(length_bin = length) %>%
-      dplyr::group_by(species_common_name, year, length_bin, sex, survey_abbrev, area) %>%
+      dplyr::group_by(species_common_name, year, length_type, length_bin, sex, survey_abbrev, area) %>%
       dplyr::summarise(n = n()) %>%
       dplyr::group_by(year, survey_abbrev) %>%
       dplyr::mutate(proportion = n / sum(n)) %>%
@@ -254,8 +254,8 @@ tidy_lengths_comm_raw <- function(dat,
                              by = c("species_common_name", "year", "survey_abbrev", "area"))
 
     freq <- freq %>%
-      dplyr::select(species_common_name, survey_abbrev, year, area, sex,
-                    length_bin,proportion, total)
+      dplyr::select(species_common_name, survey_abbrev, length_type, year, area, sex,
+                    length_bin, proportion, total)
   }
 
   # ------------------------------------------
@@ -268,12 +268,13 @@ tidy_lengths_comm_raw <- function(dat,
                            survey_abbrev = "Commercial",
                            year = rep(years, times = length(areas)),
                            sex = rep(2, times = length(years)*length(areas)),
-                           area = rep(areas, each = length(years))
+                           area = rep(areas, each = length(years)),
+                           length_type = l_type
       )
 
       join <- dplyr::right_join(freq, labels,
                                 by = c("species_common_name", "survey_abbrev",
-                                       "year", "sex", "area"),
+                                      "length_type", "year", "sex", "area"),
                                 keep = FALSE)
 
       join <- join %>%
@@ -289,12 +290,13 @@ tidy_lengths_comm_raw <- function(dat,
                          survey_abbrev = "Commercial",
                          year = years,
                          sex = rep(2, each = length(years)),
-                         area = rep("Total", each = length(years))
+                         area = rep("Total", each = length(years)),
+                         length_type = l_type
                          )
 
     join <- dplyr::right_join(freq, labels,
                                  by = c("species_common_name", "survey_abbrev",
-                                        "year", "sex", "area"),
+                                        "length_type", "year", "sex", "area"),
                                  keep = FALSE)
 
     join <- join %>%
@@ -315,12 +317,13 @@ tidy_lengths_comm_raw <- function(dat,
                            survey_abbrev = "Commercial",
                            year = rep(years, each = 2, times = length(areas)),
                            sex = rep(c("M", "F"), times = length(years)*length(areas)),
-                           area = rep(areas, each = length(years)*2)
+                           area = rep(areas, each = length(years)*2),
+                           length_type = l_type
       )
 
       join <- dplyr::right_join(freq, labels,
                                 by = c("species_common_name", "survey_abbrev",
-                                       "year", "sex", "area"),
+                                       "length_type", "year", "sex", "area"),
                                 keep = FALSE)
       lengths <- join %>%
         dplyr::arrange(species_common_name, survey_abbrev, area, year, sex)
@@ -332,12 +335,13 @@ tidy_lengths_comm_raw <- function(dat,
                            survey_abbrev = "Commercial",
                            year = rep(years, each = 2),
                            sex = rep(c("M", "F"), times = length(years)),
-                           area = rep("Total", each = length(years)*2)
+                           area = rep("Total", each = length(years)*2),
+                           length_type = l_type
       )
 
       join <- dplyr::right_join(freq, labels,
                                 by = c("species_common_name", "survey_abbrev",
-                                       "year", "sex", "area"),
+                                       "length_type", "year", "sex", "area"),
                                 keep = FALSE)
       lengths <- join %>%
         dplyr::arrange(species_common_name, survey_abbrev, area, year, sex)
@@ -392,6 +396,11 @@ tidy_ages_comm_raw <- function(dat,
       dplyr::filter(usability_code %in% usability_codes)
   }
 
+  # Filter out recreational samples
+  dat <- dat |>
+    dplyr::filter(trip_sub_type_desc != "RECREATIONAL") |>
+    dplyr::filter(gear_desc != "RECREATIONAL ROD & REEL")
+
   # Filter down sampling description (sorted vs unsorted, unknown excluded):
   if (sorted) {
     dat <- dat %>%
@@ -434,12 +443,6 @@ tidy_ages_comm_raw <- function(dat,
 
     dat$survey_abbrev <- "Commercial"
 
-    pbs_areas <- gfplot::pbs_areas[grep(
-      area_grep_pattern,
-      gfplot::pbs_areas$major_stat_area_description
-    ), , drop = FALSE]
-
-    dat <- dplyr::semi_join(dat, pbs_areas, by = "major_stat_area_code")
   }
 
   # Assign areas (or total)
@@ -528,8 +531,6 @@ tidy_ages_comm_raw <- function(dat,
                              by = c("species_common_name", "year", "survey_abbrev", "area")
     )
 
-    freq <- freq %>%
-      dplyr::select(species_common_name, survey_abbrev, area, year, sex, age, proportion, total)
   }
 
   # -------------------------------------------
@@ -570,6 +571,8 @@ tidy_ages_comm_raw <- function(dat,
       dplyr::arrange(species_common_name, survey_abbrev, area, year, sex)
 
   }
+
+  return(ages)
 
 }
 

@@ -4,15 +4,10 @@ plot_commercial_lengths <- function (dat,
                                      sorted,
                                      xlab = "Length (cm)",
                                      ylab = "Relative length frequency",
-                                     #line_col = c("grey40"),
-                                     #fill_col = c("grey40"),
-                                     # fill_col = c("M" = "#1b9e7750", "F" = "#7570b350"),
-                                     # line_col = c("M" = "#1b9e77", "F" = "#7570b3"),
-                                     fill_col = c("M" = "grey80", "F" = "#d95f0250"),
-                                     line_col = c("M" = "grey40", "F" = "#d95f02"),
+                                     fill_col = c("M" = "#33A02C", "F" = "#B23AEE"),
+                                     #line_col = c("M" = "gray40", "F" = "#B23AEE"),
                                      alpha = 0.24,
                                      bin_size = 2,
-                                     min_total = 20,
                                      show_year = "even",
                                      year_range = NULL) {
 
@@ -20,6 +15,12 @@ plot_commercial_lengths <- function (dat,
   area_levels <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B", "Total")
 
   sex_levels <- c("F", "M", "Total")
+
+  # Define length type ---------------------------------------------------------
+
+  l_type <- unique(dat$length_type)
+
+  l_title <- paste0(tools::toTitleCase(gsub("_length", "", l_type)), " Length")
 
   # Define breaks --------------------------------------------------------------
 
@@ -33,31 +34,6 @@ plot_commercial_lengths <- function (dat,
                           max(max(dat$length_bin, na.rm = TRUE), max(totals$length_bin, na.rm = TRUE))))
 
   years <- seq(year_range[1], year_range[2])
-
-  # dat <- dat %>%
-  #   dplyr::filter(year %in% years)
-  #
-  # dat <- dat %>%
-  #   dplyr::arrange(area, year)
-  #
-  # dat <- dat %>%
-  #   dplyr::mutate(area = factor(area, area_levels))
-  #
-  # dat <- dat %>%
-  #   dplyr::arrange(area)
-  #
-  # # Repeat for totals
-  # totals <- totals %>%
-  #   dplyr::filter(year %in% years)
-  #
-  # totals <- totals %>%
-  #   dplyr::arrange(area, year)
-  #
-  # totals <- totals %>%
-  #   dplyr::mutate(area = factor(area, area_levels))
-  #
-  # totals <- totals %>%
-  #   dplyr::arrange(area)
 
   # Define counts --------------------------------------------------------------
 
@@ -107,11 +83,6 @@ plot_commercial_lengths <- function (dat,
   totals <- totals %>%
     dplyr::arrange(area, year, sex)
 
-  # Remove proportions with scarce observations --------------------------------
-
-  #lengths_all <- lengths_all %>%
-  #dplyr::mutate(proportion = ifelse(total >= min_total, proportion, NA))
-
   # Assemble plot --------------------------------------------------------------
 
   p1 <- ggplot2::ggplot(dat, ggplot2::aes(length_bin, new_proportion)
@@ -119,12 +90,13 @@ plot_commercial_lengths <- function (dat,
     ggplot2::geom_col(
       width = bin_size,
       ggplot2::aes(colour = sex, fill = sex),
-      linewidth = 0.2,
+      linewidth = 0,
+      alpha = 0.5,
       position = ggplot2::position_identity()
     ) +
     gfplot::theme_pbs() +
     ggplot2::scale_fill_manual(values = fill_col, breaks = c("M", "F")) +
-    ggplot2::scale_colour_manual(values = line_col, breaks = c("M", "F")) +
+    #ggplot2::scale_colour_manual(values = line_col, breaks = c("M", "F")) +
     #ggplot2::coord_cartesian(expand = FALSE) +
     ggplot2::scale_x_continuous(breaks = x_breaks, expand = c(0.01, 0.01)) +
     ggplot2::xlab(xlab) +
@@ -150,7 +122,7 @@ plot_commercial_lengths <- function (dat,
       size = 3.0,
       hjust = 1
     ) +
-    ggplot2::labs(title = "Length frequencies") +
+    ggplot2::labs(title = paste0("Length frequencies - ", l_title)) +
     ggplot2::theme(
       plot.title = ggplot2::element_text(size = 17, vjust = -2.5),
       axis.title = ggplot2::element_text(size = 14),

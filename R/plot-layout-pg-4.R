@@ -24,69 +24,151 @@ plot_layout_pg_4 <- function(spp,
     comm_samples <- dplyr::bind_rows(comm_samples, sablefish)
   }
 
-  # Age frequency plot ---------------------------------------------------------
+  if (spp %in% c("longspine-thornyhead", "pacific-spiny-dogfish", "shortspine-thornyhead")) {
 
-  ages_unsorted <- tidy_ages(comm_samples,
-                             years = years,
-                             sorted = FALSE
-  )
+    fork_l <- comm_samples |>
+      dplyr::filter(length_type == "fork_length")
 
-  ages_sorted <- tidy_ages(comm_samples,
-                           years = years,
-                           sorted = TRUE
-  )
+    total_l <- comm_samples |>
+      dplyr::filter(length_type == "total_length")
 
-  p1 <- plot_commercial_ages(ages_unsorted,
-                             ages_sorted,
-                             sex = "M",
-                             year_range = c(min(years), max(years))
-  )
+    # Length frequency plot (FORK) ---------------------------------------------
 
-  p2 <- plot_commercial_ages(ages_unsorted,
-                             ages_sorted,
-                             sex = "F",
-                             year_range = c(min(years), max(years))
-  )
+    fork_l_sex <- tidy_lengths(fork_l,
+                               bin_size = bin_size,
+                               years = years,
+                               total = FALSE,
+                               sorted = FALSE
+    )
 
-
-  # Length frequency plot ------------------------------------------------------
-
-  lengths_sex <- tidy_lengths(comm_samples,
-                              bin_size = bin_size,
-                              years = years,
-                              total = FALSE,
-                              sorted = FALSE
-  )
-
-  lengths_total <- tidy_lengths(comm_samples,
-                                bin_size = bin_size,
-                                years = years,
-                                total = TRUE,
-                                sorted = FALSE
-  )
-
-  lengths_total <- lengths_total %>%
-    dplyr::mutate(sex = "Total")
-
-  lengths_sorted <- tidy_lengths(comm_samples,
+    fork_l_total <- tidy_lengths(fork_l,
                                  bin_size = bin_size,
                                  years = years,
                                  total = TRUE,
-                                 sorted = TRUE
-  )
+                                 sorted = FALSE
+    )
 
-  #lengths <- dplyr::bind_rows(lengths_sex, lengths_total)
+    fork_l_total <- fork_l_total %>%
+      dplyr::mutate(sex = "Total")
 
-  p3 <- plot_commercial_lengths(lengths_sex, lengths_total, lengths_sorted,
-                                year_range = c(min(years), max(years))
-  )
+    fork_l_sorted <- tidy_lengths(fork_l,
+                                  bin_size = bin_size,
+                                  years = years,
+                                  total = TRUE,
+                                  sorted = TRUE
+    )
+
+    #lengths <- dplyr::bind_rows(lengths_sex, lengths_total)
+
+    p1 <- plot_commercial_lengths(fork_l_sex, fork_l_total, fork_l_sorted,
+                                  year_range = c(min(years), max(years))
+    )
+
+    # Length frequency plot (TOTAL) --------------------------------------------
+
+    total_l_sex <- tidy_lengths(total_l,
+                                bin_size = bin_size,
+                                years = years,
+                                total = FALSE,
+                                sorted = FALSE
+    )
+
+    total_l_total <- tidy_lengths(total_l,
+                                  bin_size = bin_size,
+                                  years = years,
+                                  total = TRUE,
+                                  sorted = FALSE
+    )
+
+    total_l_total <- total_l_total %>%
+      dplyr::mutate(sex = "Total")
+
+    total_l_sorted <- tidy_lengths(total_l,
+                                   bin_size = bin_size,
+                                   years = years,
+                                   total = TRUE,
+                                   sorted = TRUE
+    )
+
+    #lengths <- dplyr::bind_rows(lengths_sex, lengths_total)
+
+    p2 <- plot_commercial_lengths(total_l_sex, total_l_total, total_l_sorted,
+                                  year_range = c(min(years), max(years))
+    )
+
+    # Arrange plots ------------------------------------------------------------
+
+    p <- cowplot::plot_grid(p2, p1,
+                            ncol = 1, nrow = 2,
+                            na.rm = TRUE)
+
+  } else {
+
+    # Age frequency plot -------------------------------------------------------
+
+    ages_unsorted <- tidy_ages(comm_samples,
+                               years = years,
+                               sorted = FALSE
+    )
+
+    ages_sorted <- tidy_ages(comm_samples,
+                             years = years,
+                             sorted = TRUE
+    )
+
+    p1 <- plot_commercial_ages(ages_unsorted,
+                               ages_sorted,
+                               sex = "M",
+                               year_range = c(min(years), max(years))
+    )
+
+    p2 <- plot_commercial_ages(ages_unsorted,
+                               ages_sorted,
+                               sex = "F",
+                               year_range = c(min(years), max(years))
+    )
 
 
-  # Arrange plots --------------------------------------------------------------
+    # Length frequency plot ----------------------------------------------------
 
-  p <- cowplot::plot_grid(p1, p2, p3,
-                          ncol = 1, nrow = 3, rel_heights = c(1, 1, 1.75),
-                          na.rm = TRUE)
+    lengths_sex <- tidy_lengths(comm_samples,
+                                bin_size = bin_size,
+                                years = years,
+                                total = FALSE,
+                                sorted = FALSE
+    )
+
+    lengths_total <- tidy_lengths(comm_samples,
+                                  bin_size = bin_size,
+                                  years = years,
+                                  total = TRUE,
+                                  sorted = FALSE
+    )
+
+    lengths_total <- lengths_total %>%
+      dplyr::mutate(sex = "Total")
+
+    lengths_sorted <- tidy_lengths(comm_samples,
+                                   bin_size = bin_size,
+                                   years = years,
+                                   total = TRUE,
+                                   sorted = TRUE
+    )
+
+    #lengths <- dplyr::bind_rows(lengths_sex, lengths_total)
+
+    p3 <- plot_commercial_lengths(lengths_sex, lengths_total, lengths_sorted,
+                                  year_range = c(min(years), max(years))
+    )
+
+
+    # Arrange plots ------------------------------------------------------------
+
+    p <- cowplot::plot_grid(p1, p2, p3,
+                            ncol = 1, nrow = 3, rel_heights = c(1, 1, 1.75),
+                            na.rm = TRUE)
+
+  }
 
   # Save plot ------------------------------------------------------------------
 
