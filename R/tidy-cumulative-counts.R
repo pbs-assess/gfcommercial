@@ -1,8 +1,9 @@
 # Adapted from gfplot::tidy_sample_avail
 tidy_cumulative_counts <- function (data,
+                                    FE_dat = NULL,
                                     years = NULL,
                                     ageing_method_codes = NULL,
-                                    variable = c("catch", "samples")) {
+                                    variable = c("catch", "samples", "spatial")) {
 
   # Summarise silently ---------------------------------------------------------
 
@@ -34,7 +35,7 @@ tidy_cumulative_counts <- function (data,
     if (variable == "catch") {
       data <- data %>%
         dplyr::mutate(week = lubridate::week(best_date))
-    } else if (variable == "samples") {
+    } else {
       data <- data %>%
         dplyr::mutate(week = lubridate::week(trip_start_date))
     }
@@ -75,8 +76,10 @@ tidy_cumulative_counts <- function (data,
         dplyr::ungroup()
 
     } else if (variable == "samples") {
-      data <- data %>%
-        dplyr::filter(trip_sub_type_desc != "RECREATIONAL")
+      # Filter out recreational samples
+      data <- data |>
+        dplyr::filter(trip_sub_type_desc != "RECREATIONAL") |>
+        dplyr::filter(gear_desc != "RECREATIONAL ROD & REEL")
 
       counts <- data %>%
         dplyr::group_by(
@@ -87,13 +90,56 @@ tidy_cumulative_counts <- function (data,
         ) %>%
         dplyr::summarise(
           counts = n()
-        )
+        )%>%
+        ungroup()
+
+    } else if (variable == "spatial") {
+      # Filter out recreational samples
+      data <- data |>
+        dplyr::filter(trip_sub_type_desc != "RECREATIONAL") |>
+        dplyr::filter(gear_desc != "RECREATIONAL ROD & REEL")
+
+      # Join with fishing event data to get spatially explicit data
+
+      if (!is.null(FE_dat)) {
+        FE_dat <- FE_dat %>%
+          dplyr::select(TRIP_ID, FISHING_EVENT_ID, MAJOR_STAT_AREA_CODE, MINOR_STAT_AREA_CODE, DFO_STAT_AREA_CODE, DFO_STAT_SUBAREA_CODE, # Select relevant columns
+                        FE_START_LATTITUDE_DEGREE, FE_START_LATTITUDE_MINUTE, FE_START_LONGITUDE_DEGREE, FE_START_LONGITUDE_MINUTE,
+                        FE_END_LATTITUDE_DEGREE, FE_END_LATTITUDE_MINUTE, FE_END_LONGITUDE_DEGREE, FE_END_LONGITUDE_MINUTE) %>%
+          dplyr::mutate(FE_START_LATTITUDE_MINUTE = as.numeric(FE_START_LATTITUDE_MINUTE), # Turn character variables into numeric
+                        FE_START_LONGITUDE_DEGREE = as.numeric(FE_START_LONGITUDE_DEGREE),
+                        FE_START_LONGITUDE_MINUTE = as.numeric(FE_START_LONGITUDE_MINUTE),
+                        FE_END_LATTITUDE_DEGREE = as.numeric(FE_END_LATTITUDE_DEGREE),
+                        FE_END_LATTITUDE_MINUTE = as.numeric(FE_END_LATTITUDE_MINUTE),
+                        FE_END_LONGITUDE_DEGREE = as.numeric(FE_END_LONGITUDE_DEGREE),
+                        FE_END_LONGITUDE_MINUTE = as.numeric(FE_END_LONGITUDE_MINUTE)) %>%
+          unique()
+
+        # All spatially explicit specimens must have degrees and minutes for latitude or longitude, start or finish
+
+        data <- dplyr::left_join(data, FE_dat, by = join_by(trip_id == TRIP_ID, fishing_event_id == FISHING_EVENT_ID))
+
+        # Check that all spatial columns within each row are non-NA using dplyr
+        data <- data |>
+          dplyr::rowwise() |> # So that sum() in the next line sums within each row
+          dplyr::mutate(start_latlong = sum(FE_START_LATTITUDE_DEGREE, FE_START_LATTITUDE_MINUTE, FE_START_LONGITUDE_DEGREE, FE_START_LONGITUDE_MINUTE)) |>
+          dplyr::mutate(end_latlong = sum(FE_END_LATTITUDE_DEGREE, FE_END_LATTITUDE_MINUTE, FE_END_LONGITUDE_DEGREE, FE_END_LONGITUDE_MINUTE)) |>
+          dplyr::mutate(spatial = as.integer(sum(start_latlong, end_latlong, na.rm = TRUE) >= 1))
+      }
+
+      counts <- data %>%
+        dplyr::group_by(
+          species_common_name,
+          area,
+          year,
+          week
+        ) %>%
+        dplyr::summarise(
+          counts_samples = n(),
+          counts = sum(spatial == 1)
+        ) %>%
+        ungroup()
     }
-
-    # Remove data points where week is NA
-
-    # counts <- subset(counts,
-    #                  !is.na(week))
 
     # Fill in missing weeks with zero ------------------------------------------
 
@@ -143,35 +189,60 @@ tidy_cumulative_counts <- function (data,
 
   # Cumulative sum of counts ---------------------------------------------------
 
-  cumulative <- counts %>%
-    dplyr::group_by(
-      species_common_name,
-      area,
-      year
-    ) %>%
-    dplyr::mutate(
-      cumulative_counts = cumsum(counts)
-    )
+  if (variable == "spatial") {
+    cumulative <- counts %>%
+      dplyr::group_by(
+        species_common_name,
+        area,
+        year
+      ) %>%
+      dplyr::mutate(
+        cumulative_samples = cumsum(counts_samples),
+        cumulative_spatial = cumsum(counts)
+      )
 
-  # Calculate the proportion of the cumulative sum of each variable
-  proportions <- cumulative %>%
-    dplyr::group_by(
-      species_common_name,
-      area,
-      year
-    ) %>%
-    dplyr::mutate(proportion = cumulative_counts/max(cumulative_counts)) %>%
-    dplyr::mutate(n = max(cumulative_counts))
+    # Calculate the proportion of the cumulative sum of each variable
+    proportions <- cumulative %>%
+      dplyr::group_by(
+        species_common_name,
+        area,
+        year
+      ) %>%
+      dplyr::mutate(proportion = cumulative_spatial/max(cumulative_samples),
+                    n = max(cumulative_spatial, na.rm = TRUE)
+                    )
 
-  proportions[is.na(proportions)] <- 0
+    proportions[is.na(proportions)] <- 0
 
-  proportions <- proportions %>%
-    dplyr::group_by(
-      species_common_name,
-      area,
-      year
-    ) %>%
-    dplyr::mutate(n = max(cumulative_counts))
+    proportions <- proportions |>
+      dplyr::select(-counts_samples, -cumulative_samples)
+
+  } else {
+    cumulative <- counts %>%
+      dplyr::group_by(
+        species_common_name,
+        area,
+        year
+      ) %>%
+      dplyr::mutate(
+        cumulative_counts = cumsum(counts)
+      )
+
+    # Calculate the proportion of the cumulative sum of each variable
+    proportions <- cumulative %>%
+      dplyr::group_by(
+        species_common_name,
+        area,
+        year
+      ) %>%
+      dplyr::mutate(proportion = cumulative_counts/max(cumulative_counts),
+                    n = max(cumulative_counts, na.rm = TRUE)
+                    )
+
+    proportions[is.na(proportions)] <- 0
+
+  }
+
 
   # Return counts --------------------------------------------------------------
 

@@ -1,12 +1,12 @@
 # An R script to arrange and sitch together plots for page 3
 
 plot_layout_pg_3 <- function(spp,
-                             years = 1996:2022,
+                             years = 2000:2022,
                              fl_path_data = here::here("data-cache"),
                              fl_path_store = here::here("report", "report-rmd", "figs"),
                              fl_type = ".png",
                              width = 300,
-                             height = 300,
+                             height = 275,
                              units = "mm",
                              dpi = 200,
                              debug = FALSE
@@ -15,6 +15,8 @@ plot_layout_pg_3 <- function(spp,
   # Read in data ---------------------------------------------------------------
 
   data <- readr::read_rds(paste0(fl_path_data, "/", spp, ".rds"))
+
+  FE_dat <- read.csv(paste0(here::here("data"), "/", "fishing_event.csv"))
 
   # Commercial catch plot ------------------------------------------------------
 
@@ -30,10 +32,13 @@ plot_layout_pg_3 <- function(spp,
     comm_samples <- dplyr::bind_rows(comm_samples, sablefish)
   }
 
+  comm_samples_unsort <- dplyr::filter(comm_samples, sampling_desc == "UNSORTED")
+
   # Representativeness plot ----------------------------------------------------
 
   cumulative_props <- tidy_cumulative_props(comm_catch,
-                                            comm_samples,
+                                            comm_samples_unsort,
+                                            FE_dat,
                                             years = years
   )
 
@@ -44,7 +49,7 @@ plot_layout_pg_3 <- function(spp,
   # Save plot ------------------------------------------------------------------
 
   # Plot name
-  plot_name <- paste0(spp, "-pg-3")
+  plot_name <- paste0(spp, "-pg-3.1")
 
   # Save ggplot
   ggplot2::ggsave(
