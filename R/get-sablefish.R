@@ -23,7 +23,8 @@ sablefish_heads <- function ( ) {
                   trip_sub_type_desc = "NON - OBSERVED DOMESTIC",
                   maturity_code = 0,
                   length = round_any(length, accuracy = 10)*0.1,
-                  usability_code = 0
+                  usability_code = 0,
+                  length_type = "fork_length"
                   )
 
 }
