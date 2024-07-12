@@ -3,16 +3,15 @@
 # Results {#sec:synopsis-plots}
 
 This section contains the species-by-species data visualizations. Each
-species is shown on four pages with the same layout used throughout. See
+species is shown on four pages with similar layout used throughout. See
 the previous 'Plot descriptions' section for detailed figure captions. In addition
 to the figures, we also provide the scientific name, taxonomic details, DFO
-species code [page in @hart1988], a link to the FishBase and WoRMS (World
+species code [commonly the page number in @hart1988], a link to the FishBase and WoRMS (World
 Register of Marine Species) web pages, details of the most recent DFO Research
-Documents and Science Advisory Reports, and any information related to
-designations by the Committee on the Status of Endangered Wildlife in Canada
-(COSEWIC) and to listings under the *Species at Risk Act* (SARA). We also provide 
+Documents and Science Advisory Reports, and information related to
+designations by the COSEWIC and to listings under the SARA. We also provide 
 a short narrative of the major trends apparent for each species.The species are
-ordered according to DFO species codes. The previous section provides links to the 
+ordered according to DFO species codes. Section \@ref(sec:common-name-index) provides links to the 
 pages sorted alphabetically by common name. 
 
 \clearpage
