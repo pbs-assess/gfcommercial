@@ -1,7 +1,8 @@
 ---
 title: |
   "A review of biological samples collected from commercial groundfish fisheries in British Columbia, 1996-2022"
-french_title: Titre ici (*Nom latin de l'espèce*)
+french_title: | 
+  "Titre ici (*Nom latin de l'espèce*)"
 year: 2024
 report_number: nnn
 author: |
@@ -27,7 +28,7 @@ french_address: |
 phone: "(555) 555-5555"
 author_footnote: "Email: Leah.Walker@dfo-mpo.gc.ca | telephone: (250) 756-5555"
 abstract: |
- Biological data collected from commercial fishing vessels are an important component of fisheries stock assessments. In Canada's Pacific region, these data have been collected by independent, third-party at-sea observers aboard commercial bottom trawl vessels, dockside monitoring programs, and special projects. However, the COVID-19 pandemic paused all at-sea observer programs and they have not been re-introduced, having a profound effect on the volume and type of data received from commercial fishing vessels. This report was developed to provide an overview of data collection and availability from 1996--2022 for major BC groundfish species of commercial and conservation interest. The data are presented at a coastwide scale, and also by finer, Groundfish Management Areas so that spatial and temporal trends can be assessed. The goals of the report were to (1) display available data acquired from commercial fishing vessels, and (2) perform a basic qualitative analysis of the temporal and spatial trends of the data by species. This report highlights what data are no longer being collected and can guide decisions on future monitoring programs, data collection, and resource allocation.
+ Biological data collected from commercial fishing catches are an important component of fisheries stock assessments. In Canada's Pacific Region, these data have been collected by the At-Sea Observer Program (ASOP), dockside monitoring programs, and special projects. However, the COVID-19 pandemic paused the ASOP and has yet to be re-introduced, profoundly affecting the type and quantity of data collected from commercial fishing catches. This report was developed to provide an overview of data collection and availability from 1996 to 2022 for major BC groundfish species of commercial and conservation interest. The data were presented at a coastwide scale and also by finer Pacific Marine Fisheries Commission (PMFC) areas so that spatial and temporal trends in British Columbia could be identified. The goals of the report were to (1) summarize available data collected on commercial fishing vessels and (2) represent the temporal and spatial trends of the biological data by groundfish species. This report highlights what data are no longer being collected and can guide decisions on future monitoring programs, data collection, and resource allocation.
 french_abstract: |
   Voici le résumé.
 output:
@@ -38,7 +39,7 @@ output:
    # will remain between compilations. If true, your changes will be lost when you compile
    copy_sty: true
    # line_nums is a toggle to show line numbers on the left side of the page. 
-   line_nums: true
+   line_nums: false
    # line_nums_mod represents showing every Nth line if line_nums is true
    line_nums_mod: 1
    # lot_lof is a toggle to show/not show the lists of tables and figures at the
