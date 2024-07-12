@@ -85,10 +85,6 @@ my_tidy_samples <- function(dat,
   all_samples <- all_samples %>%
     dplyr::rename(value = specimen_count)
 
-  #all_samples <- group_by(all_samples, year, species_common_name, area, gear) %>%
-    #summarise(value = sum(value, na.rm = TRUE)) %>%
-    #ungroup()
-
   all_samples
 }
 
@@ -98,6 +94,10 @@ samples_total <- function(dat, years = NULL, ...) {
   # Define area factor levels
   area_levels <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B", "Total")
 
+  # Filter out recreational samples
+  dat <- dat |>
+    dplyr::filter(trip_sub_type_desc != "RECREATIONAL") |>
+    dplyr::filter(gear_desc != "RECREATIONAL ROD & REEL")
 
   # Create a 'Total' area
   samples_areas <- my_tidy_samples(dat,
