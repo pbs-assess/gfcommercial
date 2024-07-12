@@ -56,7 +56,7 @@ plot_layout_pg_2 <- function(spp,
   # Save plot ------------------------------------------------------------------
 
   # Plot name
-  plot_name <- paste0(spp, "-pg-2.3")
+  plot_name <- paste0(spp, "-pg-2")
 
   # Save ggplot
   ggplot2::ggsave(

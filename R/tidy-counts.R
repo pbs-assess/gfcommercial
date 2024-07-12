@@ -92,9 +92,10 @@ tidy_commercial_counts <- function (data,
     data <- dplyr::bind_rows(data_areas, data_total) %>%
       dplyr::mutate(area = factor(area, levels = area_levels))
 
-    # Filter out recreational sourced data
-    data <- data %>%
-      dplyr::filter(trip_sub_type_desc != "RECREATIONAL")
+    # Filter out recreational samples
+    data <- data |>
+      dplyr::filter(trip_sub_type_desc != "RECREATIONAL") |>
+      dplyr::filter(gear_desc != "RECREATIONAL ROD & REEL")
 
     # Join with fishing event data to get spatially explicit data
 
@@ -113,11 +114,16 @@ tidy_commercial_counts <- function (data,
                     FE_END_LONGITUDE_MINUTE = as.numeric(FE_END_LONGITUDE_MINUTE)) %>%
       unique()
 
-    # All spatially explicit specimens must have degreens and minutes for latitude or longitude, start or finish
-    # Confirmed April 5, 2024
+    # All spatially explicit specimens must have degrees and minutes for latitude or longitude, start or finish
 
+    data <- dplyr::left_join(data, FE_dat, by = join_by(trip_id == TRIP_ID, fishing_event_id == FISHING_EVENT_ID))
 
-    data <- dplyr::left_join(data, FE_dat, by = join_by(trip_id == TRIP_ID, fishing_event_id == FISHING_EVENT_ID), keep = TRUE)
+    # Check that all spatial columns within each row are non-NA using dplyr
+    data <- data |>
+      dplyr::rowwise() |> # So that sum() in the next line sums within each row
+      dplyr::mutate(start_latlong = sum(FE_START_LATTITUDE_DEGREE, FE_START_LATTITUDE_MINUTE, FE_START_LONGITUDE_DEGREE, FE_START_LONGITUDE_MINUTE)) |>
+      dplyr::mutate(end_latlong = sum(FE_END_LATTITUDE_DEGREE, FE_END_LATTITUDE_MINUTE, FE_END_LONGITUDE_DEGREE, FE_END_LONGITUDE_MINUTE)) |>
+      dplyr::mutate(spatial = as.integer(sum(start_latlong, end_latlong, na.rm = TRUE) >= 1))
 
 
     # Define counts ------------------------------------------------------------
@@ -136,7 +142,7 @@ tidy_commercial_counts <- function (data,
         length = sum(!is.na(length) & length > 0),
         weight = sum(!is.na(weight) & weight > 0),
         maturity = sum(!is.na(maturity_code) & maturity_code > 0),
-        spatial = sum(!is.na(FE_START_LATTITUDE_DEGREE)),
+        spatial = sum(spatial == 1),
         fishing_events = sum(!is.na(unique(fishing_event_id)))
       ) %>%
       dplyr::ungroup() %>%

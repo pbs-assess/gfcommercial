@@ -84,7 +84,7 @@ plot_commercial_counts <- function (data,
 
   data <- data %>%
     dplyr::group_by(area, type) %>%
-    dplyr::mutate(type_scl = (n - min(n))/(max(n)-min(n))) %>%
+    dplyr::mutate(type_scl = (n /(max(n)))) %>%
     dplyr::mutate(type_scl = ifelse(is.na(type_scl), NA,ifelse(type_scl == 0, NA,type_scl)))
 
   # Plot specimen counts -------------------------------------------------------
