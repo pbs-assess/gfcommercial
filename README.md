@@ -7,7 +7,7 @@ This commercial biosampling compendium uses an automated workflow to generate
 figure and text summaries of groundfish commercial biosampling in British 
 Columbia, Canada. Figure and text summaries are then formatted as a CSAS 
 Technical Report using the R package [csasdown](https://github.com/pbs-assess/csasdown). 
-The content is nearing completion in January 2024.
+The content is nearing completion in July 2024.
 
 
 ## Dependencies
@@ -37,20 +37,6 @@ To render the report, open `index.Rmd` in RStudio and then click the knit button
 The `csasdown` package writes the tech report to the report/report-rmd/_book/ 
 folder.
 
-
-## TODO
-
-- [ ] Add Sablefish predicted lengths from 2018+
-
-- [ ] Address Malcolm's comments about at-sea/ dockside and sorted/ unsorted issue
-
-- [ ] Address Rowan's comments on figure clarity
-
-- [ ] Incorporate remaining revisions once received (Chris, Philina, Robyn, Schon)
-
-- [ ] Tweak working around representativeness
-
-- [ ] Final read-through
 
 
 ## Notes and Cautions
