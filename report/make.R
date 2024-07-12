@@ -56,8 +56,6 @@ for (i in seq_along(spp$species_common_name)) {
 #
 # write.csv(sources, paste0(here::here("data"), "/", "data_sources", ".csv"), row.names = FALSE)
 
-data_sources <- read.csv(paste0(here::here("data"), "/", "data_sources", ".csv"), row.names = NULL)
-
 
 # Gather and arrange some metadata ---------------------------------------------
 
@@ -122,7 +120,7 @@ for (i in 1:length(spp_list)) {
   fig_check3 <- paste0(fig_check, "-pg-3", ext)
   fig_check4 <- paste0(fig_check, "-pg-4", ext)
 
-  missing <- !file.exists(fig_check1) | !file.exists(fig_check2) | !file.exists(fig_check3)
+  missing <- !file.exists(fig_check1) | !file.exists(fig_check2) | !file.exists(fig_check3) | !file.exists(fig_check4)
 
   if (!missing){
     print(paste0("Figure pages for ", spp_list[i], " already exists"))
@@ -263,14 +261,14 @@ temp <- lapply(spp$species_common_name, function(x) {
   out[[i]] <- "\n"
   i <- i + 1
   if (species_code == "225") {
-      out[[i]] <- "\nNote that Pacific Hake undergoes a directed joint
+      out[[i]] <- "Note that Pacific Hake undergoes a directed joint
       Canada-US coastwide survey and annual assessment. The most recent stock
       assessment should be consulted for details on stock status."
       # out[[i]] <- paste0(out[[i]], "\n")
       i <- i + 1
   }
   if (species_code == "614") {
-      out[[i]] <- "\nNote that Pacific Halibut undergoes thorough assessment by the
+      out[[i]] <- "Note that Pacific Halibut undergoes thorough assessment by the
       International Pacific Halibut Commission based on the annual
       standardized setline survey. The most recent stock assessment
       should be consulted for details on stock status."
@@ -278,7 +276,7 @@ temp <- lapply(spp$species_common_name, function(x) {
     i <- i + 1
   }
   if (species_code == "455") {
-      out[[i]] <- "\nNote that Sablefish undergoes directed annual trap surveys,
+      out[[i]] <- "Note that Sablefish undergoes directed annual trap surveys,
       which are used for stock assessment. The most recent stock assessment should be
       consulted for details on stock status."
     # out[[i]] <- paste0(out[[i]], "\n")
