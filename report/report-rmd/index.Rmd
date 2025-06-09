@@ -10,7 +10,7 @@ author: |
   Luke A. Rogers^1^,
   Sean C. Anderson^1^, and
   Dana R. Haggarty^1^
-author_list: "Walker, L.C., Rogers, L.A., Anderson, S.A., and Haggarty D.R."
+author_list: "Walker, L.C., Rogers, L.A., Anderson, S.C., and Haggarty D.R."
 region: Pacific Region
 french_region: Région du Pacifique
 isbn: ""
