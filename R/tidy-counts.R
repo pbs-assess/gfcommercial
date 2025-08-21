@@ -55,35 +55,9 @@ tidy_commercial_counts <- function (data,
     # Split data for areas and total -------------------------------------------
 
     # Areas
+    areas <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B")
     data_areas <- data %>%
-      dplyr::mutate(
-        area_chars = substr(major_stat_area_name, 1, 2),
-        area = ifelse(
-          area_chars == "5E", "5E",
-          ifelse(
-            area_chars %in% "5D", "5D",
-            ifelse(
-              area_chars %in% "5C", "5C",
-              ifelse(
-                area_chars %in% "5B", "5B",
-                ifelse(
-                  area_chars %in% "5A", "5A",
-                  ifelse(
-                    area_chars %in% "3D", "3D",
-                    ifelse(
-                      area_chars %in% "3C", "3C",
-                      ifelse(
-                        area_chars == "4B", "4B", NA_character_
-                      )
-                    )
-                  )
-                )
-              )
-            )
-          )
-        )
-      ) %>%
-      dplyr::select(-area_chars) %>%
+      dplyr::mutate(area = assign_areas(major_stat_area_name, areas)) %>%
       tidyr::drop_na(area)
     # Total
     data_total <- data_areas %>%
@@ -141,6 +115,7 @@ tidy_commercial_counts <- function (data,
             age_specimen_collected == 1),
         length = sum(!is.na(length) & length > 0),
         weight = sum(!is.na(weight) & weight > 0),
+        sex = sum(sex == 1 | sex == 2),
         maturity = sum(!is.na(maturity_code) & maturity_code > 0),
         spatial = sum(spatial == 1),
         fishing_events = sum(!is.na(unique(fishing_event_id)))
@@ -154,7 +129,7 @@ tidy_commercial_counts <- function (data,
       dplyr::mutate(
         type = factor(
           type,
-          levels = c("age", "ageing_structure", "length", "weight", "maturity", "spatial", "fishing_events")
+          levels = c("age", "ageing_structure", "length", "weight", "maturity", "sex", "spatial", "fishing_events")
         )
       ) %>%
       dplyr::arrange(

@@ -5,8 +5,8 @@ plot_layout_pg_2 <- function(spp,
                              fl_path_data = here::here("data-cache"),
                              fl_path_store = here::here("report", "report-rmd", "figs"),
                              fl_type = ".png",
-                             width = 430,
-                             height = 335,
+                             width = 450,
+                             height = 350,
                              units = "mm",
                              dpi = 200,
                              debug = FALSE
@@ -20,7 +20,7 @@ plot_layout_pg_2 <- function(spp,
   comm_samples <- data$commercial_samples
 
   if (spp == "sablefish") {
-    sablefish <- sablefish_heads()
+    sablefish <- sablefish_heads(fl_path = paste0(here::here("data")), fl_name = "sablefish_heads.csv")
 
     comm_samples <- dplyr::bind_rows(comm_samples, sablefish)
   }

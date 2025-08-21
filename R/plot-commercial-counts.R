@@ -31,7 +31,7 @@ plot_commercial_counts <- function (data,
     dplyr::filter(year %in% years) %>%
     dplyr::mutate(
       n_plot = sqrt(n),
-      n_text = gfplot:::round_nice(n),
+      n_text = ifelse(n > 10000, gfplot:::round_nice(n), round_nice(n)),
       type = gfplot:::firstup(as.character(gsub("_", " ", type))),
       type = gsub("Ageing structure", "Age structures", type),
       type = paste("#", type, sep = " ")
@@ -67,6 +67,7 @@ plot_commercial_counts <- function (data,
         levels = rev(
           c(
             "# Length",
+            "# Sex",
             "# Weight",
             "# Maturity",
             "# Age",
@@ -115,7 +116,7 @@ plot_commercial_counts <- function (data,
       ggplot2::geom_text(
         ggplot2::aes(x = year, label = n_text),
         colour = text_colour,
-        size = 3.2,
+        size = 3.0,
         alpha = 1,
         na.rm = TRUE,
         vjust = 0.4
@@ -157,7 +158,7 @@ plot_commercial_counts <- function (data,
       ggplot2::geom_text(
         ggplot2::aes(x = year, label = n_text),
         colour = text_colour,
-        size = 3.2,
+        size = 3.0,
         alpha = 0.8,
         fontface = "bold",
         na.rm = TRUE,
