@@ -1,5 +1,7 @@
 \clearpage
 
+\pagestyle{plain}
+
 # Discussion {#sec:discussion}
 
 In this report, we summarized the available data collected from commercial fishing vessels by At-Sea Observers and Dockside Samplers from 1996 to 2022 for 29 groundfish species found in British Columbia. We presented the data for each species over four pages. The first page displayed the commercial catch and specimen collection for each year and area. The second page summarized the type and quantity of data collected for that species. The third page qualitatively showed how representative the specimen collections were compared to the catch. The fourth page plotted the age (unsorted and sorted specimens) and length frequency (unsorted specimens only) data, separated by sex, for each year and PMFC area.
