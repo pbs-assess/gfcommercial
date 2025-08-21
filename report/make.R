@@ -260,29 +260,41 @@ temp <- lapply(spp$species_common_name, function(x) {
   }
   out[[i]] <- "\n"
   i <- i + 1
-  if (species_code == "225") {
-      out[[i]] <- "Note that Pacific Hake undergoes a directed joint
-      Canada-US coastwide survey and annual assessment. The most recent stock
-      assessment should be consulted for details on stock status."
-      # out[[i]] <- paste0(out[[i]], "\n")
-      i <- i + 1
-  }
-  if (species_code == "614") {
-      out[[i]] <- "Note that Pacific Halibut undergoes thorough assessment by the
-      International Pacific Halibut Commission based on the annual
-      standardized setline survey. The most recent stock assessment
-      should be consulted for details on stock status."
-    # out[[i]] <- paste0(out[[i]], "\n")
-    i <- i + 1
-  }
-  if (species_code == "455") {
-      out[[i]] <- "Note that Sablefish undergoes directed annual trap surveys,
-      which are used for stock assessment. The most recent stock assessment should be
-      consulted for details on stock status."
-    # out[[i]] <- paste0(out[[i]], "\n")
-    i <- i + 1
-  }
+  # if (species_code == "225") {
+  #     out[[i]] <- "Note that Pacific Hake undergoes a directed joint
+  #     Canada-US coastwide survey and annual assessment. The most recent stock
+  #     assessment should be consulted for details on stock status."
+  #     # out[[i]] <- paste0(out[[i]], "\n")
+  #     i <- i + 1
+  # }
+  # if (species_code == "614") {
+  #     out[[i]] <- "Note that Pacific Halibut undergoes thorough assessment by the
+  #     International Pacific Halibut Commission based on the annual
+  #     standardized setline survey. The most recent stock assessment
+  #     should be consulted for details on stock status."
+  #   # out[[i]] <- paste0(out[[i]], "\n")
+  #   i <- i + 1
+  # }
+  # if (species_code == "455") {
+  #     out[[i]] <- "Note that Sablefish undergoes directed annual trap surveys,
+  #     which are used for stock assessment. The most recent stock assessment should be
+  #     consulted for details on stock status."
+  #   # out[[i]] <- paste0(out[[i]], "\n")
+  #   i <- i + 1
+  # }
   out[[i]] <- paste0("\n", summary_pgraph)
+  i <- i + 1
+  out[[i]] <- "\\fancyhead{}"
+  i <- i + 1
+  out[[i]] <- "\\renewcommand{\\headrulewidth}{0pt}"
+  i <- i + 1
+  out[[i]] <- "\\renewcommand{\\footrulewidth}{0pt}"
+  i <- i + 1
+  out[[i]] <- "\\fancyfoot[c]{\\sffamily\\thepage}"
+  i <- i + 1
+  out[[i]] <- paste0("\\fancyhead[CO,CE]{",spp_title, "}")
+  i <- i + 1
+  out[[i]] <- "\\thispagestyle{plain}"
   i <- i + 1
   out[[i]] <- "\\begin{figure}[b!]"
   i <- i + 1
@@ -324,8 +336,10 @@ temp <- lapply(spp$species_common_name, function(x) {
 
 temp <- lapply(temp, function(x) paste(x, collapse = "\n"))
 temp <- paste(temp, collapse = "\n")
-temp <- c("<!-- This page has been automatically generated: do not edit by hand -->\n", temp)
-con <- file(file.path(build_dir, "05-plot-pages.Rmd"), encoding = "UTF-8")
+temp <- c("<!-- This page has been automatically generated: do not edit by hand -->\n",
+          "\\pagestyle{fancy}\n",
+          temp)
+con <- file(file.path(build_dir, "05-plot-pages2.Rmd"), encoding = "UTF-8")
 writeLines(temp, con = con)
 
 
