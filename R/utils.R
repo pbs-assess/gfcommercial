@@ -46,12 +46,13 @@ round_any <- function(x, accuracy) {
 
 # Round nice - from gfplot
 round_nice <- function(x, thousands_k = TRUE) {
-  out <- round_any(x, 100)
+  #out <- round_any(x, 1)
+  out <- x
   out[out == 0] <- x[out == 0]
   if (thousands_k) {
     out <- as.numeric(out)
-    out <- ifelse(out >= 1000, numform::f_thous(out, relative = 0L), out)
-    # out <- gsub("\\.0K", "K", out)
+    out <- ifelse(out >= 1000, numform::f_thous(out, relative = 1), out)
+    out <- gsub("K", "k", out)
   }
   out[x == 0] <- ""
   out
@@ -104,3 +105,13 @@ round_down_even <- function(x, base = 2) {
   base * floor(x / base)
 }
 
+find_length_outliers <- function(xx) {
+  yy <-  stats::pnorm(xx, mean = mean(xx, na.rm = TRUE),
+                      sd = stats::sd(xx, na.rm = TRUE), log.p = TRUE)
+  zz <- stats::qnorm(yy, log.p = TRUE)
+  out <- zz[zz > 4 & !is.na(zz)]
+  if (length(out) > 1L)
+    return(xx[which(zz > 4)])
+  else
+    return(numeric(0))
+}
