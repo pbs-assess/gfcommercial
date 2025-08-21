@@ -339,7 +339,7 @@ temp <- paste(temp, collapse = "\n")
 temp <- c("<!-- This page has been automatically generated: do not edit by hand -->\n",
           "\\pagestyle{fancy}\n",
           temp)
-con <- file(file.path(build_dir, "05-plot-pages2.Rmd"), encoding = "UTF-8")
+con <- file(file.path(build_dir, "05-plot-pages.Rmd"), encoding = "UTF-8")
 writeLines(temp, con = con)
 
 
