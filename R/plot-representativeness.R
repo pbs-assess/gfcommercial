@@ -128,7 +128,9 @@ plot_representativeness <- function (data,
       size = 3.1,
       hjust = 0
     ) +
-    ggplot2::labs(title = "Representativeness") +
+    ggplot2::labs(title = ifelse(data$species_common_name == "pacific halibut",
+                                 "Representativeness (unsorted + bottom trawl discards)",
+                                 "Representativeness (unsorted)")) +
     ggplot2::theme(
       plot.title = ggplot2::element_text(size = 17, vjust = -2),
       axis.title.x = ggplot2::element_text(size = 14),

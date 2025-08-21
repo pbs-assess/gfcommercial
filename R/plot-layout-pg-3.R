@@ -1,12 +1,12 @@
 # An R script to arrange and sitch together plots for page 3
 
 plot_layout_pg_3 <- function(spp,
-                             years = 2000:2022,
+                             years = 1996:2022,
                              fl_path_data = here::here("data-cache"),
                              fl_path_store = here::here("report", "report-rmd", "figs"),
                              fl_type = ".png",
                              width = 300,
-                             height = 275,
+                             height = 300,
                              units = "mm",
                              dpi = 200,
                              debug = FALSE
@@ -26,10 +26,16 @@ plot_layout_pg_3 <- function(spp,
 
   comm_samples <- data$commercial_samples
 
+  # [Sablefish] Get Sablefish lengths from head measurements
   if (spp == "sablefish") {
     sablefish <- sablefish_heads()
-
     comm_samples <- dplyr::bind_rows(comm_samples, sablefish)
+  }
+
+  # [Halibut] Change discarded bottom trawl specimens to unsorted
+  if (spp == "pacific-halibut") {
+    comm_samples <- comm_samples |>
+      dplyr::mutate(sampling_desc = ifelse(sampling_desc == "DISCARDS"  & gear_desc == "BOTTOM TRAWL", "UNSORTED", sampling_desc))
   }
 
   comm_samples_unsort <- dplyr::filter(comm_samples, sampling_desc == "UNSORTED")
@@ -49,7 +55,7 @@ plot_layout_pg_3 <- function(spp,
   # Save plot ------------------------------------------------------------------
 
   # Plot name
-  plot_name <- paste0(spp, "-pg-3.1")
+  plot_name <- paste0(spp, "-pg-3")
 
   # Save ggplot
   ggplot2::ggsave(

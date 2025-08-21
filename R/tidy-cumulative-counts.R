@@ -78,8 +78,8 @@ tidy_cumulative_counts <- function (data,
     } else if (variable == "samples") {
       # Filter out recreational samples
       data <- data |>
-        dplyr::filter(trip_sub_type_desc != "RECREATIONAL") |>
-        dplyr::filter(gear_desc != "RECREATIONAL ROD & REEL")
+        dplyr::filter(trip_sub_type_desc != "RECREATIONAL",
+                      gear_desc != "RECREATIONAL ROD & REEL")
 
       counts <- data %>%
         dplyr::group_by(
@@ -96,8 +96,8 @@ tidy_cumulative_counts <- function (data,
     } else if (variable == "spatial") {
       # Filter out recreational samples
       data <- data |>
-        dplyr::filter(trip_sub_type_desc != "RECREATIONAL") |>
-        dplyr::filter(gear_desc != "RECREATIONAL ROD & REEL")
+        dplyr::filter(trip_sub_type_desc != "RECREATIONAL",
+                      gear_desc != "RECREATIONAL ROD & REEL")
 
       # Join with fishing event data to get spatially explicit data
 
