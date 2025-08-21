@@ -33,7 +33,7 @@ if (total == FALSE) {
 
   return(lengths_sex)
 
-  }
+ }
 
 # Return a data frame of the length data totaled, including unsexed specimens
 if (total == TRUE) {

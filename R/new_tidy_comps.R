@@ -6,11 +6,11 @@ tidy_lengths_comm_raw <- function(dat,
                                   ageing_method_codes = NULL,
                                   usability_codes = c(0, 1, 2, 6),
                                   sorted,
-                                  bin_size = 2,
                                   age_length = "length",
                                   sample_type = "commercial",
                                   frequency_type = "raw",
                                   remove_unsexed = FALSE,
+                                  bin_size = 2,
                                   ...) {
 
   # -------------------------------------------
@@ -23,7 +23,7 @@ tidy_lengths_comm_raw <- function(dat,
   if (remove_unsexed) {
     dat <- dat %>%
       dplyr::filter(sex %in% c(1, 2)
-    )
+      )
     dat$sex <- dplyr::case_when(
       dat$sex == 1 ~ "M",
       dat$sex == 2 ~ "F"
@@ -81,6 +81,12 @@ tidy_lengths_comm_raw <- function(dat,
     dat <- dat %>%
       dplyr::filter(sampling_desc == "UNSORTED")
   }
+
+  # # Filter outliers and determine bin width
+  # dat <- dat |>
+  #   dplyr::filter(!length %in% find_length_outliers(length))
+  #
+  # bin_width <- diff(quantile(dat$length, na.rm = TRUE, probs = c(0, 1))) / 20
 
   # -------------------------------------------
   # Filter down data (commercial):
@@ -213,6 +219,9 @@ tidy_lengths_comm_raw <- function(dat,
 
       }
     }
+
+    dat$survey_abbrev <- "Commercial"
+
   }
 
   # Remove duplicate specimens

@@ -112,17 +112,20 @@ plot_commercial_lengths <- function (dat,
       size = 3.0,
       hjust = 0
     ) +
-    ggplot2::geom_text(
-      data = counts_sorted,
-      x = max(max(dat$length_bin, na.rm = TRUE), max(totals$length_bin, na.rm = TRUE)) - 0.013 * range_lengths,
-      y = 0.82,
-      mapping = ggplot2::aes(label = total),
-      inherit.aes = FALSE,
-      colour = "royalblue",
-      size = 3.0,
-      hjust = 1
-    ) +
-    ggplot2::labs(title = paste0("Length frequencies - ", l_title)) +
+    # ggplot2::geom_text(
+    #   data = counts_sorted,
+    #   x = max(max(dat$length_bin, na.rm = TRUE), max(totals$length_bin, na.rm = TRUE)) - 0.013 * range_lengths,
+    #   y = 0.82,
+    #   mapping = ggplot2::aes(label = total),
+    #   inherit.aes = FALSE,
+    #   colour = "royalblue",
+    #   size = 3.0,
+    #   hjust = 1
+    # ) +
+    ggplot2::labs(title = paste0(ifelse(dat$species_common_name == "pacific halibut",
+                                        "Length frequencies (unsorted + bottom trawl discards) - ",
+                                        "Length frequencies (unsorted) - ")
+                                 , l_title)) +
     ggplot2::theme(
       plot.title = ggplot2::element_text(size = 17, vjust = -2.5),
       axis.title = ggplot2::element_text(size = 14),
