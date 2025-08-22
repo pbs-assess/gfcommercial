@@ -55,6 +55,7 @@ bibliography: bib/refs.bib
 # Any extra LaTeX code for the header:
 header-includes:
  - \usepackage{float}
+ - \usepackage[singlelinecheck=false]{caption}
 ---
 
 ```{r, include=FALSE}
