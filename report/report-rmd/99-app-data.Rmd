@@ -10,12 +10,13 @@ After that, all subsequent sections will be turned into appendices. -->
 # DATA EXTRACTION {#app:data-extract}
 
 We extracted biological data from commercial fishing catches from the GFBioSQL database using the R package [gfdata](https://github.com/pbs-assess/gfdata), version number 0.1.4 [@anderson2019synopsis; @gfdata].  
-  
+
 To install the version of gfdata used during the making of this report, use the following code:
 
 `remotes::install_github("pbs-assess/gfdata@df0b7bf")`
 
 From the `gfdata` package, we used the `get_commercial_samples()` function.
+
 To extract the data for a given species:
 
 `gfdata::get_commercial_samples(species = "species common name", unsorted_only = FALSE, return_all_lengths = TRUE)`
@@ -23,10 +24,12 @@ To extract the data for a given species:
 The SQL filters used in the extraction of data from the GFBioSQL database are detailed in Appendix C.2.3 of @anderson2019synopsis.
 Here we adapt Table C.6 from @anderson2019synopsis:
 
+(ref:tab-sql-filters) Description of filters in the SQL queries extracting commercial sample data from GFBio with `get-comm-samples.sql`.
+
 ```{r sql-filters, results="asis"}
 tab <-  data.frame(filters = c("Filtered out \\texttt{TRIP\\_SUBTYPE\\_CODE} \\texttt{2, 3} (research trips)",
                                "Filtered for \\texttt{SAMPLE\\_TYPE\\_CODE} \\texttt{1, 2, 6, 7, 8} (random or total)",
-                               "Filtered for \\texttt{SPECIES\\_CATEGORY\\_CODE} \\texttt{NULL, 0, 1, 3, 4, 5, 6, 7}",
+                               "Filtered for \\texttt{SPECIES\\_CATEGORY\\_CODE} \\texttt{0, 1, 3, 4, 5, 6}",
                                "Filtered for \\texttt{SAMPLE\\_SOURCE\\_CODE} \\texttt{NULL, 1, 2, 3}"),
                    rationale = c("To extract only commercial data",
                                  "To extract only those records of sample type 'random' or 'total'",
@@ -34,11 +37,12 @@ tab <-  data.frame(filters = c("Filtered out \\texttt{TRIP\\_SUBTYPE\\_CODE} \\t
                                  "To extract both sorted and unsorted samples for later filtration for desired analysis (removed stomach contents samples)"))
 
 tab |>
-  csasdown::csas_table(caption = "SQL filters.",
+  csasdown::csas_table(caption = "(ref:tab-sql-filters)",
     col_names = c("Filters", "Rationale"),
     format = "latex",
     escape = FALSE,
-    align = c("l", "l")) |>
+    align = c("l", "l"),
+    linesep = "\\addlinespace") |>
   kableExtra::kable_styling(latex_options = "hold_position") |>
   kableExtra::column_spec(c(1,2), width = c("8cm", "8cm"))
 ```
