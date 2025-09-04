@@ -183,7 +183,7 @@ Order: Gadiformes, Family: Merlucciidae,
 [FishBase](http://www.fishbase.org/summary/Merluccius-productus), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=272458)
 \
-Last joint Canada-US stock assessment: @grandin2024hake
+Last joint Canada-US stock assessment: @johnson2025hake
 
 
 
@@ -307,7 +307,7 @@ Order: Scorpaeniformes, Family: Scorpaenidae,
 [FishBase](http://www.fishbase.org/summary/Sebastes-alutus), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=254573)
 \
-Last Research Documents: @edwards2013popHG, @edwards2014popWCVI, @haigh2018popqcs
+Last Research Document: @starr2025pop
 \
 Last Science Advisory Report: @dfo2024pop
 
@@ -505,7 +505,7 @@ Order: Scorpaeniformes, Family: Scorpaenidae,
 [FishBase](http://www.fishbase.org/summary/Sebastes-flavidus), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274795)
 \
-Last Science Advisory Report: @dfo2015yellowtail
+Last Science Advisory Report: @dfo2025yellowtail
 
 
 
@@ -543,7 +543,7 @@ Order: Scorpaeniformes, Family: Scorpaenidae,
 [FishBase](http://www.fishbase.org/summary/Sebastes-maliger), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274815)
 \
-Last Research Document: @huynh2024quillback
+Last Research Documents: @huynh2024qbin, @huynh2025qbout
 \
 Last Science Advisory Reports: @dfo2023QuillbackInside, @dfo2023QuillbackOutside
 \
@@ -1015,7 +1015,7 @@ Order: Pleuronectiformes, Family: Pleuronectidae,
 \
 Last Research Document: @starr2009petrale
 \
-Last Science Advisory Report: @dfo1998petrale
+Last Science Advisory Report: @dfo2025petrale
 
 
 
@@ -1053,7 +1053,7 @@ Order: Pleuronectiformes, Family: Pleuronectidae,
 [FishBase](http://www.fishbase.org/summary/Hippoglossus-stenolepis), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274290)
 \
-IPHC Stock Assessment: @iphc2024
+IPHC Stock Assessment: @iphc2025
 
 
 
