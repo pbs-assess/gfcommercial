@@ -29,12 +29,12 @@ pacific spiny dogfish,galluci2011dogfish,dfo2010dogfish,,,cosewic2011dogfish
 pacific cod,forrest2020pcod,dfo2019pcod3cd5abcd,Last Science Response,"dfo2021pcod, dfo2024pcodWCVI",
 pacific flatnose,,,,,
 pacific grenadier,,,,,
-pacific hake,,,Last joint Canada-US stock assessment,grandin2024hake,
-pacific ocean perch,"edwards2013popHG, edwards2014popWCVI, haigh2018popqcs",dfo2024pop,,,
+pacific hake,,,Last joint Canada-US stock assessment,johnson2025hake,
+pacific ocean perch,starr2025pop,dfo2024pop,,,
 pacific sleeper shark,,,,,
 pacific tomcod,,,,,
-petrale sole,starr2009petrale,dfo1998petrale,,,
-quillback rockfish,huynh2024quillback,"dfo2023QuillbackInside, dfo2023QuillbackOutside",,,cosewic2009quillback
+petrale sole,starr2009petrale,dfo2025petrale,,,
+quillback rockfish,"huynh2024qbin, huynh2025qbout","dfo2023QuillbackInside, dfo2023QuillbackOutside",,,cosewic2009quillback
 redbanded rockfish,edwards2017redbanded,,,,
 redstripe rockfish,starr2021redstripe,dfo2018redstripe,,,
 rex sole,,,Research Document featuring a case study of 3CD Rex Sole,anderson2021mp,
@@ -62,6 +62,6 @@ widow rockfish,starr2021widow,dfo2019widow,,,
 wolf eel,,,,,
 yelloweye rockfish,"cox2020YEout, haggarty2022yelloweyeIN","dfo2020yelloweyeinside, dfo2020yelloweyeoutside",Species at Risk Act Management Plan Series and Last Science Responses,"dfo2020yelloweye, dfo2023MPupdateYE, dfo2023YErecovery",cosewic2020yelloweye
 yellowmouth rockfish,starr2022yellowmouth,dfo2022yellowmouth,,,cosewic2010yellowmouth
-yellowtail rockfish,,dfo2015yellowtail,,,
+yellowtail rockfish,,dfo2025yellowtail,,,
 tope shark,,,,,cosewic2021tope
-pacific halibut,,,IPHC Stock Assessment,iphc2024,
+pacific halibut,,,IPHC Stock Assessment,iphc2025,
