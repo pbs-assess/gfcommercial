@@ -39,7 +39,7 @@ knitr::include_graphics(paste0(fl_path_exs,"/", sp_hyphens, "-ex-2", fl_type))
 
 \clearpage
 
-## Representativeness plot
+## Representativeness (unsorted) plot 
 
 ```{r, "representativeness", warning = FALSE, echo = FALSE, fig.pos='htb', fig.align='center', out.width="6.5in", fig.cap = paste0("Example representativeness plot for ", sp, ". This plot shows the cumulative proportion of commercial biological specimens from unsorted samples (orange line) and catch (black line) by week of year (horizontal-axis) for management areas (columns) and years (rows) to give a qualitative indicator of sampling representativeness. Sampling is considered more temporally representative of catch when cumulative specimen and catch profiles are more closely aligned. The dashed orange line with orange shading underneath shows the cumulative proportion of all unsorted specimens, while the solid orange line depicts the cumulative proportion of unsorted specimens with spatially explicit data. The total number of unsorted specimens collected is shown in the top left corner for each panel (orange count), while the total landed catch weight is shown in the bottom right corner for each panel (black count). The units for total landed weight are in kilograms (kg), tonnes (t), or kilotonnes (1 kt = 1000 t). Note, we show only the years 2002--2022 for this example figure.")}
 
@@ -59,9 +59,9 @@ knitr::include_graphics(paste0(fl_path_exs,"/", sp_hyphens, "-ex-4", fl_type))
 
 \clearpage
 
-## Length composition data
+## Length composition data (unsorted)
 
-```{r, "lengths", warning = FALSE, echo = FALSE, fig.pos='htb', fig.align='center', out.width="6.5in", fig.cap = paste0("Example length-frequency histogram for unsorted specimens of ", sp, ". The bars represent relative length frequency (purple: female; green: male), while the histogram outline represents total relative length frequency of unsorted specimens (black line: female, male, and unsexed). The total number of unsorted specimens (male and female) measured for a given area (columns) and year (rows) are indicated in the top left and right corner of each panel, in grey. The dominant length type is indicated in the figure title. If a species has length measurements in more than one length type and the non-dominant length type measurements are less than 1% of the total specimens, the non-dominant length type are not included in the histogram. For the few species where the non-dominant length type measurements are more than 1% of the total specimens, we replaced the age-frequency plot with a second length-frequency plot, as there were no age samples for those species.")}
+```{r, "lengths", warning = FALSE, echo = FALSE, fig.pos='htb', fig.align='center', out.width="6.5in", fig.cap = paste0("Example length-frequency histogram for unsorted specimens of ", sp, ". The bars represent relative length frequency (purple: female; green: male), while the histogram outline represents total relative length frequency of unsorted specimens (black line: female, male, and unsexed). The total number of unsorted specimens (male and female, excluding unsexed) measured for a given area (columns) and year (rows) are indicated in the top left and right corner of each panel, in grey. The dominant length type is indicated in the figure title. If a species has length measurements in more than one length type and the non-dominant length type measurements are less than 1% of the total specimens, the non-dominant length type are not included in the histogram. For the few species where the non-dominant length type measurements are more than 1% of the total specimens, we replaced the age-frequency plot with a second length-frequency plot, as there were no age samples for those species.")}
 
 knitr::include_graphics(paste0(fl_path_exs,"/", sp_hyphens, "-ex-5", fl_type))
   
