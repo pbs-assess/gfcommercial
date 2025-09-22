@@ -391,7 +391,7 @@ Last Science Advisory Report: @dfo1999shortraker
 
 
 
-Shortracker Rockfish were caught mostly by hook, line, and bottom trawl, and occasionally by midwater trawl. Areas 5E and 3D had marginally higher catch. Catch remained relatively stable over time, with minor fluctuations. Specimen collection was limited and infrequent. Cumulative total sampling and catch profiles did not match. Between 1996 and 2022, 49 unsorted specimens were collected, and of these, 49 (100%) had age structures, but none have been aged. All unsorted specimens had lengths; of these, 49 (100%) were sexed, while 48 (98%) had weights.
+Shortraker Rockfish were caught mostly by hook, line, and bottom trawl, and occasionally by midwater trawl. Areas 5E and 3D had marginally higher catch. Catch remained relatively stable over time, with minor fluctuations. Specimen collection was limited and infrequent. Cumulative total sampling and catch profiles did not match. Between 1996 and 2022, 49 unsorted specimens were collected, and of these, 49 (100%) had age structures, but none have been aged. All unsorted specimens had lengths; of these, 49 (100%) were sexed, while 48 (98%) had weights.
 \fancyhead{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
@@ -553,7 +553,7 @@ COSEWIC Status: Threatened
 
 
 
-Quillback Rockfish were caught mostly by hook and line. Catch was highest in Area 4B from 1996 to 2001, then marginally higher in Areas 5A and 5C from 2002 to 2022. Commercial catch was highest in 1996, then decreased until 2002, after which it remained stable. Specimen collection was highest in Area 4B and peaked in 2001. Unsorted specimen collection was limited and inconsistent between 1996 and 2015. Sorted specimen collection occurred from 1996 to 2008, lacking data in 1997 and from 2001 to 2003 Few of the unsorted samples had latitude and longitude data. Cumulative total sampling and catch profiles did not match in years with biological sampling. Between 1996 and 2022, 1,404 unsorted specimens were collected, and of these, 1,349 (96%) had age structures, and 868 (62% of specimens; 64% of age structures) have been aged. All unsorted specimens had lengths; of these, 1,354 (96%) were sexed, while 1,141 (81%) had weights.
+Quillback Rockfish were caught mostly by hook and line. Catch was highest in Area 4B from 1996 to 2001, then marginally higher in Areas 5A and 5C from 2002 to 2022. Commercial catch was highest in 1996, then decreased until 2002, after which it remained stable. Specimen collection was highest in Area 4B and peaked in 2001. Unsorted specimen collection was limited and inconsistent between 1996 and 2015. Sorted specimen collection occurred from 1996 to 2008, lacking data in 1997 and from 2001 to 2003. Few of the unsorted samples had latitude and longitude data. Cumulative total sampling and catch profiles did not match in years with biological sampling. Between 1996 and 2022, 1,404 unsorted specimens were collected, and of these, 1,349 (96%) had age structures, and 868 (62% of specimens; 64% of age structures) have been aged. All unsorted specimens had lengths; of these, 1,354 (96%) were sexed, while 1,141 (81%) had weights.
 \fancyhead{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
