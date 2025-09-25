@@ -22,21 +22,22 @@ spp$species_common_name[spp$species_common_name == "rougheye blackspotted rockfi
 filenames <- file.path(data_cache_path, paste0(spp$spp_w_hyphens, ".rds"))
 
 # Update data cache ------------------------------------------------------------
-for (i in seq_along(spp$species_common_name)) {
-  .s <- spp$species_common_name[i]
-  cat(.s, "\n")
-  d <- list()
-  if (!file.exists(filenames[i])) {
-    d[["commercial_samples"]] <-
-      gfdata::get_commercial_samples(
-        species = .s,
-        unsorted_only = FALSE,
-        return_all_lengths = TRUE
-      )
-    d[["catch"]] <- gfdata::get_catch(.s)
-    saveRDS(d, file = filenames[i])
-  }
-}
+
+# for (i in seq_along(spp$species_common_name)) {
+#   .s <- spp$species_common_name[i]
+#   cat(.s, "\n")
+#   d <- list()
+#   if (!file.exists(filenames[i])) {
+#     d[["commercial_samples"]] <-
+#       gfdata::get_commercial_samples(
+#         species = .s,
+#         unsorted_only = FALSE,
+#         return_all_lengths = TRUE
+#       )
+#     d[["catch"]] <- gfdata::get_catch(.s)
+#     saveRDS(d, file = filenames[i])
+#   }
+# }
 
 # Calculate proportion of data from at-sea or dockside -------------------------
 
@@ -59,17 +60,47 @@ for (i in seq_along(spp$species_common_name)) {
 
 # Gather and arrange some metadata ---------------------------------------------
 
-if (!file.exists(here::here("report", "itis.rds"))) {
-  cls <- taxize::classification(spp$itis_tsn[!is.na(spp$itis_tsn)], db = 'itis')
-  saveRDS(cls, file = here::here("report", "itis.rds"))
+# if (!file.exists(here::here("report", "itis.rds"))) {
+#   cls <- taxize::classification(spp$itis_tsn[!is.na(spp$itis_tsn)], db = 'itis')
+#   saveRDS(cls, file = here::here("report", "itis.rds"))
+# } else {
+#   cls <- readRDS(here::here("report", "itis.rds"))
+# }
+# cls <- plyr::ldply(cls) %>%
+#   rename(itis_tsn = .id) %>%
+#   filter(rank %in% c('order', 'family')) %>%
+#   reshape2::dcast(itis_tsn ~ rank, value.var = 'name')
+# spp <- left_join(spp, mutate(cls, itis_tsn = as.integer(itis_tsn)), by = "itis_tsn")
+
+# Use WoRMS ID for taxonomic info instead of itis (WoRMS is more up to date)
+
+worms_file <- here::here("report", "worms.rds")
+
+if (!file.exists(worms_file)) {
+  cls <- taxize::classification(spp$worms_id[!is.na(spp$worms_id) & spp$worms_id != "unknown"],
+                                db = 'worms')
+  saveRDS(cls, file = worms_file)
 } else {
-  cls <- readRDS(here::here("report", "itis.rds"))
+  cls <- readRDS(worms_file)
 }
-cls <- plyr::ldply(cls) %>%
-  rename(itis_tsn = .id) %>%
-  filter(rank %in% c('order', 'family')) %>%
-  reshape2::dcast(itis_tsn ~ rank, value.var = 'name')
-spp <- left_join(spp, mutate(cls, itis_tsn = as.integer(itis_tsn)), by = "itis_tsn")
+
+cls <- cls |>
+  purrr::map_dfr(~ .x, .id = "worms_id") |>
+  dplyr::filter(rank %in% c('Order', 'Family')) |>
+  tidyr::pivot_wider(
+    id_cols = -id,
+    names_from = rank,
+    values_from = name
+  ) |>
+  dplyr::rename_with(tolower)
+
+spp <- left_join(spp, cls, by = "worms_id")
+
+spp$order[spp$species_common_name == "rougheye/blackspotted rockfish complex"] <-
+  spp$order[spp$species_common_name == "pacific ocean perch"]
+spp$family[spp$species_common_name == "rougheye/blackspotted rockfish complex"] <-
+  spp$family[spp$species_common_name == "pacific ocean perch"]
+
 
 # downloaded from:
 # https://species-registry.canada.ca/index-en.html#/species?ranges=1,18&taxonomyId=4&sortBy=commonNameSort&sortDirection=asc&pageSize=10
