@@ -257,7 +257,7 @@ Walleye Pollock were caught mostly by midwater trawl and occasionally by bottom 
 ## Rougheye/Blackspotted Rockfish Complex {#sec:rougheye-blackspotted-rockfish-complex}
 
 \emph{Sebastes aleutianus/melanostictus} (394)\
-Order: Scorpaeniformes, Family: Scorpaenidae, 
+Order: Perciformes, Family: Sebastidae, 
 [FishBase 1](http://www.fishbase.org/summary/Sebastes-aleutianus),
 [FishBase 2](http://www.fishbase.org/summary/Sebastes-melanostictus)
 \
@@ -303,7 +303,7 @@ Rougheye-Blackspotted Rockfish were caught mostly by bottom and midwater trawl, 
 ## Pacific Ocean Perch {#sec:pacific-ocean-perch}
 
 \emph{Sebastes alutus} (396)\
-Order: Scorpaeniformes, Family: Scorpaenidae, 
+Order: Perciformes, Family: Sebastidae, 
 [FishBase](http://www.fishbase.org/summary/Sebastes-alutus), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=254573)
 \
@@ -343,7 +343,7 @@ Pacific Ocean Perch were caught mostly by bottom trawl and occasionally by midwa
 ## Redbanded Rockfish {#sec:redbanded-rockfish}
 
 \emph{Sebastes babcocki} (401)\
-Order: Scorpaeniformes, Family: Scorpaenidae, 
+Order: Perciformes, Family: Sebastidae, 
 [FishBase](http://www.fishbase.org/summary/Sebastes-babcocki), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274775)
 \
@@ -381,7 +381,7 @@ Redbanded Rockfish were caught mostly by bottom trawl and hook and line, and occ
 ## Shortraker Rockfish {#sec:shortraker-rockfish}
 
 \emph{Sebastes borealis} (403)\
-Order: Scorpaeniformes, Family: Scorpaenidae, 
+Order: Perciformes, Family: Sebastidae, 
 [FishBase](http://www.fishbase.org/summary/Sebastes-borealis), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274777)
 \
@@ -421,7 +421,7 @@ Shortraker Rockfish were caught mostly by hook, line, and bottom trawl, and occa
 ## Silvergray Rockfish {#sec:silvergray-rockfish}
 
 \emph{Sebastes brevispinis} (405)\
-Order: Scorpaeniformes, Family: Scorpaenidae, 
+Order: Perciformes, Family: Sebastidae, 
 [FishBase](http://www.fishbase.org/summary/Sebastes-brevispinis), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274778)
 \
@@ -461,7 +461,7 @@ Silvergray Rockfish were caught mostly by bottom trawl, and occasionally by hook
 ## Widow Rockfish {#sec:widow-rockfish}
 
 \emph{Sebastes entomelas} (417)\
-Order: Scorpaeniformes, Family: Scorpaenidae, 
+Order: Perciformes, Family: Sebastidae, 
 [FishBase](http://www.fishbase.org/summary/Sebastes-entomelas), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274791)
 \
@@ -501,7 +501,7 @@ Widow Rockfish were caught mostly by midwater and bottom trawl. Catch and specim
 ## Yellowtail Rockfish {#sec:yellowtail-rockfish}
 
 \emph{Sebastes flavidus} (418)\
-Order: Scorpaeniformes, Family: Scorpaenidae, 
+Order: Perciformes, Family: Sebastidae, 
 [FishBase](http://www.fishbase.org/summary/Sebastes-flavidus), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274795)
 \
@@ -539,7 +539,7 @@ Yellowtail Rockfish were caught mostly by bottom and midwater trawl. Catch and s
 ## Quillback Rockfish {#sec:quillback-rockfish}
 
 \emph{Sebastes maliger} (424)\
-Order: Scorpaeniformes, Family: Scorpaenidae, 
+Order: Perciformes, Family: Sebastidae, 
 [FishBase](http://www.fishbase.org/summary/Sebastes-maliger), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274815)
 \
@@ -583,7 +583,7 @@ Quillback Rockfish were caught mostly by hook and line. Catch was highest in Are
 ## Bocaccio {#sec:bocaccio}
 
 \emph{Sebastes paucispinis} (435)\
-Order: Scorpaeniformes, Family: Scorpaenidae, 
+Order: Perciformes, Family: Sebastidae, 
 [FishBase](http://www.fishbase.org/summary/Sebastes-paucispinis), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274833)
 \
@@ -591,7 +591,7 @@ Last Research Document: @starr2022bocaccio
 \
 Last Science Advisory Report: @dfo2020bocaccio
 \
-Last Science Response: @dfo2022bocaccio
+Last Science Response: @dfo2024bocaccio
 \
 COSEWIC Status Report: @cosewic2013bocaccio
 \
@@ -629,7 +629,7 @@ Bocaccio were caught mostly by bottom and midwater trawl and occasionally by hoo
 ## Canary Rockfish {#sec:canary-rockfish}
 
 \emph{Sebastes pinniger} (437)\
-Order: Scorpaeniformes, Family: Scorpaenidae, 
+Order: Perciformes, Family: Sebastidae, 
 [FishBase](http://www.fishbase.org/summary/Sebastes-pinniger), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274836)
 \
@@ -673,7 +673,7 @@ Canary Rockfish were caught mostly by bottom and midwater trawl, and occasionall
 ## Redstripe Rockfish {#sec:redstripe-rockfish}
 
 \emph{Sebastes proriger} (439)\
-Order: Scorpaeniformes, Family: Scorpaenidae, 
+Order: Perciformes, Family: Sebastidae, 
 [FishBase](http://www.fishbase.org/summary/Sebastes-proriger), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274838)
 \
@@ -713,7 +713,7 @@ Redstripe Rockfish were caught mostly by bottom and midwater trawl. Catch and sp
 ## Yellowmouth Rockfish {#sec:yellowmouth-rockfish}
 
 \emph{Sebastes reedi} (440)\
-Order: Scorpaeniformes, Family: Scorpaenidae, 
+Order: Perciformes, Family: Sebastidae, 
 [FishBase](http://www.fishbase.org/summary/Sebastes-reedi), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274840)
 \
@@ -757,7 +757,7 @@ Yellowmouth Rockfish were caught mostly  by bottom and midwater trawl. Catch and
 ## Yelloweye Rockfish {#sec:yelloweye-rockfish}
 
 \emph{Sebastes ruberrimus} (442)\
-Order: Scorpaeniformes, Family: Scorpaenidae, 
+Order: Perciformes, Family: Sebastidae, 
 [FishBase](http://www.fishbase.org/summary/Sebastes-ruberrimus), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=274844)
 \
@@ -803,7 +803,7 @@ Yelloweye Rockfish were caught mostly  by hook and line. Catch and specimen coll
 ## Shortspine Thornyhead {#sec:shortspine-thornyhead}
 
 \emph{Sebastolobus alascanus} (451)\
-Order: Scorpaeniformes, Family: Scorpaenidae, 
+Order: Perciformes, Family: Sebastidae, 
 [FishBase](http://www.fishbase.org/summary/Sebastolobus-alascanus), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=282740)
 \
@@ -843,7 +843,7 @@ Shortspine Thornyhead were caught mostly by bottom trawl, and occasionally by ho
 ## Longspine Thornyhead {#sec:longspine-thornyhead}
 
 \emph{Sebastolobus altivelis} (453)\
-Order: Scorpaeniformes, Family: Scorpaenidae, 
+Order: Perciformes, Family: Sebastidae, 
 [FishBase](http://www.fishbase.org/summary/Sebastolobus-altivelis), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=282741)
 \
@@ -887,11 +887,11 @@ Longspine Thornyhead were caught mostly by bottom trawl. Catch and specimen coll
 ## Sablefish {#sec:sablefish}
 
 \emph{Anoplopoma fimbria} (455)\
-Order: Scorpaeniformes, Family: Anoplopomatidae, 
+Order: Perciformes, Family: Anoplopomatidae, 
 [FishBase](http://www.fishbase.org/summary/Anoplopoma-fimbria), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=159463)
 \
-Last Research Documents: @cox2019sablefish, @cox2023sablefish
+Last Research Documents: @cox2019sablefish, @cox2023sablefish, @johnson2024sablefish
 \
 Last Science Advisory Report: @dfo2023sablefishSAR
 \
@@ -929,7 +929,7 @@ Sablefish were caught mostly by trap, hook, and line, and occasionally by bottom
 ## Lingcod {#sec:lingcod}
 
 \emph{Ophiodon elongatus} (467)\
-Order: Scorpaeniformes, Family: Hexagrammidae, 
+Order: Perciformes, Family: Hexagrammidae, 
 [FishBase](http://www.fishbase.org/summary/Ophiodon-elongatus), 
 [WoRMS](http://www.marinespecies.org/aphia.php?p=taxdetails&id=240745)
 \
