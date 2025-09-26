@@ -4,7 +4,7 @@ title: |
 french_title: | 
   "Titre ici (*Nom latin de l'espèce*)"
 year: 2025
-report_number: nnn
+report_number: 3722
 author: |
   Leah. C. Walker^1^,
   Luke A. Rogers^1^,
@@ -13,7 +13,7 @@ author: |
 author_list: "Walker, L.C., Rogers, L.A., Anderson, S.C., and Haggarty D.R."
 region: Pacific Region
 french_region: Région du Pacifique
-isbn: ""
+isbn: "978-0-660-79127-2"
 citation_french: "Last, F.M. et Smith, A.B. Title Here (*Latin Species Name*). DFO Secr. can. des avis sci. du MPO. Doc. de rech 2019/nnn. iv + 13 p."
 address: |
   ^1^Pacific Biological Station\
