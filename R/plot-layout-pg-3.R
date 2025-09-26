@@ -35,7 +35,8 @@ plot_layout_pg_3 <- function(spp,
   # [Halibut] Change discarded bottom trawl specimens to unsorted
   if (spp == "pacific-halibut") {
     comm_samples <- comm_samples |>
-      dplyr::mutate(sampling_desc = ifelse(sampling_desc == "DISCARDS"  & gear_desc == "BOTTOM TRAWL", "UNSORTED", sampling_desc))
+      dplyr::mutate(sampling_desc = ifelse(sampling_desc == "UNKNOWN", "DISCARDS", sampling_desc),
+                    sampling_desc = ifelse(sampling_desc == "DISCARDS" & gear_desc == "BOTTOM TRAWL", "UNSORTED", sampling_desc))
   }
 
   comm_samples_unsort <- dplyr::filter(comm_samples, sampling_desc == "UNSORTED")

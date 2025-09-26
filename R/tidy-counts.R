@@ -101,45 +101,43 @@ tidy_commercial_counts <- function (data,
 
 
     # Define counts ------------------------------------------------------------
-
     counts <- data %>%
-      dplyr::group_by(
-        species_common_name,
-        area,
-        year
-      ) %>%
-      dplyr::summarise(
-        age = sum(!is.na(age) & age > 0),
-        ageing_structure = sum(
-          !is.na(age_specimen_collected) &
-            age_specimen_collected == 1),
-        length = sum(!is.na(length) & length > 0),
-        weight = sum(!is.na(weight) & weight > 0),
-        sex = sum(sex == 1 | sex == 2),
-        maturity = sum(!is.na(maturity_code) & maturity_code > 0),
-        spatial = sum(spatial == 1),
-        fishing_events = sum(!is.na(unique(fishing_event_id)))
-      ) %>%
-      dplyr::ungroup() %>%
-      tidyr::pivot_longer(
-        cols = age:fishing_events,
-        names_to = "type",
-        values_to = "n"
-      ) %>%
-      dplyr::mutate(
-        type = factor(
+        dplyr::group_by(
+          species_common_name,
+          area,
+          year
+        ) %>%
+        dplyr::summarise(
+          age = sum(!is.na(age) & age > 0),
+          ageing_structure = sum(
+            !is.na(age_specimen_collected) &
+              age_specimen_collected == 1),
+          length = sum(!is.na(length) & length > 0),
+          weight = sum(!is.na(weight) & weight > 0),
+          sex = sum(sex == 1 | sex == 2),
+          maturity = sum(!is.na(maturity_code) & maturity_code > 0),
+          spatial = sum(spatial == 1),
+          fishing_events = sum(!is.na(unique(fishing_event_id)))
+        ) %>%
+        dplyr::ungroup() %>%
+        tidyr::pivot_longer(
+          cols = age:fishing_events,
+          names_to = "type",
+          values_to = "n"
+        ) %>%
+        dplyr::mutate(
+          type = factor(
+            type,
+            levels = c("age", "ageing_structure", "length", "weight", "maturity", "sex", "spatial", "fishing_events")
+          )
+        ) %>%
+        dplyr::arrange(
+          species_common_name,
+          area,
           type,
-          levels = c("age", "ageing_structure", "length", "weight", "maturity", "sex", "spatial", "fishing_events")
-        )
-      ) %>%
-      dplyr::arrange(
-        species_common_name,
-        area,
-        type,
-        year
-      ) %>%
-      tidyr::replace_na(replace = list(n = 0))
-
+          year
+        ) %>%
+        tidyr::replace_na(replace = list(n = 0))
   } else {
 
     counts <- data.frame(species_common_name = spp,

@@ -91,6 +91,8 @@ my_tidy_samples <- function(dat,
 
 samples_total <- function(dat, years = NULL, ...) {
 
+  spp <- unique(dat$species_common_name)
+
   # Define area factor levels
   area_levels <- c("5E", "5D", "5C", "5B", "5A", "3D", "3C", "4B", "Total")
 
@@ -98,6 +100,11 @@ samples_total <- function(dat, years = NULL, ...) {
   dat <- dat |>
     dplyr::filter(trip_sub_type_desc != "RECREATIONAL") |>
     dplyr::filter(gear_desc != "RECREATIONAL ROD & REEL")
+
+  if (spp == "pacific halibut") {
+    dat <- dat |>
+      dplyr::mutate(sampling_desc = ifelse(sampling_desc == "UNKNOWN", "DISCARDS", sampling_desc))
+  }
 
   # Create a 'Total' area
   samples_areas <- my_tidy_samples(dat,

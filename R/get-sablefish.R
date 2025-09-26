@@ -1,8 +1,9 @@
 
 
-sablefish_heads <- function ( ) {
+sablefish_heads <- function (fl_path = paste0(here::here("data")),
+                             fl_name = "sablefish_heads.csv") {
 
-  sablefish <- read.csv(paste0(here::here("data"), "/", "sablefish_heads.csv"))
+  sablefish <- read.csv(paste0(fl_path, "/", fl_name))
 
   # Adjust column names
   names(sablefish) <- tolower(names(sablefish))
@@ -13,17 +14,13 @@ sablefish_heads <- function ( ) {
     dplyr::select(-interorbital)
 
   sablefish <- sablefish %>%
-    dplyr::mutate(year = lubridate::year(trip_start_date),
-                  sampling_desc = "UNSORTED",
-                  species_common_name = "sablefish",
-                  trip_start_date = as.POSIXct(trip_start_date),
+    dplyr::mutate(trip_start_date = as.POSIXct(trip_start_date, format = "%m/%d/%Y"),
+                  species_common_name = tolower(species_common_name),
                   age = as.numeric(age),
                   weight = as.numeric(weight),
+                  maturity_code = as.numeric(maturity_code),
                   major_stat_area_code = as.character(major_stat_area_code),
-                  trip_sub_type_desc = "NON - OBSERVED DOMESTIC",
-                  maturity_code = 0,
                   length = round_any(length, accuracy = 10)*0.1,
-                  usability_code = 0,
                   length_type = "fork_length"
                   )
 

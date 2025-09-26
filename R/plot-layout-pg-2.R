@@ -16,7 +16,6 @@ plot_layout_pg_2 <- function(spp,
 
   data <- readr::read_rds(paste0(fl_path_data, "/", spp, ".rds"))
 
-
   comm_samples <- data$commercial_samples
 
   if (spp == "sablefish") {
@@ -25,6 +24,10 @@ plot_layout_pg_2 <- function(spp,
     comm_samples <- dplyr::bind_rows(comm_samples, sablefish)
   }
 
+  if (spp == "pacific-halibut") {
+    comm_samples <- comm_samples |>
+      dplyr::mutate(sampling_desc = ifelse(sampling_desc == "UNKNOWN", "DISCARDS", sampling_desc))
+  }
 
   # Commercial counts plot -----------------------------------------------------
 

@@ -208,7 +208,8 @@ tidy_cumulative_counts <- function (data,
         area,
         year
       ) %>%
-      dplyr::mutate(proportion = cumulative_spatial/max(cumulative_samples),
+      #dplyr::mutate(proportion = cumulative_spatial/max(cumulative_samples),
+      dplyr::mutate(proportion = cumulative_spatial/max(cumulative_spatial),
                     n = max(cumulative_spatial, na.rm = TRUE)
                     )
 

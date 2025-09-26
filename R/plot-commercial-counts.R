@@ -8,6 +8,8 @@ plot_commercial_counts <- function (data,
 
   # Define years ---------------------------------------------------------------
 
+  spp <- unique(data$species_common_name)
+
   if (is.null(years)) {
     years <- seq(min(data$year, na.rm = TRUE), max(data$year, na.rm = TRUE), 1L)
   }
@@ -47,37 +49,37 @@ plot_commercial_counts <- function (data,
 
   # Join data and combinations -------------------------------------------------
 
-  data <- data %>%
-    dplyr::right_join(
-      all,
-      by = c("type", "area", "year")
-    ) %>%
-    dplyr::mutate(
-      n_plot = ifelse(
-        is.na(n_plot), NA,
-        ifelse(
-          n_plot == 0, NA,
-          n_plot
+    data <- data %>%
+      dplyr::right_join(
+        all,
+        by = c("type", "area", "year")
+      ) %>%
+      dplyr::mutate(
+        n_plot = ifelse(
+          is.na(n_plot), NA,
+          ifelse(
+            n_plot == 0, NA,
+            n_plot
+          )
         )
-      )
-    ) %>%
-    dplyr::mutate(
-      type = factor(
-        type,
-        levels = rev(
-          c(
-            "# Length",
-            "# Sex",
-            "# Weight",
-            "# Maturity",
-            "# Age",
-            "# Age structures",
-            "# Spatial",
-            "# Fishing events"
+      ) %>%
+      dplyr::mutate(
+        type = factor(
+          type,
+          levels = rev(
+            c(
+              "# Length",
+              "# Sex",
+              "# Weight",
+              "# Maturity",
+              "# Age",
+              "# Age structures",
+              "# Spatial",
+              "# Fishing events"
+            )
           )
         )
       )
-    )
 
   data <- data %>%
     dplyr::mutate(n = as.numeric(n),
