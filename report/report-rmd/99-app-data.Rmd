@@ -33,7 +33,7 @@ tab <-  data.frame(filters = c("Filtered out \\texttt{TRIP\\_SUBTYPE\\_CODE} \\t
                                "Filtered for \\texttt{SAMPLE\\_SOURCE\\_CODE} \\texttt{NULL, 1, 2, 3}"),
                    rationale = c("To extract only commercial data",
                                  "To extract only those records of sample type 'random' or 'total'",
-                                 "To remove samples of sorted or unknown criteria",
+                                 "To remove samples sorted on unknown criteria",
                                  "To extract both sorted and unsorted samples for later filtration for desired analysis (removed stomach contents samples)"))
 
 tab |>
