@@ -14,7 +14,8 @@ author_list: "Walker, L.C., Rogers, L.A., Anderson, S.C., and Haggarty D.R."
 region: Pacific Region
 french_region: Région du Pacifique
 isbn: "978-0-660-79127-2"
-citation_french: "Last, F.M. et Smith, A.B. Title Here (*Latin Species Name*). DFO Secr. can. des avis sci. du MPO. Doc. de rech 2019/nnn. iv + 13 p."
+report_DOI: "10.60825/ywpx-4051"
+citation_french: "Walker, L.C., Rogers, L.A., Anderson, S.C., and Haggarty D.R. 2025. Examen des échantillons biologiques prélevés dans les pêcheries commerciales de poissons de fond en Colombie-Britannique, 1996-2022. Rapp. tech. can. sci. halieut. aquat. 3722: vi + 148 p. https://doi.org/10.60825/ywpx-4051"
 address: |
   ^1^Pacific Biological Station\
      Fisheries and Oceans Canada, 3190 Hammond Bay Road\
